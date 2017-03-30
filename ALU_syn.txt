@@ -1,0 +1,376 @@
+Timing 2.15ns area: 2798.174446 slack: 0
+Timing 2.00ns area: 3265.516839 slack: 0
+Timing 1.85ns area: 3442.857645 slakc: 0.19
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : alu
+Version: J-2014.09-SP5
+Date   : Thu Mar 30 10:13:51 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwp12ttc
+Wire Load Model Mode: segmented
+
+  Startpoint: src0sel[0] (input port)
+  Endpoint: dst[0] (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  alu                TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwp12ttc
+  alu_DW01_add_1     ZeroWireload          tcbn40lpbwp12ttc
+  alu_DW02_mult_0    ZeroWireload          tcbn40lpbwp12ttc
+  alu_DW01_add_2     ZeroWireload          tcbn40lpbwp12ttc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  src0sel[0] (in)                                         0.02       0.02 r
+  U381/Z (BUFFXD4BWP12T)                                  0.03       0.05 r
+  U386/ZN (INVD4BWP12T)                                   0.01       0.06 f
+  U379/ZN (IND3D4BWP12T)                                  0.02       0.08 r
+  U377/ZN (INVD6BWP12T)                                   0.02       0.10 f
+  U373/ZN (RCAOI22D4BWP12T)                               0.03       0.13 r
+  U372/ZN (ND2XD3BWP12T)                                  0.02       0.15 f
+  U502/Z (AO221D1BWP12T)                                  0.10       0.26 f
+  U449/ZN (IOA21D2BWP12T)                                 0.05       0.31 f
+  U428/ZN (DCCKND4BWP12T)                                 0.01       0.32 r
+  U506/ZN (ND2XD3BWP12T)                                  0.02       0.34 f
+  U512/Z (XOR2XD8BWP12T)                                  0.05       0.39 r
+  mult_92/A[2] (alu_DW02_mult_0)                          0.00       0.39 r
+  mult_92/U59/Z (AN2XD0BWP12T)                            0.05       0.45 r
+  mult_92/S2_2_8/CO (FA1D1BWP12T)                         0.10       0.54 r
+  mult_92/S2_3_8/S (FA1D1BWP12T)                          0.11       0.65 f
+  mult_92/U21/ZN (ND2D2BWP12T)                            0.02       0.67 r
+  mult_92/U238/ZN (TPND3D2BWP12T)                         0.03       0.70 f
+  mult_92/S2_5_7/CO (FA1D1BWP12T)                         0.10       0.80 f
+  mult_92/S2_6_7/S (FA1D1BWP12T)                          0.10       0.89 f
+  mult_92/U13/ZN (TPND2D1BWP12T)                          0.02       0.92 r
+  mult_92/U130/ZN (ND3XD2BWP12T)                          0.03       0.95 f
+  mult_92/S2_8_6/CO (FA1D1BWP12T)                         0.10       1.04 f
+  mult_92/S2_9_6/CO (FA1D1BWP12T)                         0.10       1.14 f
+  mult_92/S2_10_6/CO (FA1D1BWP12T)                        0.10       1.23 f
+  mult_92/S2_11_6/CO (FA1D1BWP12T)                        0.10       1.33 f
+  mult_92/S2_12_6/CO (FA1D1BWP12T)                        0.10       1.43 f
+  mult_92/U232/ZN (ND2D1BWP12T)                           0.02       1.45 r
+  mult_92/U70/ZN (TPND3D1BWP12T)                          0.03       1.48 f
+  mult_92/S4_6/S (FA1D1BWP12T)                            0.10       1.58 r
+  mult_92/U522/Z (XOR2XD4BWP12T)                          0.06       1.64 f
+  mult_92/FS_1/A[18] (alu_DW01_add_2)                     0.00       1.64 f
+  mult_92/FS_1/U31/ZN (ND2XD0BWP12T)                      0.04       1.68 r
+  mult_92/FS_1/U5/ZN (TPOAI21D2BWP12T)                    0.03       1.71 f
+  mult_92/FS_1/U125/ZN (ND2D2BWP12T)                      0.02       1.73 r
+  mult_92/FS_1/U75/ZN (IND2XD4BWP12T)                     0.02       1.74 f
+  mult_92/FS_1/U72/ZN (RCAOI21D2BWP12T)                   0.02       1.77 r
+  mult_92/FS_1/U77/ZN (IND3D4BWP12T)                      0.03       1.79 f
+  mult_92/FS_1/U37/ZN (INVD1P75BWP12T)                    0.02       1.81 r
+  mult_92/FS_1/U42/ZN (INR3XD2BWP12T)                     0.01       1.82 f
+  mult_92/FS_1/U74/ZN (TPNR2D2BWP12T)                     0.02       1.84 r
+  mult_92/FS_1/U57/ZN (XNR3XD1BWP12T)                     0.08       1.92 f
+  mult_92/FS_1/SUM[24] (alu_DW01_add_2)                   0.00       1.92 f
+  mult_92/U338/ZN (CKND2BWP12T)                           0.02       1.94 r
+  mult_92/U51/ZN (INVD4BWP12T)                            0.02       1.96 f
+  mult_92/PRODUCT[26] (alu_DW02_mult_0)                   0.00       1.96 f
+  U417/ZN (RCOAI31D4BWP12T)                               0.04       1.99 r
+  U376/Z (OR2XD8BWP12T)                                   0.04       2.04 r
+  U496/ZN (IOA21D2BWP12T)                                 0.02       2.06 f
+  U433/ZN (CKND1BWP12T)                                   0.03       2.09 r
+  U479/ZN (OAI221XD4BWP12T)                               0.06       2.15 f
+  dst[0] (out)                                            0.00       2.15 f
+  data arrival time                                                  2.15
+
+  max_delay                                               2.15       2.15
+  output external delay                                   0.00       2.15
+  data required time                                                 2.15
+  --------------------------------------------------------------------------
+  data required time                                                 2.15
+  data arrival time                                                 -2.15
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
+ 
+****************************************
+Report : area
+Design : alu
+Version: J-2014.09-SP5
+Date   : Thu Mar 30 10:13:51 2017
+****************************************
+
+Library(s) Used:
+
+    tcbn40lpbwp12ttc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp12t_110b/tcbn40lpbwp12ttc.db)
+
+Number of ports:                          145
+Number of nets:                           423
+Number of cells:                          261
+Number of combinational cells:            259
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                         87
+Number of references:                      89
+
+Combinational area:               2798.174446
+Buf/Inv area:                      164.640003
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  2798.174446
+Total area:                 undefined
+1
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : alu
+Version: J-2014.09-SP5
+Date   : Thu Mar 30 10:14:28 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwp12ttc
+Wire Load Model Mode: segmented
+
+  Startpoint: src0sel[2] (input port)
+  Endpoint: dst[7] (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  alu                TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwp12ttc
+  alu_DW02_mult_0    ZeroWireload          tcbn40lpbwp12ttc
+  alu_DW01_add_3     ZeroWireload          tcbn40lpbwp12ttc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  src0sel[2] (in)                                         0.02       0.02 r
+  U598/Z (BUFFXD3BWP12T)                                  0.03       0.05 r
+  U531/ZN (INVD2BWP12T)                                   0.02       0.07 f
+  U533/Z (AN3D4BWP12T)                                    0.04       0.10 f
+  U523/Z (AN2XD8BWP12T)                                   0.03       0.14 f
+  U593/ZN (TPNR3D8BWP12T)                                 0.03       0.17 r
+  U718/ZN (OAI221XD4BWP12T)                               0.06       0.22 f
+  U587/ZN (DCCKND4BWP12T)                                 0.02       0.24 r
+  U591/ZN (TPNR2D2BWP12T)                                 0.01       0.26 f
+  U695/ZN (NR2XD2BWP12T)                                  0.02       0.28 r
+  U747/ZN (XNR2XD8BWP12T)                                 0.06       0.33 f
+  mult_92/A[1] (alu_DW02_mult_0)                          0.00       0.33 f
+  mult_92/U144/Z (AN2D4BWP12T)                            0.03       0.37 f
+  mult_92/U29/Z (AN2D4BWP12T)                             0.03       0.40 f
+  mult_92/S2_2_5/CO (FA1D1BWP12T)                         0.09       0.49 f
+  mult_92/S2_3_5/CO (FA1D1BWP12T)                         0.10       0.58 f
+  mult_92/U60/ZN (MAOI222D1BWP12T)                        0.05       0.64 r
+  mult_92/U602/ZN (INVD1BWP12T)                           0.03       0.66 f
+  mult_92/S2_5_5/S (FA1D1BWP12T)                          0.10       0.76 f
+  mult_92/U406/ZN (MAOI222D1BWP12T)                       0.06       0.82 r
+  mult_92/U363/ZN (INVD1P75BWP12T)                        0.03       0.84 f
+  mult_92/S2_7_4/S (FA1D1BWP12T)                          0.10       0.94 f
+  mult_92/U350/ZN (MAOI222D1BWP12T)                       0.05       0.99 r
+  mult_92/U739/ZN (INVD1BWP12T)                           0.03       1.02 f
+  mult_92/S2_9_3/CO (FA1D1BWP12T)                         0.10       1.12 f
+  mult_92/S2_10_3/S (FA1D1BWP12T)                         0.10       1.21 f
+  mult_92/U361/ZN (MAOI222D1BWP12T)                       0.05       1.26 r
+  mult_92/U740/ZN (INVD1BWP12T)                           0.03       1.29 f
+  mult_92/S2_12_2/CO (FA1D1BWP12T)                        0.10       1.39 f
+  mult_92/S2_13_2/CO (FA1D1BWP12T)                        0.10       1.48 f
+  mult_92/S4_2/CO (FA1D1BWP12T)                           0.10       1.58 f
+  mult_92/U232/Z (XOR2XD4BWP12T)                          0.05       1.63 f
+  mult_92/FS_1/A[15] (alu_DW01_add_3)                     0.00       1.63 f
+  mult_92/FS_1/U23/ZN (CKND6BWP12T)                       0.02       1.65 r
+  mult_92/FS_1/U189/ZN (IND2XD4BWP12T)                    0.01       1.66 f
+  mult_92/FS_1/U199/ZN (IND3D4BWP12T)                     0.02       1.68 r
+  mult_92/FS_1/U54/ZN (TPND2D2BWP12T)                     0.02       1.70 f
+  mult_92/FS_1/U102/ZN (OAI211D2BWP12T)                   0.03       1.72 r
+  mult_92/FS_1/U66/ZN (TPND2D1BWP12T)                     0.02       1.74 f
+  mult_92/FS_1/U127/ZN (TPAOI21D1BWP12T)                  0.03       1.77 r
+  mult_92/FS_1/U198/ZN (XNR2XD4BWP12T)                    0.06       1.83 f
+  mult_92/FS_1/SUM[24] (alu_DW01_add_3)                   0.00       1.83 f
+  mult_92/PRODUCT[26] (alu_DW02_mult_0)                   0.00       1.83 f
+  U570/ZN (NR2XD3BWP12T)                                  0.02       1.85 r
+  U791/ZN (TPAOI21D4BWP12T)                               0.02       1.87 f
+  U579/ZN (IND2D8BWP12T)                                  0.03       1.90 r
+  U546/Z (OA21XD4BWP12T)                                  0.05       1.95 r
+  U605/ZN (ND3D3BWP12T)                                   0.05       2.00 f
+  dst[7] (out)                                            0.00       2.00 f
+  data arrival time                                                  2.00
+
+  max_delay                                               2.00       2.00
+  output external delay                                   0.00       2.00
+  data required time                                                 2.00
+  --------------------------------------------------------------------------
+  data required time                                                 2.00
+  data arrival time                                                 -2.00
+  --------------------------------------------------------------------------
+  slack (VIOLATED: increase significant digits)                      0.00
+
+
+1
+ 
+****************************************
+Report : area
+Design : alu
+Version: J-2014.09-SP5
+Date   : Thu Mar 30 10:14:28 2017
+****************************************
+
+Library(s) Used:
+
+    tcbn40lpbwp12ttc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp12t_110b/tcbn40lpbwp12ttc.db)
+
+Number of ports:                          145
+Number of nets:                           453
+Number of cells:                          291
+Number of combinational cells:            289
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                         80
+Number of references:                     107
+
+Combinational area:               3265.516839
+Buf/Inv area:                      261.542405
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  3265.516839
+Total area:                 undefined
+1
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : alu
+Version: J-2014.09-SP5
+Date   : Thu Mar 30 10:15:07 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwp12ttc
+Wire Load Model Mode: segmented
+
+  Startpoint: src0sel[0] (input port)
+  Endpoint: dst[0] (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  alu                TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwp12ttc
+  alu_DW02_mult_0    ZeroWireload          tcbn40lpbwp12ttc
+  alu_DW01_add_3     ZeroWireload          tcbn40lpbwp12ttc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  src0sel[0] (in)                                         0.02       0.02 f
+  U702/Z (CKBD4BWP12T)                                    0.04       0.05 f
+  U904/ZN (INVD6BWP12T)                                   0.02       0.07 r
+  U722/Z (AN2XD8BWP12T)                                   0.04       0.11 r
+  U857/ZN (AOI33D2BWP12T)                                 0.04       0.15 f
+  U776/ZN (ND3XD4BWP12T)                                  0.04       0.19 r
+  U753/ZN (INVD4BWP12T)                                   0.02       0.20 f
+  U775/ZN (TPOAI22D4BWP12T)                               0.03       0.24 r
+  U906/Z (XOR2XD8BWP12T)                                  0.07       0.31 f
+  mult_92/A[1] (alu_DW02_mult_0)                          0.00       0.31 f
+  mult_92/U41/Z (AN2D4BWP12T)                             0.03       0.34 f
+  mult_92/U33/ZN (XNR2XD4BWP12T)                          0.05       0.39 f
+  mult_92/U534/ZN (MAOI222D1BWP12T)                       0.06       0.45 r
+  mult_92/U231/ZN (INVD1P75BWP12T)                        0.02       0.47 f
+  mult_92/S2_3_6/S (FA1D1BWP12T)                          0.10       0.56 f
+  mult_92/U28/ZN (MAOI222D1BWP12T)                        0.05       0.62 r
+  mult_92/U717/ZN (INVD1BWP12T)                           0.03       0.64 f
+  mult_92/S2_5_5/S (FA1D1BWP12T)                          0.10       0.74 f
+  mult_92/U307/ZN (MAOI222D1BWP12T)                       0.05       0.79 r
+  mult_92/U391/ZN (INVD1BWP12T)                           0.03       0.82 f
+  mult_92/S2_7_4/S (FA1D1BWP12T)                          0.10       0.91 f
+  mult_92/U628/ZN (MAOI222D1BWP12T)                       0.05       0.96 r
+  mult_92/U772/ZN (INVD1BWP12T)                           0.03       0.99 f
+  mult_92/S2_9_3/CO (FA1D1BWP12T)                         0.10       1.09 f
+  mult_92/S2_10_3/S (FA1D1BWP12T)                         0.10       1.18 f
+  mult_92/U462/ZN (CKND2BWP12T)                           0.01       1.20 r
+  mult_92/U473/ZN (MOAI22D2BWP12T)                        0.07       1.27 f
+  mult_92/S2_12_2/CO (FA1D1BWP12T)                        0.10       1.36 f
+  mult_92/S2_13_2/CO (FA1D1BWP12T)                        0.10       1.46 f
+  mult_92/S4_2/CO (FA1D1BWP12T)                           0.10       1.56 f
+  mult_92/U277/ZN (CKND2BWP12T)                           0.01       1.57 r
+  mult_92/U64/ZN (CKND2D1BWP12T)                          0.02       1.60 f
+  mult_92/U275/ZN (ND2D3BWP12T)                           0.02       1.62 r
+  mult_92/FS_1/A[15] (alu_DW01_add_3)                     0.00       1.62 r
+  mult_92/FS_1/U40/ZN (INVD4BWP12T)                       0.01       1.63 f
+  mult_92/FS_1/U189/ZN (IND2XD4BWP12T)                    0.01       1.64 r
+  mult_92/FS_1/U199/ZN (IND3D4BWP12T)                     0.02       1.66 f
+  mult_92/FS_1/U3/ZN (TPND2D2BWP12T)                      0.02       1.68 r
+  mult_92/FS_1/U185/ZN (OAI211D2BWP12T)                   0.02       1.70 f
+  mult_92/FS_1/U140/ZN (TPAOI21D1BWP12T)                  0.04       1.74 r
+  mult_92/FS_1/U73/ZN (INR2D1BWP12T)                      0.02       1.76 f
+  mult_92/FS_1/U88/ZN (ND2D2BWP12T)                       0.02       1.77 r
+  mult_92/FS_1/U101/ZN (ND2XD3BWP12T)                     0.03       1.80 f
+  mult_92/FS_1/SUM[25] (alu_DW01_add_3)                   0.00       1.80 f
+  mult_92/PRODUCT[27] (alu_DW02_mult_0)                   0.00       1.80 f
+  U884/ZN (RCIAO21D4BWP12T)                               0.02       1.82 r
+  U915/ZN (INVD4BWP12T)                                   0.01       1.83 f
+  U933/ZN (NR3XD4BWP12T)                                  0.03       1.86 r
+  U924/ZN (IND2XD8BWP12T)                                 0.03       1.90 r
+  U693/ZN (INVD4BWP12T)                                   0.01       1.91 f
+  U984/Z (AO221D1BWP12T)                                  0.13       2.04 f
+  dst[0] (out)                                            0.00       2.04 f
+  data arrival time                                                  2.04
+
+  max_delay                                               1.85       1.85
+  output external delay                                   0.00       1.85
+  data required time                                                 1.85
+  --------------------------------------------------------------------------
+  data required time                                                 1.85
+  data arrival time                                                 -2.04
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.19
+
+
+1
+ 
+****************************************
+Report : area
+Design : alu
+Version: J-2014.09-SP5
+Date   : Thu Mar 30 10:15:07 2017
+****************************************
+
+Library(s) Used:
+
+    tcbn40lpbwp12ttc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp12t_110b/tcbn40lpbwp12ttc.db)
+
+Number of ports:                          145
+Number of nets:                           469
+Number of cells:                          307
+Number of combinational cells:            305
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                        100
+Number of references:                     115
+
+Combinational area:               3442.857645
+Buf/Inv area:                      377.025608
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  3442.857645
+Total area:                 undefined
+1
