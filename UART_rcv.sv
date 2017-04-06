@@ -23,7 +23,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 	logic rdy_val;
 
 
-	typedef reg[1:0] {IDLE, LOAD ,RECEVING, CLR} state_type;
+	typedef enum reg[1:0] {IDLE, LOAD ,RECEVING, CLR} state_type;
 	state_type state, nxt_state;
 
 	// double flopping 
@@ -33,8 +33,8 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 	end
 
 	// reg values 
-	assign bit_cnt_val = (load)? 4'd0: (shift)? : bit_cnt + 1: bit_cnt;
-	assign baud_cnt_val = (load)? 12'd3906: (receving)? : baud_cnt - 1: baud_cnt;
+	assign bit_cnt_val = (load)? 4'd0: ((shift)? bit_cnt + 1): bit_cnt;
+	assign baud_cnt_val = (load)? 12'd3906: (receving)? baud_cnt - 1: baud_cnt;
 	assign shift_val = (load)? 9'h0: (shift)? {RX2, shift_reg[8:1]}: shift_reg;
 	// output 
 	assign cmd = shift_reg[7:0];
@@ -77,7 +77,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 		end 
 			RECEVING: begin 
 				receving = 1;		
-				if(bit_cnt = 4'd9)begin
+				if(bit_cnt == 4'd9)begin
 					rdy_val = 1;			
 					nxt_state = CLR;
 				end 
