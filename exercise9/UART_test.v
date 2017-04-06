@@ -12,7 +12,8 @@ wire RX,send_next;
 reset_synch iRST(.clk(clk), .RST_n(RST_n), .rst_n(rst_n));
 
 //// Make or instantiate a push button release detector /////
-
+rise_edge_detector button(.next_byte(next_byte), .rst_n(rst_n), .clk(clk), out);
+	
 
 //// Instantiate your UART_tx...data to transmit comes from 8-bit counter ////
 
