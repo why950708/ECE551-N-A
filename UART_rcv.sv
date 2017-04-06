@@ -11,7 +11,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 	reg [3:0] bit_cnt; 
 	reg [11:0] baud_cnt; 
 	reg [8:0] shift_reg;
-	reg Rx1, Rx2;
+	reg RX1, RX2;
 	reg load; 
 	reg receving;
 
@@ -33,7 +33,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 	end
 
 	// reg values 
-	assign bit_cnt_val = (load)? 4'd0: ((shift)? bit_cnt + 1): bit_cnt;
+	assign bit_cnt_val = (load)? 4'd0: (shift)? bit_cnt + 1: bit_cnt;
 	assign baud_cnt_val = (load)? 12'd3906: (receving)? baud_cnt - 1: baud_cnt;
 	assign shift_val = (load)? 9'h0: (shift)? {RX2, shift_reg[8:1]}: shift_reg;
 	// output 
