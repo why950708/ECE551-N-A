@@ -8,6 +8,8 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 	output reg rx_rdy;
 	output reg [7:0] rx_data; 
 
+	reg [8:0] shift_reg;  // register for shift, note there's an extra because last bit has to wait for STOP bit
+
 	reg [3:0] bit_cnt;   // counter used for bits 
 	reg [11:0] baud_cnt; // 12-bit baud rate counter
 
@@ -15,7 +17,7 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 
 	reg baud_clr;  // clear baud counter
 	reg baud_inc;  // increment baud coutner
-
+	reg set_rx_data; 
 	reg bit_clr;   // clear bit counter
 	reg bit_inc;   // increment bit counter (0-7)
 
@@ -77,13 +79,28 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 		end
 	end
 
-	// logic for rx_data;
+	// logic for shift_reg;
+	always_ff @(posedge clk or negedge rst_n) begin
+		if(~rst_n ) begin
+			shift_reg <= 0;
+		end
+		else if (shift) begin
+			shift_reg <= { RX2 , shift_reg[8:1] };  // Shift RX2 into MSB
+		end
+		else 
+			shift_reg <= shift_reg;  // Shift RX2 into MSB
+
+	end
+
+
+
+	// logic for shift_reg;
 	always_ff @(posedge clk or negedge rst_n) begin
 		if(~rst_n ) begin
 			rx_data <= 0;
 		end
-		else if (shift) begin
-			rx_data <= { RX2 , rx_data[7:1] };  // Shift RX2 into MSB
+		else if (set_rx_data) begin
+			rx_data <= shift_reg[7:0];  // Shift RX2 into MSB, only choose the last 8 bits, becasue the MSB in the end will be STOP bit
 		end
 		else 
 			rx_data <= rx_data;  // Shift RX2 into MSB
@@ -114,11 +131,13 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 		bit_clr = 0;
 		bit_inc = 0;
 		shift = 0;
+		set_rx_data = 0;
 		case(state)
 			IDLE: begin 
-			if(!RX2) // We have a start bit coming
+			if(!RX2) begin// We have a start bit coming 
 				baud_clr = 1;
 				nxt_state = LOAD;
+			end
 		end
 			
 			LOAD: begin 
@@ -127,6 +146,7 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 				if (baud_cnt == 12'd1302) begin
 					// already waited for 1302 clocks
 					baud_clr = 1;
+					bit_clr = 1;
 					nxt_state = RECEVING;
 				end
 		end 
@@ -141,12 +161,12 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 					shift = 1;
 				end
 				
-				if(bit_cnt == 4'd8) begin  // At the 9th bit stop
+				if(bit_cnt == 4'd9) begin  // At the 9th bit stop
 					rx_rdy_val = 1;		// set rx_rdy to 1
 					bit_clr = 1; // clear the bit counter
 					nxt_state = CLR;
+					set_rx_data = 1;
 				end 
-
 
 		end 
 

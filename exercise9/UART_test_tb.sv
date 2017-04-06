@@ -21,7 +21,14 @@ initial begin
     repeat ( 26040 ) @(posedge clk);   
     key = 1;
     repeat ( 26040 ) @(posedge clk);   
+    key = 0;
+        repeat ( 26040 ) @(posedge clk);   
 
+        key = 1;
+            repeat ( 26040 ) @(posedge clk);   
+            key = 0;
+                        repeat ( 26040 ) @(posedge clk);   
 
+$stop;
 end
 endmodule

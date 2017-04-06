@@ -1,2 +1,1 @@
-Info (10281): Verilog HDL Declaration information at UART_test.v(9): object "RX" differs only in case from object "rx" in the same scope File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 9
 Info (10281): Verilog HDL Declaration information at reset_synch.v(4): object "RST_n" differs only in case from object "rst_n" in the same scope File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/reset_synch.v Line: 4

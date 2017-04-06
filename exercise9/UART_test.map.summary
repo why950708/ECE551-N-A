@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Thu Apr 06 03:09:20 2017
+Analysis & Synthesis Status : Successful - Thu Apr 06 04:35:33 2017
 Quartus Prime Version : 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 Revision Name : UART_test
 Top-level Entity Name : UART_test
 Family : Cyclone IV E
-Total logic elements : 58
-    Total combinational functions : 47
-    Dedicated logic registers : 30
-Total registers : 30
+Total logic elements : 132
+    Total combinational functions : 109
+    Dedicated logic registers : 80
+Total registers : 80
 Total pins : 11
 Total virtual pins : 0
 Total memory bits : 0

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for UART_test
-Thu Apr 06 03:09:20 2017
+Thu Apr 06 04:35:33 2017
 Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 
 
@@ -16,8 +16,8 @@ Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
   8. State Machine - |UART_test|UART_rcv:rx|state
   9. State Machine - |UART_test|UART_tx:tx|state
  10. Registers Removed During Synthesis
- 11. Removed Registers Triggering Further Register Optimizations
- 12. General Register Statistics
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
  14. Port Connectivity Checks: "UART_rcv:rx"
  15. Port Connectivity Checks: "UART_tx:tx"
@@ -51,15 +51,15 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Apr 06 03:09:20 2017       ;
+; Analysis & Synthesis Status        ; Successful - Thu Apr 06 04:35:33 2017       ;
 ; Quartus Prime Version              ; 16.1.2 Build 203 01/18/2017 SJ Lite Edition ;
 ; Revision Name                      ; UART_test                                   ;
 ; Top-level Entity Name              ; UART_test                                   ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 58                                          ;
-;     Total combinational functions  ; 47                                          ;
-;     Dedicated logic registers      ; 30                                          ;
-; Total registers                    ; 30                                          ;
+; Total logic elements               ; 132                                         ;
+;     Total combinational functions  ; 109                                         ;
+;     Dedicated logic registers      ; 80                                          ;
+; Total registers                    ; 80                                          ;
 ; Total pins                         ; 11                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -189,20 +189,20 @@ agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 58        ;
+; Estimated Total logic elements              ; 132       ;
 ;                                             ;           ;
-; Total combinational functions               ; 47        ;
+; Total combinational functions               ; 109       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 31        ;
-;     -- 3 input functions                    ; 2         ;
-;     -- <=2 input functions                  ; 14        ;
+;     -- 4 input functions                    ; 65        ;
+;     -- 3 input functions                    ; 6         ;
+;     -- <=2 input functions                  ; 38        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 36        ;
-;     -- arithmetic mode                      ; 11        ;
+;     -- normal mode                          ; 81        ;
+;     -- arithmetic mode                      ; 28        ;
 ;                                             ;           ;
-; Total registers                             ; 30        ;
-;     -- Dedicated logic registers            ; 30        ;
+; Total registers                             ; 80        ;
+;     -- Dedicated logic registers            ; 80        ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
 ; I/O pins                                    ; 11        ;
@@ -210,21 +210,23 @@ agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 30        ;
-; Total fan-out                               ; 271       ;
-; Average fan-out                             ; 2.74      ;
+; Maximum fan-out                             ; 80        ;
+; Total fan-out                               ; 639       ;
+; Average fan-out                             ; 3.03      ;
 +---------------------------------------------+-----------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                              ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name         ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------+-------------+--------------+
-; |UART_test                 ; 47 (0)              ; 30 (0)                    ; 0           ; 0            ; 0       ; 0         ; 11   ; 0            ; |UART_test                  ; UART_test   ; work         ;
-;    |UART_rcv:rx|           ; 47 (47)             ; 28 (28)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UART_test|UART_rcv:rx      ; UART_rcv    ; work         ;
-;    |reset_synch:iRST|      ; 0 (0)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UART_test|reset_synch:iRST ; reset_synch ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------+-------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                  ;
++--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node     ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                  ; Entity Name        ; Library Name ;
++--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+--------------------+--------------+
+; |UART_test                     ; 109 (8)             ; 80 (8)                    ; 0           ; 0            ; 0       ; 0         ; 11   ; 0            ; |UART_test                           ; UART_test          ; work         ;
+;    |UART_rcv:rx|               ; 52 (52)             ; 39 (39)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UART_test|UART_rcv:rx               ; UART_rcv           ; work         ;
+;    |UART_tx:tx|                ; 48 (48)             ; 28 (28)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UART_test|UART_tx:tx                ; UART_tx            ; work         ;
+;    |reset_synch:iRST|          ; 0 (0)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UART_test|reset_synch:iRST          ; reset_synch        ; work         ;
+;    |rise_edge_detector:button| ; 1 (1)               ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UART_test|rise_edge_detector:button ; rise_edge_detector ; work         ;
++--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -253,44 +255,16 @@ Encoding Type:  One-Hot
 +----------------+------------+------------+----------------+
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; rise_edge_detector:button|out          ; Stuck at GND due to stuck port data_in ;
-; cnt[0..7]                              ; Lost fanout                            ;
-; UART_tx:tx|shift_reg[0..9]             ; Stuck at VCC due to stuck port data_in ;
-; UART_rcv:rx|RX1                        ; Stuck at VCC due to stuck port data_in ;
-; UART_rcv:rx|RX2                        ; Stuck at VCC due to stuck port data_in ;
-; UART_tx:tx|state.IDLE                  ; Lost fanout                            ;
-; UART_tx:tx|state.DONE                  ; Lost fanout                            ;
-; UART_rcv:rx|state~4                    ; Lost fanout                            ;
-; UART_rcv:rx|state~5                    ; Lost fanout                            ;
-; UART_tx:tx|bit_cnt[0..3]               ; Lost fanout                            ;
-; UART_tx:tx|baud_cnt[0..11]             ; Lost fanout                            ;
-; UART_tx:tx|state.TRANSMIT              ; Lost fanout                            ;
-; Total Number of Removed Registers = 42 ;                                        ;
-+----------------------------------------+----------------------------------------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                          ;
-+-------------------------------+---------------------------+------------------------------------------------------------------------------------------+
-; Register name                 ; Reason for Removal        ; Registers Removed due to This Register                                                   ;
-+-------------------------------+---------------------------+------------------------------------------------------------------------------------------+
-; rise_edge_detector:button|out ; Stuck at GND              ; cnt[0], cnt[7], cnt[6], cnt[5], cnt[4], cnt[3], cnt[2], cnt[1], UART_tx:tx|shift_reg[9], ;
-;                               ; due to stuck port data_in ; UART_tx:tx|shift_reg[8], UART_tx:tx|shift_reg[7], UART_tx:tx|shift_reg[6],               ;
-;                               ;                           ; UART_tx:tx|shift_reg[5], UART_tx:tx|shift_reg[4], UART_tx:tx|shift_reg[3],               ;
-;                               ;                           ; UART_tx:tx|shift_reg[2], UART_tx:tx|shift_reg[1], UART_tx:tx|shift_reg[0],               ;
-;                               ;                           ; UART_rcv:rx|RX1, UART_rcv:rx|RX2, UART_tx:tx|bit_cnt[3], UART_tx:tx|baud_cnt[11],        ;
-;                               ;                           ; UART_tx:tx|baud_cnt[10], UART_tx:tx|baud_cnt[9], UART_tx:tx|baud_cnt[8],                 ;
-;                               ;                           ; UART_tx:tx|baud_cnt[7], UART_tx:tx|baud_cnt[6], UART_tx:tx|baud_cnt[5],                  ;
-;                               ;                           ; UART_tx:tx|baud_cnt[4], UART_tx:tx|baud_cnt[3], UART_tx:tx|baud_cnt[2],                  ;
-;                               ;                           ; UART_tx:tx|baud_cnt[1], UART_tx:tx|baud_cnt[0]                                           ;
-; UART_tx:tx|state.DONE         ; Lost Fanouts              ; UART_tx:tx|bit_cnt[2], UART_tx:tx|bit_cnt[1], UART_tx:tx|bit_cnt[0]                      ;
-; UART_tx:tx|state.IDLE         ; Lost Fanouts              ; UART_tx:tx|state.TRANSMIT                                                                ;
-+-------------------------------+---------------------------+------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; UART_tx:tx|shift_reg[9]               ; Stuck at VCC due to stuck port data_in ;
+; UART_rcv:rx|state~4                   ; Lost fanout                            ;
+; UART_rcv:rx|state~5                   ; Lost fanout                            ;
+; Total Number of Removed Registers = 3 ;                                        ;
++---------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -298,36 +272,58 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 30    ;
+; Total registers                              ; 80    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 30    ;
+; Number of registers using Asynchronous Clear ; 75    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 8     ;
+; Number of registers using Clock Enable       ; 36    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |UART_test|UART_rcv:rx|bit_cnt[2]   ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |UART_test|UART_tx:tx|baud_cnt[11]  ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |UART_test|UART_rcv:rx|baud_cnt[11] ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |UART_test|UART_rcv:rx|Selector3    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; UART_tx:tx|shift_reg[0]                 ; 2       ;
+; UART_tx:tx|shift_reg[1]                 ; 1       ;
+; cnt[0]                                  ; 3       ;
+; UART_tx:tx|shift_reg[2]                 ; 1       ;
+; UART_tx:tx|shift_reg[3]                 ; 1       ;
+; UART_tx:tx|shift_reg[4]                 ; 1       ;
+; UART_tx:tx|shift_reg[5]                 ; 1       ;
+; UART_tx:tx|shift_reg[6]                 ; 1       ;
+; UART_tx:tx|shift_reg[7]                 ; 1       ;
+; UART_tx:tx|shift_reg[8]                 ; 1       ;
+; Total number of inverted registers = 10 ;         ;
++-----------------------------------------+---------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "UART_rcv:rx"                                                                                                                                       ;
-+------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Port       ; Type   ; Severity ; Details                                                                                                                                      ;
-+------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; rx_rdy_clr ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; rx_rdy     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
-+------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |UART_test|UART_rcv:rx|bit_cnt[3]  ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |UART_test|UART_tx:tx|bit_cnt[2]   ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |UART_test|UART_tx:tx|baud_cnt[5]  ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |UART_test|UART_rcv:rx|baud_cnt[6] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |UART_test|UART_tx:tx|shift_reg[1] ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |UART_test|UART_rcv:rx|Selector4   ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |UART_test|UART_rcv:rx|Selector2   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "UART_rcv:rx"                                                                                                   ;
++------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                                                  ;
++------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; rx_rdy_clr ; Input  ; Info     ; Stuck at GND                                                                                             ;
+; rx_rdy     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+----------------------------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------+
@@ -345,20 +341,22 @@ Encoding Type:  One-Hot
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 11                          ;
-; cycloneiii_ff         ; 30                          ;
-;     CLR               ; 22                          ;
-;     ENA CLR           ; 8                           ;
-; cycloneiii_lcell_comb ; 47                          ;
-;     arith             ; 11                          ;
-;         2 data inputs ; 11                          ;
-;     normal            ; 36                          ;
-;         1 data inputs ; 1                           ;
-;         2 data inputs ; 2                           ;
-;         3 data inputs ; 2                           ;
-;         4 data inputs ; 31                          ;
+; cycloneiii_ff         ; 80                          ;
+;     CLR               ; 39                          ;
+;     ENA CLR           ; 36                          ;
+;     plain             ; 5                           ;
+; cycloneiii_lcell_comb ; 109                         ;
+;     arith             ; 28                          ;
+;         2 data inputs ; 27                          ;
+;         3 data inputs ; 1                           ;
+;     normal            ; 81                          ;
+;         1 data inputs ; 4                           ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 5                           ;
+;         4 data inputs ; 65                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 3.00                        ;
+; Average LUT depth     ; 2.49                        ;
 +-----------------------+-----------------------------+
 
 
@@ -377,7 +375,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
-    Info: Processing started: Thu Apr 06 03:09:09 2017
+    Info: Processing started: Thu Apr 06 04:35:23 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off UART_test -c UART_test
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -387,42 +385,40 @@ Warning (12019): Can't analyze file -- file UART_tx.v is missing
 Warning (12019): Can't analyze file -- file button_smpl.sv is missing
 Info (12021): Found 1 design units, including 1 entities, in source file uart_test.v
     Info (12023): Found entity 1: UART_test File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at UART_test.v(15): created implicit net for "rst_n" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 15
+Warning (10236): Verilog HDL Implicit Net warning at UART_test.v(14): created implicit net for "rst_n" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 14
 Info (12127): Elaborating entity "UART_test" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at UART_test.v(36): truncated value with size 32 to match size of target (8) File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 36
+Warning (10230): Verilog HDL assignment warning at UART_test.v(35): truncated value with size 32 to match size of target (8) File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 35
 Warning (12125): Using design file reset_synch.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: reset_synch File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/reset_synch.v Line: 1
-Info (12128): Elaborating entity "reset_synch" for hierarchy "reset_synch:iRST" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 15
+Info (12128): Elaborating entity "reset_synch" for hierarchy "reset_synch:iRST" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 14
 Warning (12125): Using design file rise_edge_detector.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: rise_edge_detector File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/rise_edge_detector.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at rise_edge_detector.v(26): created implicit net for "start_bit" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/rise_edge_detector.v Line: 26
-Info (12128): Elaborating entity "rise_edge_detector" for hierarchy "rise_edge_detector:button" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 18
-Warning (10036): Verilog HDL or VHDL warning at rise_edge_detector.v(26): object "start_bit" assigned a value but never read File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/rise_edge_detector.v Line: 26
+Info (12128): Elaborating entity "rise_edge_detector" for hierarchy "rise_edge_detector:button" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 17
 Warning (12125): Using design file uart_tx.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: UART_tx File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/uart_tx.sv Line: 1
-Info (12128): Elaborating entity "UART_tx" for hierarchy "UART_tx:tx" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 22
+Info (12128): Elaborating entity "UART_tx" for hierarchy "UART_tx:tx" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 21
 Warning (10230): Verilog HDL assignment warning at uart_tx.sv(41): truncated value with size 32 to match size of target (12) File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/uart_tx.sv Line: 41
 Warning (10230): Verilog HDL assignment warning at uart_tx.sv(62): truncated value with size 32 to match size of target (4) File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/uart_tx.sv Line: 62
-Info (12128): Elaborating entity "UART_rcv" for hierarchy "UART_rcv:rx" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 26
-Warning (10230): Verilog HDL assignment warning at UART_rcv.sv(48): truncated value with size 32 to match size of target (12) File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_rcv.sv Line: 48
-Warning (10230): Verilog HDL assignment warning at UART_rcv.sv(64): truncated value with size 32 to match size of target (4) File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_rcv.sv Line: 64
+Info (12128): Elaborating entity "UART_rcv" for hierarchy "UART_rcv:rx" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 25
+Warning (10230): Verilog HDL assignment warning at UART_rcv.sv(50): truncated value with size 32 to match size of target (12) File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_rcv.sv Line: 50
+Warning (10230): Verilog HDL assignment warning at UART_rcv.sv(66): truncated value with size 32 to match size of target (4) File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_rcv.sv Line: 66
 Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13000): Registers with preset signals will power-up high File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/uart_tx.sv Line: 29
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 29 registers lost all their fanouts during netlist optimizations.
+Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "next_byte" File: D:/Dropbox/ECE551/ECE551-N-A/exercise9/UART_test.v Line: 4
-Info (21057): Implemented 69 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 143 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 8 output pins
-    Info (21061): Implemented 58 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 17 warnings
-    Info: Peak virtual memory: 655 megabytes
-    Info: Processing ended: Thu Apr 06 03:09:21 2017
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:26
+    Info (21061): Implemented 132 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 13 warnings
+    Info: Peak virtual memory: 651 megabytes
+    Info: Processing ended: Thu Apr 06 04:35:33 2017
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:23
 
 
 +------------------------------------------+

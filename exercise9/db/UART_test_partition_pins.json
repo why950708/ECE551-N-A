@@ -42,6 +42,10 @@
 				{
 					"name" : "RST_n",
 					"strict" : false
+				},
+				{
+					"name" : "next_byte",
+					"strict" : false
 				}
 			]
 		}

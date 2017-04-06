@@ -1,15 +1,15 @@
 |UART_test
-clk => clk.IN4
+clk => clk.IN3
 RST_n => RST_n.IN1
 next_byte => next_byte.IN1
-LEDs[0] << UART_rcv:rx.rx_data
-LEDs[1] << UART_rcv:rx.rx_data
-LEDs[2] << UART_rcv:rx.rx_data
-LEDs[3] << UART_rcv:rx.rx_data
-LEDs[4] << UART_rcv:rx.rx_data
-LEDs[5] << UART_rcv:rx.rx_data
-LEDs[6] << UART_rcv:rx.rx_data
-LEDs[7] << UART_rcv:rx.rx_data
+LEDs[0] <= UART_rcv:rx.rx_data[0]
+LEDs[1] <= UART_rcv:rx.rx_data[1]
+LEDs[2] <= UART_rcv:rx.rx_data[2]
+LEDs[3] <= UART_rcv:rx.rx_data[3]
+LEDs[4] <= UART_rcv:rx.rx_data[4]
+LEDs[5] <= UART_rcv:rx.rx_data[5]
+LEDs[6] <= UART_rcv:rx.rx_data[6]
+LEDs[7] <= UART_rcv:rx.rx_data[7]
 
 
 |UART_test|reset_synch:iRST
@@ -21,10 +21,12 @@ rst_n <= rst_n~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |UART_test|rise_edge_detector:button
-next_byte => ~NO_FANOUT~
-rst_n => out~reg0.ENA
-clk => out~reg0.CLK
-out <= out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+next_byte => Sig_FF1.DATAIN
+rst_n => ~NO_FANOUT~
+clk => Sig_FF3.CLK
+clk => Sig_FF2.CLK
+clk => Sig_FF1.CLK
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |UART_test|UART_tx:tx
@@ -101,7 +103,7 @@ tx_done <= tx_done~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |UART_test|UART_rcv:rx
-rx_rdy_clr => always6.IN1
+rx_rdy_clr => always7.IN1
 clk => rx_data[0]~reg0.CLK
 clk => rx_data[1]~reg0.CLK
 clk => rx_data[2]~reg0.CLK
@@ -110,6 +112,15 @@ clk => rx_data[4]~reg0.CLK
 clk => rx_data[5]~reg0.CLK
 clk => rx_data[6]~reg0.CLK
 clk => rx_data[7]~reg0.CLK
+clk => shift_reg[0].CLK
+clk => shift_reg[1].CLK
+clk => shift_reg[2].CLK
+clk => shift_reg[3].CLK
+clk => shift_reg[4].CLK
+clk => shift_reg[5].CLK
+clk => shift_reg[6].CLK
+clk => shift_reg[7].CLK
+clk => shift_reg[8].CLK
 clk => rx_rdy~reg0.CLK
 clk => bit_cnt[0].CLK
 clk => bit_cnt[1].CLK
@@ -155,6 +166,15 @@ rst_n => bit_cnt[0].ACLR
 rst_n => bit_cnt[1].ACLR
 rst_n => bit_cnt[2].ACLR
 rst_n => bit_cnt[3].ACLR
+rst_n => shift_reg[0].ACLR
+rst_n => shift_reg[1].ACLR
+rst_n => shift_reg[2].ACLR
+rst_n => shift_reg[3].ACLR
+rst_n => shift_reg[4].ACLR
+rst_n => shift_reg[5].ACLR
+rst_n => shift_reg[6].ACLR
+rst_n => shift_reg[7].ACLR
+rst_n => shift_reg[8].ACLR
 rst_n => state~3.DATAIN
 RX => RX1.DATAIN
 rx_rdy <= rx_rdy~reg0.DB_MAX_OUTPUT_PORT_TYPE
