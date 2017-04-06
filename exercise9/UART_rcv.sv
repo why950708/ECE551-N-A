@@ -1,12 +1,12 @@
-module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
-	input RX; 
-	input clr_rdy;
+module UartRx (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
+	input RX;  // Serial data input
+	input rx_rdy_clr; // Asserted to clear rx_rdy
 
 	input clk;
 	input rst_n; 
 
-	output reg rdy;
-	output [7:0] cmd; 
+	output reg rx_rdy;
+	output reg [7:0] rx_data; 
 
 	reg [3:0] bit_cnt; 
 	reg [11:0] baud_cnt; 
@@ -32,14 +32,20 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 			RX2 <= RX1;
 	end
 
+
 	// reg values 
-	assign bit_cnt_val = (load)? 4'd0: (shift)? bit_cnt + 1: bit_cnt;
-	assign baud_cnt_val = (load)? 12'd3906: (receving)? baud_cnt - 1: baud_cnt;
+	assign bit_cnt_val = (load)? 4'd0 : 
+						 (shift)? bit_cnt + 1:
+								  bit_cnt;
+
+	assign baud_cnt_val = (load)? 12'd2604: (receving)? baud_cnt - 1: baud_cnt;
+
 	assign shift_val = (load)? 9'h0: (shift)? {RX2, shift_reg[8:1]}: shift_reg;
 	// output 
-	assign cmd = shift_reg[7:0];
+	assign rx_data = shift_reg[7:0];
 
 	assign shift = receving ? ((~|baud_cnt)? 1: 0) :0;
+
 	// fsm 
 	always_ff @(posedge clk or negedge rst_n) begin : proc_fsm
 		if(~rst_n) begin
@@ -47,7 +53,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 			baud_cnt <= 12'd2604;
 			shift_reg <= 0;
 			state <= IDLE;
-			rdy <= 0;
+			rx_rdy <= 0;
 		end 
 
 		else begin
@@ -55,7 +61,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 			baud_cnt <= (shift)? 12'd2604: baud_cnt_val;
 			shift_reg <= shift_val;
 			state <= nxt_state;
-			rdy <= rdy_val;
+			rx_rdy <= rdy_val;
 		end
 	end
 
@@ -70,6 +76,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 			IDLE: begin 
 			if(!RX2)
 				nxt_state = LOAD;
+				
 		end
 			LOAD: begin 
 				load = 1;
@@ -85,7 +92,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 		end 
 			CLR: begin
 				rdy_val = 1;
-				if (clr_rdy | !RX2)begin
+				if (rx_rdy_clr | !RX2)begin
 					rdy_val = 0;
 					nxt_state = IDLE;
 				end
