@@ -1,0 +1,35 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Oliver HY Wang/Box Sync/ECE551/verilog/HW5
+vUartRx
+DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+!s110 1491451046
+!i10b 1
+!s100 boZei>;74HEkBMC14Nazc2
+IbQO2IRC0EB1eFCN6U[EG33
+VDg1SIo80bB@j0V0VzS_@n1
+!s105 UART_rcv_sv_unit
+S1
+dC:/Users/Oliver HY Wang/Box Sync/ECE551/verilog/final
+w1491451041
+8C:/Users/Oliver HY Wang/Box Sync/ECE551/verilog/final/UART_rcv.sv
+FC:/Users/Oliver HY Wang/Box Sync/ECE551/verilog/final/UART_rcv.sv
+L0 1
+OP;L;10.4a;61
+r1
+!s85 0
+31
+!s108 1491451046.000000
+!s107 C:/Users/Oliver HY Wang/Box Sync/ECE551/verilog/final/UART_rcv.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Oliver HY Wang/Box Sync/ECE551/verilog/final/UART_rcv.sv|
+!s101 -O0
+!i113 1
+o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+n@uart@rx

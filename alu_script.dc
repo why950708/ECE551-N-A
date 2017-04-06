@@ -1,0 +1,34 @@
+read_file -format verilog {alu.v}
+
+
+
+
+set_drive 10 [all_inputs]
+
+set_max_transition 0.15 [current_design]
+
+set_load 0.01 [all_outputs]
+
+set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+
+
+ set_max_delay -to [all_outputs] 2.15
+ 
+ 
+ compile -map_effort medium
+
+
+report_timing -delay max >> ALU_syn.txt
+ 
+ check_design
+report_area  >> ALU_syn.txt
+
+set_max_delay -to [all_outputs] 2.0
+compile -map_effort medium
+report_timing -delay max >> ALU_syn.txt
+report_area  >> ALU_syn.txt
+
+set_max_delay -to [all_outputs] 1.85
+compile -map_effort medium
+report_timing -delay max >> ALU_syn.txt
+report_area  >> ALU_syn.txt
