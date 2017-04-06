@@ -38,22 +38,33 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 
 	// logic for baud_cnt;
 	always_ff @(posedge clk or negedge rst_n) begin
-		if(~rst_n || baud_clr) begin
+		if(~rst_n) begin
+			baud_cnt <= 0;
+		end
+		else if (baud_clr) begin
 			baud_cnt <= 0;
 		end
 		else if (baud_inc) begin
 			baud_cnt <= baud_cnt + 1;
 		end
+		else 
+			baud_cnt <= baud_cnt;
+
 	end
 
 	// logic for bit_cnt;
 	always_ff @(posedge clk or negedge rst_n) begin
-		if(~rst_n || bit_clr) begin
+		if(~rst_n ) begin
 			bit_cnt <= 0;
+		end
+		else if (bit_clr) begin
+			bit_cnt <= 0;	
 		end
 		else if (bit_inc) begin
 			bit_cnt <= bit_cnt + 1;
 		end
+		else 
+			bit_cnt <= bit_cnt;
 	end
 
 	// logic for rx_rdy;
@@ -74,6 +85,9 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 		else if (shift) begin
 			rx_data <= { RX2 , rx_data[7:1] };  // Shift RX2 into MSB
 		end
+		else 
+			rx_data <= rx_data;  // Shift RX2 into MSB
+
 	end
 
 	// Logic for state transition

@@ -62,7 +62,7 @@ always @(posedge clk or negedge rst_n)
       bit_cnt <= bit_cnt + 1 ; // only burn power incrementing if tranmitting
 
 
-assign shift = (baud_cnt == 12'hA2B); // assert shift when baud_cnt reaches 2063 (small cloud in the middle of the diagram)
+assign shift = (baud_cnt == 12'hA2B); // assert shift when baud_cnt reaches 2603 (small cloud in the middle of the diagram)
 assign TX = shift_reg[0];
 
 always_comb begin
