@@ -1,4 +1,4 @@
-module UartRx (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
+module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 	input RX;  // Serial data input
 	input rx_rdy_clr; // Asserted to clear rx_rdy
 
@@ -8,23 +8,18 @@ module UartRx (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 	output reg rx_rdy;
 	output reg [7:0] rx_data; 
 
-	reg [3:0] bit_cnt; 
-	reg [11:0] baud_cnt; 
-	//reg [8:0] shift_reg;
-	reg RX1, RX2;
-	//reg load; 
-	//reg receving;
+	reg [3:0] bit_cnt;   // counter used for bits 
+	reg [11:0] baud_cnt; // 12-bit baud rate counter
 
-	reg baud_clr;
-	reg baud_inc;
+	reg RX1, RX2;  // Flip-flop used for double flip flop
 
-	reg bit_clr;
-	reg bit_inc;
-	
-	reg shift;
-	//wire [3:0] bit_cnt_val;
-	//wire [11:0] baud_cnt_val; 
-	//wire [8:0] shift_val;
+	reg baud_clr;  // clear baud counter
+	reg baud_inc;  // increment baud coutner
+
+	reg bit_clr;   // clear bit counter
+	reg bit_inc;   // increment bit counter (0-7)
+
+	reg shift;    // asserted means shift a new one in
 
 	reg rx_rdy_val;
 
@@ -38,22 +33,6 @@ module UartRx (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 			RX2 <= RX1;
 	end
 
-
-	// reg values 
-	/*
-	assign bit_cnt_val = (load)? 4'd0 : 
-						 (shift)? bit_cnt + 1:
-								  bit_cnt;
-
-	assign baud_cnt_val = (load)? 12'd2604: (receving)? baud_cnt - 1: baud_cnt;
-
-	assign shift_val = (load)? 9'h0: (shift)? {RX2, shift_reg[8:1]}: shift_reg;
-	// output 
-	assign rx_data = shift_reg[7:0];
-
-	assign shift = receving ? ((~|baud_cnt)? 1: 0) :0;
-	
-	*/
 
 
 
@@ -100,19 +79,10 @@ module UartRx (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 	// Logic for state transition
 	always_ff @(posedge clk or negedge rst_n) begin : proc_fsm
 		if(~rst_n) begin
-			//bit_cnt <= 0;
-			//baud_cnt <= 12'd2604;
-			//shift_reg <= 0;
 			state <= IDLE;
-			//rx_rdy <= 0;
 		end 
-
 		else begin
-			//bit_cnt <= bit_cnt_val;
-			//baud_cnt <= (shift)? 12'd2604: baud_cnt_val;
-			//shift_reg <= shift_val;
 			state <= nxt_state;
-			//rx_rdy <= rx_rdy_val;
 		end
 	end
 
@@ -120,8 +90,6 @@ module UartRx (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 	// FSM combinational logic output
 	always_comb begin
 		// default value 
-		//load = 0;
-		//receving = 0;
 		rx_rdy_val = 0; // Stores the value to be put into rx_rdy
 		nxt_state = state;
 
@@ -131,7 +99,7 @@ module UartRx (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 
 		bit_clr = 0;
 		bit_inc = 0;
-
+		shift = 0;
 		case(state)
 			IDLE: begin 
 			if(!RX2) // We have a start bit coming
@@ -147,12 +115,9 @@ module UartRx (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 					baud_clr = 1;
 					nxt_state = RECEVING;
 				end
-				// We don't need load
-				//load = 1;
 		end 
 		
 			RECEVING: begin 
-				//receving = 1;		
 				
 				baud_inc = 1;
 				if (baud_cnt == 12'd2604) begin
@@ -162,7 +127,7 @@ module UartRx (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 					shift = 1;
 				end
 				
-				if(bit_cnt == 4'd9) begin  // At the 9th bit stop
+				if(bit_cnt == 4'd8) begin  // At the 9th bit stop
 					rx_rdy_val = 1;		// set rx_rdy to 1
 					bit_clr = 1; // clear the bit counter
 					nxt_state = CLR;
