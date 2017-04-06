@@ -94,7 +94,7 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 
 
 
-	// logic for shift_reg;
+	// logic for rx_data
 	always_ff @(posedge clk or negedge rst_n) begin
 		if(~rst_n ) begin
 			rx_data <= 0;
