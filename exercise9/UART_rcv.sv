@@ -52,7 +52,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 
 		else begin
 			bit_cnt <= bit_cnt_val;
-			baud_cnt <= (shift)? 12'd3906: baud_cnt_val;
+			baud_cnt <= (shift)? 12'd2604: baud_cnt_val;
 			shift_reg <= shift_val;
 			state <= nxt_state;
 			rdy <= rdy_val;
