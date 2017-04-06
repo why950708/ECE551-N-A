@@ -35,12 +35,12 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 	// reg values 
 	assign bit_cnt_val = (load)? 4'd0: (shift)? : bit_cnt + 1: bit_cnt;
 	assign baud_cnt_val = (load)? 12'd3906: (receving)? : baud_cnt - 1: baud_cnt;
-	assign shift_val = (load)? 9'h0: (shift)? {RX2,shift_reg[8:1]}: shift_reg;
+	assign shift_val = (load)? 9'h0: (shift)? {RX2, shift_reg[8:1]}: shift_reg;
 	// output 
 	assign cmd = shift_reg[7:0];
 
 	assign shift = receving ? ((~|baud_cnt)? 1: 0) :0;
-	// fsm
+	// fsm 
 	always_ff @(posedge clk or negedge rst_n) begin : proc_fsm
 		if(~rst_n) begin
 			bit_cnt <= 0;
@@ -59,6 +59,7 @@ module UartRx (clr_rdy, clk, rst_n, RX, rdy, cmd);
 		end
 	end
 
+	// fsm combinational logic output
 	always_comb begin
 		// default value 
 		load = 0;
