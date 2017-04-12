@@ -1,4 +1,4 @@
-module A2D_tb ();
+module A2D_intf_tb ();
 
 reg strt_cnv, clk, rst_n;
 reg [2:0] chnnl;
@@ -24,23 +24,30 @@ ADC128S iADC (.clk(clk),.rst_n(rst_n), .SS_n(a2d_SS_n), .SCLK(SCLK),
 
 initial begin
     clk = 0;
-    
+    strt_cnv = 0;
+    chnnl = 0;
     rst_n = 0;
+    resp = 0;
+    i = 0;
+    key = 0;
     $readmemh("analog.dat", mem);
 
     #10 rst_n = 1;
 
-    for ( i = 0 ; i <= 7; i++) begin
+    for ( i = 0  ; i <= 7; i++) begin
         key = mem[i];  
         
         chnnl = i % 7;
 
         strt_cnv = 1;
         @(negedge clk);
-        @(posedge clk);
+        @(negedge clk);
+        repeat (700) @(posedge clk);  // >512
+
         strt_cnv = 0;
 
-        repeat (520) @(posedge clk);
+        @(posedge cnv_cmplt);
+
 
         resp = ~res;
     
@@ -57,11 +64,8 @@ end
 
 
 
-
-
-
 always begin
-    %5 clk =  ~clk;
+    #5 clk =  ~clk;
 end
 
 
