@@ -1,0 +1,70 @@
+module A2D_tb ();
+
+reg strt_cnv, clk, rst_n;
+reg [2:0] chnnl;
+
+reg [11:0] mem[0:7];
+reg [11:0] key, resp;
+integer i;
+
+
+wire cnv_cmplt;
+wire [11:0] res;
+
+// Wire between A2D_intf to ADC128S
+wire a2d_SS_n, SCLK, MOSI, MISO;
+
+
+A2D_intf iA2D (.clk (clk), .rst_n(rst_n), .strt_cnv(strt_cnv), .cnv_cmplt(cnv_cmplt),
+                .chnnl(chnnl), .res(res), .a2d_SS_n (a2d_SS_n), .SCLK(SCLK), .MOSI(MOSI), .MISO(MISO));
+
+ADC128S iADC (.clk(clk),.rst_n(rst_n), .SS_n(a2d_SS_n), .SCLK(SCLK),
+              .MISO(MISO),.MOSI(MOSI));
+
+
+initial begin
+    clk = 0;
+    
+    rst_n = 0;
+    $readmemh("analog.dat", mem);
+
+    #10 rst_n = 1;
+
+    for ( i = 0 ; i <= 7; i++) begin
+        key = mem[i];  
+        
+        chnnl = i % 7;
+
+        strt_cnv = 1;
+        @(negedge clk);
+        @(posedge clk);
+        strt_cnv = 0;
+
+        repeat (520) @(posedge clk);
+
+        resp = ~res;
+    
+        if ( key != resp)begin
+            $display("i is %d, Correct: %h, my dst is %h.", i, key, resp);
+            $stop;
+        end
+    end
+
+    $display("All tests passed.");
+
+
+end
+
+
+
+
+
+
+always begin
+    %5 clk =  ~clk;
+end
+
+
+
+
+endmodule
