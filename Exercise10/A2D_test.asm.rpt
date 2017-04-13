@@ -1,5 +1,5 @@
 Assembler report for A2D_test
-Wed Apr 12 20:22:52 2017
+Thu Apr 13 17:34:28 2017
 Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 
 
@@ -38,7 +38,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed Apr 12 20:22:52 2017 ;
+; Assembler Status      ; Successful - Thu Apr 13 17:34:28 2017 ;
 ; Revision Name         ; A2D_test                              ;
 ; Top-level Entity Name ; A2D_test                              ;
 ; Family                ; Cyclone IV E                          ;
@@ -68,8 +68,8 @@ agreement for further details.
 ; Option         ; Setting                                                       ;
 +----------------+---------------------------------------------------------------+
 ; Device         ; EP4CE22F17C6                                                  ;
-; JTAG usercode  ; 0x0013BCFC                                                    ;
-; Checksum       ; 0x0013BCFC                                                    ;
+; JTAG usercode  ; 0x0013EF26                                                    ;
+; Checksum       ; 0x0013EF26                                                    ;
 +----------------+---------------------------------------------------------------+
 
 
@@ -79,14 +79,14 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
-    Info: Processing started: Wed Apr 12 20:22:51 2017
+    Info: Processing started: Thu Apr 13 17:34:27 2017
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off A2D_test -c A2D_test
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 558 megabytes
-    Info: Processing ended: Wed Apr 12 20:22:52 2017
+    Info: Peak virtual memory: 559 megabytes
+    Info: Processing ended: Thu Apr 13 17:34:28 2017
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

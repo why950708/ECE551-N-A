@@ -2,18 +2,18 @@
 clk => clk.IN3
 RST_n => RST_n.IN1
 nxt_chnnl => nxt_chnnl.IN1
-LEDs[0] <= A2D_intf:iA2D.res
-LEDs[1] <= A2D_intf:iA2D.res
-LEDs[2] <= A2D_intf:iA2D.res
-LEDs[3] <= A2D_intf:iA2D.res
-LEDs[4] <= A2D_intf:iA2D.res
-LEDs[5] <= A2D_intf:iA2D.res
-LEDs[6] <= A2D_intf:iA2D.res
-LEDs[7] <= A2D_intf:iA2D.res
-SS_n => ~NO_FANOUT~
-MOSI => MOSI.IN1
+LEDs[0] <= LEDs[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDs[1] <= LEDs[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDs[2] <= LEDs[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDs[3] <= LEDs[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDs[4] <= LEDs[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDs[5] <= LEDs[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDs[6] <= LEDs[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDs[7] <= LEDs[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a2d_SS_n <= A2D_intf:iA2D.a2d_SS_n
+MOSI <= A2D_intf:iA2D.MOSI
+SCLK <= A2D_intf:iA2D.SCLK
 MISO => MISO.IN1
-SCLK => SCLK.IN1
 
 
 |A2D_test|reset_synch:iRST
@@ -191,7 +191,7 @@ rst_n => bit_counter[4].ACLR
 rst_n => state~3.DATAIN
 
 
-|A2D_test|rise_edge_detector:comb_3
+|A2D_test|rise_edge_detector:re
 next_byte => Sig_FF1.DATAIN
 rst_n => ~NO_FANOUT~
 clk => Sig_FF3.CLK

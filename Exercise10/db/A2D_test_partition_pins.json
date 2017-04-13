@@ -36,6 +36,18 @@
 					"strict" : false
 				},
 				{
+					"name" : "a2d_SS_n",
+					"strict" : false
+				},
+				{
+					"name" : "MOSI",
+					"strict" : false
+				},
+				{
+					"name" : "SCLK",
+					"strict" : false
+				},
+				{
 					"name" : "clk",
 					"strict" : false
 				},

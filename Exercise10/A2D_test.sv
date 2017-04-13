@@ -1,24 +1,24 @@
-module A2D_test(clk,RST_n,nxt_chnnl,LEDs , a2d_SS_n, MOSI, MISO, SCLK);
-
+module A2D_test(clk,RST_n,nxt_chnnl,LEDs, a2d_SS_n, MOSI, SCLK, MISO);
 input clk,RST_n;		// 50MHz clock and active low unsynchronized reset from push button
 input nxt_chnnl;		// unsynchronized push button.  Advances to convert next chnnl
-output [7:0] LEDs;		// upper bits of conversion displayed on LEDs
+output reg [7:0] LEDs;		// upper bits of conversion displayed on LEDs
 
 input  MISO;
 output a2d_SS_n, MOSI, SCLK;
 
-//wire a2d_SS_n;		// Active low slave select to A2D (part of SPI bus)
-//wire MOSI;			// Master Out Slave In to A2D (part of SPI bus)
-//wire MISO;				// Master In Slave Out from A2D (part of SPI bus)
-//wire SCLK;			// Serial clock of SPI bus
-
+/*
+wire a2d_SS_n;		// Active low slave select to A2D (part of SPI bus)
+wire MOSI;			// Master Out Slave In to A2D (part of SPI bus)
+wire MISO;				// Master In Slave Out from A2D (part of SPI bus)
+wire SCLK;			// Serial clock of SPI bussS
+*/
 
 ///////////////////////////////////////////////////
 // Declare any registers or wires you need here //
 /////////////////////////////////////////////////
 wire [11:0] res;		// result of A2D conversion
 wire cnv_cmplt;
-reg [5:0] cnv_counter;
+reg [5:0] cnv_counter;  // 5:0
 reg conv;
 
 wire sync_button;
@@ -50,7 +50,7 @@ rise_edge_detector re(.next_byte(nxt_chnnl), .rst_n(rst_n), .clk(clk), .out(sync
 ////////////////////////////////////////////////////////////////
 always @(posedge clk, negedge rst_n) begin
     if (!rst_n) begin
-        chnnl <= 0;
+        chnnl <= 0  ;   // !!!!!!!!!!!!!!!!!!!!!!   0
     end
     else if (sync_button)begin
         chnnl <= chnnl + 1;
@@ -63,23 +63,28 @@ always @(posedge clk, negedge rst_n) begin
 end
 
 
-always @(posedge clk, negedge rst_n) begin
+always_ff @(posedge clk, negedge rst_n) begin
 	if(!rst_n) begin
 		strt_cnv <= 1;
 		conv <= 0;
+        LEDs <= 0;
 	end
 	
-	else if(cnv_cmplt) conv <= 1;
-	
+	else if(cnv_cmplt) begin
+        LEDs <= res[11:4];
+        conv <= 1;
+    end
 	else if(cnv_counter == 6'd32) begin
 		strt_cnv <= 1;
 		conv <= 0;
 	end
-	else strt_cnv <= 0;
-		
+	else begin
+        strt_cnv <= 0;
+        //conv <= conv;
+    end	
 end
 
-always @(posedge clk, negedge rst_n) begin
+always_ff @(posedge clk, negedge rst_n) begin
 	if (!rst_n) begin
 		cnv_counter <= 6'b0;
 	end
@@ -104,8 +109,8 @@ end
 // - Add SPI ports to the top module and map them to pins in .qsf file. //
 //////////////////////////////////////////////////////////////////////////
 
-assign
-	LEDs = res[11:4];
+//assign
+//	LEDs = res[11:4];
 
 endmodule
     

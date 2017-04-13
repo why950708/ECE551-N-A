@@ -18,8 +18,18 @@ RST_n=1'b1;
 
 repeat (5) @(negedge clk) nxt_chnnl = 1'b0;
 repeat (3) @(negedge clk) nxt_chnnl = 1'b1;
-repeat (600)@(negedge clk);
+repeat (5) @(negedge clk) nxt_chnnl = 1'b0;
+repeat (3) @(negedge clk) nxt_chnnl = 1'b1;
+repeat (5) @(negedge clk) nxt_chnnl = 1'b0;
+repeat (3) @(negedge clk) nxt_chnnl = 1'b1;
+repeat (5) @(negedge clk) nxt_chnnl = 1'b0;
+repeat (3) @(negedge clk) nxt_chnnl = 1'b1;
+repeat (2) @(posedge iA2D_test.cnv_cmplt);
+ 
+#1000;
 
+
+ /*
 repeat (5) @(negedge clk) nxt_chnnl = 1'b0;
 repeat (3) @(negedge clk) nxt_chnnl = 1'b1;
 
@@ -41,7 +51,7 @@ repeat (3) @(negedge clk) nxt_chnnl = 1'b0;
 repeat (3) @(negedge clk) nxt_chnnl = 1'b1;
 
 repeat (600) @(negedge clk);
-
+*/
 
 
 $stop;

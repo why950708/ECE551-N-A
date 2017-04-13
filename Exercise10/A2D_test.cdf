@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE22) Path("D:/Dropbox/ECE551/ECE551-N-A/Exercise10/") File("A2D_intf.jic") MfrSpec(OpMask(1) SEC_Device(EPCS64) Child_OpMask(1 1));
+		Device PartName(EP4CE22) Path("D:/Dropbox/ECE551/ECE551-N-A/Exercise10/") File("A2D_intf_new.jic") MfrSpec(OpMask(1) SEC_Device(EPCS64) Child_OpMask(1 1));
 
 ChainEnd;
 
