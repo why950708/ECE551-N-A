@@ -25,7 +25,7 @@ wire sync_button;
 
 reg [2:0] chnnl;
 reg strt_cnv;
-
+wire rst_n;
 
 /////////////////////////////////////
 // Instantiate Reset synchronizer //
