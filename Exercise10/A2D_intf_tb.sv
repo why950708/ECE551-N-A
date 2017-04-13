@@ -37,27 +37,40 @@ initial begin
     for ( i = 0  ; i <= 7; i++) begin
         key = mem[i];  
         
-        chnnl = i % 7;
+        chnnl = i[2:0];
 
         strt_cnv = 1;
         @(negedge clk);
         @(negedge clk);
-        repeat (700) @(posedge clk);  // >512
+        repeat (500) @(posedge clk);  // just wait for about 500 cycles
 
         strt_cnv = 0;
 
         @(posedge cnv_cmplt);
 
+        repeat (100) @(posedge clk);  // Wait before the next transmission for 100 cycles
 
+        strt_cnv = 1;
+        @(negedge clk);
+        @(negedge clk);
+
+        strt_cnv = 0;
+
+        @(posedge cnv_cmplt);
+        
         resp = ~res;
+
+        repeat (100) @(posedge clk);  // Wait before the next transmission for 100 cycles
+
     
         if ( key != resp)begin
-            $display("i is %d, Correct: %h, my dst is %h.", i, key, resp);
+            $display("i is %d, Correct is %h, my resp is %h.", i, key, resp);
             $stop;
         end
     end
 
     $display("All tests passed.");
+    $stop;
 
 
 end

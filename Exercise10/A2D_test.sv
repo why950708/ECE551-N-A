@@ -8,6 +8,11 @@ wire MOSI;			// Master Out Slave In to A2D (part of SPI bus)
 wire MISO;				// Master In Slave Out from A2D (part of SPI bus)
 wire SCLK;			// Serial clock of SPI bus
 
+wire sync_button;
+
+reg [2:0] chnnl;
+reg strt_cnv;
+
 ///////////////////////////////////////////////////
 // Declare any registers or wires you need here //
 /////////////////////////////////////////////////
@@ -17,7 +22,7 @@ wire [11:0] res;		// result of A2D conversion
 /////////////////////////////////////
 // Instantiate Reset synchronizer //
 ///////////////////////////////////
-rst_synch iRST(.clk(clk), .RST_n(RST_n), .rst_n(rst_n));
+reset_synch iRST(.clk(clk), .RST_n(RST_n), .rst_n(rst_n));
 
 ////////////////////////////////
 // Instantiate A2D Interface //
@@ -29,13 +34,28 @@ A2D_intf iA2D(.clk(clk), .rst_n(rst_n), .strt_cnv(strt_cnv), .cnv_cmplt(cnv_cmpl
 ////////////////////////////////////////
 // Synchronize nxt_chnnl push button //
 //////////////////////////////////////
-
+rise_edge_detector (.next_byte(nxt_chnnl), .rst_n(rst_n), .clk(clk), .out(sync_button));
  
 ///////////////////////////////////////////////////////////////////
 // Implement method to increment channel and start a conversion //
 // with every release of the nxt_chnnl push button.            //
 ////////////////////////////////////////////////////////////////
+always @(posedge clk, negedge rst_n) begin
+    if (!rst_n) begin
+        strt_cnv <= 0;
+        chnnl <= 0;
+    end
+    else if (sync_button)begin
+        chnnl <= chnnl + 1;
+        strt_cnv <= 1;
+    end
+    else begin
+        strt_cnv <= 0;
+        chnnl <= chnnl;
 
+    end
+
+end
 
 //////////////////////////////////////////////////////////
 // Demo 1: ADC128S                                      //

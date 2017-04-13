@@ -1,0 +1,3 @@
+Info (10281): Verilog HDL Declaration information at SPI_mstr.sv(9): object "done" differs only in case from object "DONE" in the same scope File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_mstr.sv Line: 9
+Info (10281): Verilog HDL Declaration information at SPI_mstr.sv(28): object "SHIFT" differs only in case from object "shift" in the same scope File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_mstr.sv Line: 28
+Info (10281): Verilog HDL Declaration information at reset_synch.v(4): object "RST_n" differs only in case from object "rst_n" in the same scope File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/reset_synch.v Line: 4
