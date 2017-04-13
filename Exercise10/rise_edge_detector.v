@@ -6,9 +6,9 @@ reg Sig_FF1, Sig_FF2, Sig_FF3;
 always @(posedge clk) begin
 
 if(!rst_n) begin
-  Sig_FF1 <= 0;
-  Sig_FF2 <= 0;
-  Sig_FF3 <= 0;
+  Sig_FF1 <= 1;
+  Sig_FF2 <= 1;
+  Sig_FF3 <= 1;
  end
 
 /********************************************
