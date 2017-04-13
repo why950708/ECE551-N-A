@@ -5,7 +5,7 @@
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE22F17C6
 set_global_assignment -name TOP_LEVEL_ENTITY "A2D_test"
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION "12.0"
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 12.0
 set_global_assignment -name LAST_QUARTUS_VERSION "16.1.2 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:46:05 MARCH 01,2015"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
@@ -49,6 +49,14 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nxt_chnnl
 #============================================================
 # ADC
 #============================================================
+set_location_assignment PIN_A10 -to a2d_SS_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to a2d_SS_n
+set_location_assignment PIN_B10 -to MOSI
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MOSI
+set_location_assignment PIN_B14 -to SCLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SCLK
+set_location_assignment PIN_A9 -to MISO
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MISO
 
 #============================================================
 # End of pin assignments by Terasic System Builder

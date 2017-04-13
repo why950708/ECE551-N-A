@@ -46,6 +46,10 @@
 				{
 					"name" : "nxt_chnnl",
 					"strict" : false
+				},
+				{
+					"name" : "MISO",
+					"strict" : false
 				}
 			]
 		}

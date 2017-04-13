@@ -1,15 +1,15 @@
-Fitter Status : Successful - Wed Apr 12 19:03:34 2017
+Fitter Status : Successful - Wed Apr 12 20:22:49 2017
 Quartus Prime Version : 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 Revision Name : A2D_test
 Top-level Entity Name : A2D_test
 Family : Cyclone IV E
 Device : EP4CE22F17C6
 Timing Models : Final
-Total logic elements : 109 / 22,320 ( < 1 % )
-    Total combinational functions : 85 / 22,320 ( < 1 % )
-    Dedicated logic registers : 91 / 22,320 ( < 1 % )
-Total registers : 91
-Total pins : 11 / 154 ( 7 % )
+Total logic elements : 47 / 22,320 ( < 1 % )
+    Total combinational functions : 41 / 22,320 ( < 1 % )
+    Dedicated logic registers : 40 / 22,320 ( < 1 % )
+Total registers : 40
+Total pins : 15 / 154 ( 10 % )
 Total virtual pins : 0
 Total memory bits : 0 / 608,256 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for A2D_test
-Wed Apr 12 19:03:27 2017
+Wed Apr 12 20:22:42 2017
 Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 
 
@@ -13,19 +13,18 @@ Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |A2D_test|ADC128S:ADC128S_0|SPI_ADC128S:iSPI|state
-  9. State Machine - |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI|state
- 10. Registers Removed During Synthesis
+  8. State Machine - |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI|state
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
  11. General Register Statistics
  12. Inverted Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Port Connectivity Checks: "ADC128S:ADC128S_0|SPI_ADC128S:iSPI"
- 15. Port Connectivity Checks: "A2D_intf:iA2D|SPI_mstr:iSPI"
- 16. Port Connectivity Checks: "A2D_intf:iA2D"
- 17. Post-Synthesis Netlist Statistics for Top Partition
- 18. Elapsed Time Per Partition
- 19. Analysis & Synthesis Messages
- 20. Analysis & Synthesis Suppressed Messages
+ 14. Port Connectivity Checks: "A2D_intf:iA2D|SPI_mstr:iSPI"
+ 15. Port Connectivity Checks: "A2D_intf:iA2D"
+ 16. Post-Synthesis Netlist Statistics for Top Partition
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
+ 19. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -52,16 +51,16 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Apr 12 19:03:27 2017       ;
+; Analysis & Synthesis Status        ; Successful - Wed Apr 12 20:22:42 2017       ;
 ; Quartus Prime Version              ; 16.1.2 Build 203 01/18/2017 SJ Lite Edition ;
 ; Revision Name                      ; A2D_test                                    ;
 ; Top-level Entity Name              ; A2D_test                                    ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 111                                         ;
-;     Total combinational functions  ; 84                                          ;
-;     Dedicated logic registers      ; 91                                          ;
-; Total registers                    ; 91                                          ;
-; Total pins                         ; 11                                          ;
+; Total logic elements               ; 47                                          ;
+;     Total combinational functions  ; 40                                          ;
+;     Dedicated logic registers      ; 40                                          ;
+; Total registers                    ; 40                                          ;
+; Total pins                         ; 15                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -179,11 +178,8 @@ agreement for further details.
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------+---------+
 ; SPI_mstr.sv                      ; yes             ; User SystemVerilog HDL File  ; D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_mstr.sv          ;         ;
 ; reset_synch.v                    ; yes             ; User Verilog HDL File        ; D:/Dropbox/ECE551/ECE551-N-A/Exercise10/reset_synch.v        ;         ;
-; SPI_ADC128S.sv                   ; yes             ; User SystemVerilog HDL File  ; D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_ADC128S.sv       ;         ;
-; ADC128S.sv                       ; yes             ; User SystemVerilog HDL File  ; D:/Dropbox/ECE551/ECE551-N-A/Exercise10/ADC128S.sv           ;         ;
 ; A2D_intf.sv                      ; yes             ; User SystemVerilog HDL File  ; D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_intf.sv          ;         ;
 ; A2D_test.sv                      ; yes             ; User SystemVerilog HDL File  ; D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv          ;         ;
-; analog.dat                       ; yes             ; Auto-Found Unspecified File  ; D:/Dropbox/ECE551/ECE551-N-A/Exercise10/analog.dat           ;         ;
 ; rise_edge_detector.v             ; yes             ; Auto-Found Verilog HDL File  ; D:/Dropbox/ECE551/ECE551-N-A/Exercise10/rise_edge_detector.v ;         ;
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------+---------+
 
@@ -193,59 +189,45 @@ agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 111       ;
+; Estimated Total logic elements              ; 47        ;
 ;                                             ;           ;
-; Total combinational functions               ; 84        ;
+; Total combinational functions               ; 40        ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 25        ;
-;     -- 3 input functions                    ; 30        ;
-;     -- <=2 input functions                  ; 29        ;
+;     -- 4 input functions                    ; 6         ;
+;     -- 3 input functions                    ; 16        ;
+;     -- <=2 input functions                  ; 18        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 72        ;
-;     -- arithmetic mode                      ; 12        ;
+;     -- normal mode                          ; 32        ;
+;     -- arithmetic mode                      ; 8         ;
 ;                                             ;           ;
-; Total registers                             ; 91        ;
-;     -- Dedicated logic registers            ; 91        ;
+; Total registers                             ; 40        ;
+;     -- Dedicated logic registers            ; 40        ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 11        ;
+; I/O pins                                    ; 15        ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 91        ;
-; Total fan-out                               ; 614       ;
-; Average fan-out                             ; 3.12      ;
+; Maximum fan-out                             ; 40        ;
+; Total fan-out                               ; 278       ;
+; Average fan-out                             ; 2.53      ;
 +---------------------------------------------+-----------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                          ;
-+--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------------+--------------+
-; Compilation Hierarchy Node     ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                          ; Entity Name        ; Library Name ;
-+--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------------+--------------+
-; |A2D_test                      ; 84 (4)              ; 91 (4)                    ; 0           ; 0            ; 0       ; 0         ; 11   ; 0            ; |A2D_test                                    ; A2D_test           ; work         ;
-;    |A2D_intf:iA2D|             ; 46 (0)              ; 42 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|A2D_intf:iA2D                      ; A2D_intf           ; work         ;
-;       |SPI_mstr:iSPI|          ; 46 (46)             ; 42 (42)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI        ; SPI_mstr           ; work         ;
-;    |ADC128S:ADC128S_0|         ; 33 (1)              ; 40 (4)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|ADC128S:ADC128S_0                  ; ADC128S            ; work         ;
-;       |SPI_ADC128S:iSPI|       ; 32 (32)             ; 36 (36)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|ADC128S:ADC128S_0|SPI_ADC128S:iSPI ; SPI_ADC128S        ; work         ;
-;    |reset_synch:iRST|          ; 0 (0)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|reset_synch:iRST                   ; reset_synch        ; work         ;
-;    |rise_edge_detector:comb_3| ; 1 (1)               ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|rise_edge_detector:comb_3          ; rise_edge_detector ; work         ;
-+--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                   ;
++--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node     ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                   ; Entity Name        ; Library Name ;
++--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+--------------------+--------------+
+; |A2D_test                      ; 40 (1)              ; 40 (2)                    ; 0           ; 0            ; 0       ; 0         ; 15   ; 0            ; |A2D_test                             ; A2D_test           ; work         ;
+;    |A2D_intf:iA2D|             ; 38 (0)              ; 33 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|A2D_intf:iA2D               ; A2D_intf           ; work         ;
+;       |SPI_mstr:iSPI|          ; 38 (38)             ; 33 (33)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI ; SPI_mstr           ; work         ;
+;    |reset_synch:iRST|          ; 0 (0)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|reset_synch:iRST            ; reset_synch        ; work         ;
+;    |rise_edge_detector:comb_3| ; 1 (1)               ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |A2D_test|rise_edge_detector:comb_3   ; rise_edge_detector ; work         ;
++--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-Encoding Type:  One-Hot
-+--------------------------------------------------------------------+
-; State Machine - |A2D_test|ADC128S:ADC128S_0|SPI_ADC128S:iSPI|state ;
-+----------------+------------+----------------+---------------------+
-; Name           ; state.IDLE ; state.WAIT_SSn ; state.SKIP_1st      ;
-+----------------+------------+----------------+---------------------+
-; state.IDLE     ; 0          ; 0              ; 0                   ;
-; state.SKIP_1st ; 1          ; 0              ; 1                   ;
-; state.WAIT_SSn ; 1          ; 1              ; 0                   ;
-+----------------+------------+----------------+---------------------+
 
 
 Encoding Type:  One-Hot
@@ -260,15 +242,24 @@ Encoding Type:  One-Hot
 +-------------+------------+------------+---------------------+
 
 
-+--------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                             ;
-+---------------------------------------+----------------------------------------+
-; Register name                         ; Reason for Removal                     ;
-+---------------------------------------+----------------------------------------+
-; ADC128S:ADC128S_0|state               ; Stuck at GND due to stuck port data_in ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|state~6   ; Lost fanout                            ;
-; Total Number of Removed Registers = 2 ;                                        ;
-+---------------------------------------+----------------------------------------+
++------------------------------------------------------------+
+; Registers Removed During Synthesis                         ;
++---------------------------------------+--------------------+
+; Register name                         ; Reason for Removal ;
++---------------------------------------+--------------------+
+; chnnl[1,2]                            ; Lost fanout        ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|state~6   ; Lost fanout        ;
+; Total Number of Removed Registers = 3 ;                    ;
++---------------------------------------+--------------------+
+
+
++-----------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                 ;
++---------------+--------------------+----------------------------------------+
+; Register name ; Reason for Removal ; Registers Removed due to This Register ;
++---------------+--------------------+----------------------------------------+
+; chnnl[2]      ; Lost Fanouts       ; chnnl[1]                               ;
++---------------+--------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -276,65 +267,44 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 91    ;
+; Total registers                              ; 40    ;
 ; Number of registers using Synchronous Clear  ; 10    ;
-; Number of registers using Synchronous Load   ; 7     ;
-; Number of registers using Asynchronous Clear ; 88    ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 37    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 66    ;
+; Number of registers using Clock Enable       ; 29    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+-------------------------------------------------------+
-; Inverted Register Statistics                          ;
-+---------------------------------------------+---------+
-; Inverted Register                           ; Fan out ;
-+---------------------------------------------+---------+
-; A2D_intf:iA2D|SPI_mstr:iSPI|SCLK_counter[4] ; 2       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|SCLK_counter[3] ; 1       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|SCLK_counter[1] ; 1       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|SCLK_counter[0] ; 1       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[4]    ; 2       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[5]    ; 2       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[6]    ; 2       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[7]    ; 2       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[8]    ; 2       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[9]    ; 2       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[3]    ; 1       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[2]    ; 1       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[1]    ; 1       ;
-; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[0]    ; 1       ;
-; ADC128S:ADC128S_0|SPI_ADC128S:iSPI|SCLK_ff1 ; 10      ;
-; ADC128S:ADC128S_0|SPI_ADC128S:iSPI|SCLK_ff2 ; 9       ;
-; Total number of inverted registers = 16     ;         ;
-+---------------------------------------------+---------+
++----------------------------------------------------+
+; Inverted Register Statistics                       ;
++------------------------------------------+---------+
+; Inverted Register                        ; Fan out ;
++------------------------------------------+---------+
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[4] ; 2       ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[5] ; 2       ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[6] ; 2       ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[7] ; 2       ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[8] ; 2       ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[9] ; 2       ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[3] ; 1       ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[2] ; 1       ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[1] ; 1       ;
+; A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[0] ; 1       ;
+; Total number of inverted registers = 10  ;         ;
++------------------------------------------+---------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI|shift_counter[2]       ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI|bit_counter[3]         ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[12]          ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |A2D_test|ADC128S:ADC128S_0|SPI_ADC128S:iSPI|shft_reg_tx[12] ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |A2D_test|ADC128S:ADC128S_0|SPI_ADC128S:iSPI|shft_reg_tx[1]  ;
-; 10:1               ; 4 bits    ; 24 LEs        ; 20 LEs               ; 4 LEs                  ; Yes        ; |A2D_test|ADC128S:ADC128S_0|SPI_ADC128S:iSPI|shft_reg_tx[7]  ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[4]           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ADC128S:ADC128S_0|SPI_ADC128S:iSPI"                                                             ;
-+------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port             ; Type   ; Severity ; Details                                                                             ;
-+------------------+--------+----------+-------------------------------------------------------------------------------------+
-; A2D_data[15..12] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; cmd[15..14]      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; cmd[10..0]       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------------------+--------+----------+-------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI|shift_counter[4] ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI|bit_counter[4]   ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |A2D_test|A2D_intf:iA2D|SPI_mstr:iSPI|shift_reg[4]     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -355,6 +325,9 @@ Encoding Type:  One-Hot
 +-----------+--------+----------+-------------------------------------------------------------------------------------+
 ; cnv_cmplt ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 ; res[3..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; a2d_SS_n  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; SCLK      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; MOSI      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +-----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
@@ -363,27 +336,23 @@ Encoding Type:  One-Hot
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 11                          ;
-; cycloneiii_ff         ; 91                          ;
-;     CLR               ; 17                          ;
-;     CLR SLD           ; 5                           ;
-;     ENA CLR           ; 54                          ;
+; boundary_port         ; 15                          ;
+; cycloneiii_ff         ; 40                          ;
+;     CLR               ; 8                           ;
+;     ENA CLR           ; 19                          ;
 ;     ENA CLR SCLR      ; 10                          ;
-;     ENA CLR SLD       ; 2                           ;
 ;     plain             ; 3                           ;
-; cycloneiii_lcell_comb ; 92                          ;
-;     arith             ; 12                          ;
-;         1 data inputs ; 1                           ;
-;         2 data inputs ; 11                          ;
-;     normal            ; 80                          ;
-;         0 data inputs ; 1                           ;
-;         1 data inputs ; 18                          ;
-;         2 data inputs ; 6                           ;
-;         3 data inputs ; 30                          ;
-;         4 data inputs ; 25                          ;
+; cycloneiii_lcell_comb ; 48                          ;
+;     arith             ; 8                           ;
+;         2 data inputs ; 8                           ;
+;     normal            ; 40                          ;
+;         1 data inputs ; 16                          ;
+;         2 data inputs ; 2                           ;
+;         3 data inputs ; 16                          ;
+;         4 data inputs ; 6                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.00                        ;
-; Average LUT depth     ; 1.29                        ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 1.43                        ;
 +-----------------------+-----------------------------+
 
 
@@ -402,7 +371,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
-    Info: Processing started: Wed Apr 12 19:03:15 2017
+    Info: Processing started: Wed Apr 12 20:22:31 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off A2D_test -c A2D_test
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -421,47 +390,40 @@ Info (12021): Found 1 design units, including 1 entities, in source file a2d_int
 Info (12021): Found 1 design units, including 1 entities, in source file a2d_test.sv
     Info (12023): Found entity 1: A2D_test File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 1
 Warning (10236): Verilog HDL Implicit Net warning at ADC128S.sv(45): created implicit net for "rdy" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/ADC128S.sv Line: 45
-Warning (10236): Verilog HDL Implicit Net warning at A2D_test.sv(25): created implicit net for "rst_n" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 25
-Warning (10236): Verilog HDL Implicit Net warning at A2D_test.sv(30): created implicit net for "cnv_cmplt" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 30
-Critical Warning (10846): Verilog HDL Instantiation warning at A2D_test.sv(37): instance has no name File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 37
+Warning (10236): Verilog HDL Implicit Net warning at A2D_test.sv(28): created implicit net for "rst_n" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 28
+Warning (10236): Verilog HDL Implicit Net warning at A2D_test.sv(33): created implicit net for "cnv_cmplt" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 33
+Critical Warning (10846): Verilog HDL Instantiation warning at A2D_test.sv(40): instance has no name File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 40
 Info (12127): Elaborating entity "A2D_test" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at A2D_test.sv(49): truncated value with size 32 to match size of target (3) File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 49
-Info (12128): Elaborating entity "reset_synch" for hierarchy "reset_synch:iRST" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 25
-Info (12128): Elaborating entity "A2D_intf" for hierarchy "A2D_intf:iA2D" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 31
+Warning (10230): Verilog HDL assignment warning at A2D_test.sv(52): truncated value with size 32 to match size of target (3) File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 52
+Info (12128): Elaborating entity "reset_synch" for hierarchy "reset_synch:iRST" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 28
+Info (12128): Elaborating entity "A2D_intf" for hierarchy "A2D_intf:iA2D" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 34
 Info (12128): Elaborating entity "SPI_mstr" for hierarchy "A2D_intf:iA2D|SPI_mstr:iSPI" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_intf.sv Line: 21
 Warning (10230): Verilog HDL assignment warning at SPI_mstr.sv(44): truncated value with size 32 to match size of target (5) File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_mstr.sv Line: 44
 Warning (10230): Verilog HDL assignment warning at SPI_mstr.sv(74): truncated value with size 32 to match size of target (5) File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_mstr.sv Line: 74
 Warning (10230): Verilog HDL assignment warning at SPI_mstr.sv(91): truncated value with size 32 to match size of target (5) File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_mstr.sv Line: 91
 Warning (12125): Using design file rise_edge_detector.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: rise_edge_detector File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/rise_edge_detector.v Line: 1
-Info (12128): Elaborating entity "rise_edge_detector" for hierarchy "rise_edge_detector:comb_3" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 37
-Info (12128): Elaborating entity "ADC128S" for hierarchy "ADC128S:ADC128S_0" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 64
-Warning (10230): Verilog HDL assignment warning at ADC128S.sv(53): truncated value with size 32 to match size of target (13) File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/ADC128S.sv Line: 53
-Warning (10030): Net "analog_mem.data_a" at ADC128S.sv(20) has no driver or initial value, using a default initial value '0' File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/ADC128S.sv Line: 20
-Warning (10030): Net "analog_mem.waddr_a" at ADC128S.sv(20) has no driver or initial value, using a default initial value '0' File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/ADC128S.sv Line: 20
-Warning (10030): Net "analog_mem.we_a" at ADC128S.sv(20) has no driver or initial value, using a default initial value '0' File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/ADC128S.sv Line: 20
-Info (12128): Elaborating entity "SPI_ADC128S" for hierarchy "ADC128S:ADC128S_0|SPI_ADC128S:iSPI" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/ADC128S.sv Line: 45
-Warning (10036): Verilog HDL or VHDL warning at SPI_ADC128S.sv(33): object "ld_shft_reg" assigned a value but never read File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_ADC128S.sv Line: 33
-Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
-    Warning (13049): Converted tri-state buffer "ADC128S:ADC128S_0|SPI_ADC128S:iSPI|MISO" feeding internal logic into a wire File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_ADC128S.sv Line: 17
-Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276004): RAM logic "ADC128S:ADC128S_0|analog_mem" is uninferred due to inappropriate RAM size File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/ADC128S.sv Line: 20
+Info (12128): Elaborating entity "rise_edge_detector" for hierarchy "rise_edge_detector:comb_3" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 40
 Info (13000): Registers with preset signals will power-up high File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/SPI_mstr.sv Line: 63
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 1 registers lost all their fanouts during netlist optimizations.
+Info (17049): 3 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 125 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 3 input pins
+Warning (21074): Design contains 3 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SS_n" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 7
+    Warning (15610): No output dependent on input pin "MOSI" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 7
+    Warning (15610): No output dependent on input pin "SCLK" File: D:/Dropbox/ECE551/ECE551-N-A/Exercise10/A2D_test.sv Line: 7
+Info (21057): Implemented 63 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
     Info (21059): Implemented 8 output pins
-    Info (21061): Implemented 114 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 19 warnings
-    Info: Peak virtual memory: 649 megabytes
-    Info: Processing ended: Wed Apr 12 19:03:27 2017
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:27
+    Info (21061): Implemented 48 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 648 megabytes
+    Info: Processing ended: Wed Apr 12 20:22:42 2017
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:26
 
 
 +------------------------------------------+

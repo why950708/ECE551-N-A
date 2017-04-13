@@ -1,8 +1,11 @@
-module A2D_test(clk,RST_n,nxt_chnnl,LEDs);
+module A2D_test(clk,RST_n,nxt_chnnl,LEDs, SS_n, MOSI, MISO, SCLK);
 
 input clk,RST_n;		// 50MHz clock and active low unsynchronized reset from push button
 input nxt_chnnl;		// unsynchronized push button.  Advances to convert next chnnl
 output [7:0] LEDs;		// upper bits of conversion displayed on LEDs
+
+input SS_n, MOSI, MISO, SCLK;
+
 wire a2d_SS_n;		// Active low slave select to A2D (part of SPI bus)
 wire MOSI;			// Master Out Slave In to A2D (part of SPI bus)
 wire MISO;				// Master In Slave Out from A2D (part of SPI bus)
@@ -61,7 +64,7 @@ end
 // Demo 1: ADC128S                                      //
 //////////////////////////////////////////////////////////
 
-ADC128S  ADC128S_0(.clk(clk), .rst_n(rst_n), .SS_n(a2d_SS_n), .SCLK(SCLK), .MISO(MISO), .MOSI(MOSI));
+//ADC128S  ADC128S_0(.clk(clk), .rst_n(rst_n), .SS_n(a2d_SS_n), .SCLK(SCLK), .MISO(MISO), .MOSI(MOSI));
 
 
 //////////////////////////////////////////////////////////////////////////
