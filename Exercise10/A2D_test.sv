@@ -1,25 +1,30 @@
-module A2D_test(clk,RST_n,nxt_chnnl,LEDs, SS_n, MOSI, MISO, SCLK);
+module A2D_test(clk,RST_n,nxt_chnnl,LEDs , a2d_SS_n, MOSI, MISO, SCLK);
 
 input clk,RST_n;		// 50MHz clock and active low unsynchronized reset from push button
 input nxt_chnnl;		// unsynchronized push button.  Advances to convert next chnnl
 output [7:0] LEDs;		// upper bits of conversion displayed on LEDs
 
-input SS_n, MOSI, MISO, SCLK;
+input  MISO;
+output a2d_SS_n, MOSI, SCLK;
 
-wire a2d_SS_n;		// Active low slave select to A2D (part of SPI bus)
-wire MOSI;			// Master Out Slave In to A2D (part of SPI bus)
-wire MISO;				// Master In Slave Out from A2D (part of SPI bus)
-wire SCLK;			// Serial clock of SPI bus
+//wire a2d_SS_n;		// Active low slave select to A2D (part of SPI bus)
+//wire MOSI;			// Master Out Slave In to A2D (part of SPI bus)
+//wire MISO;				// Master In Slave Out from A2D (part of SPI bus)
+//wire SCLK;			// Serial clock of SPI bus
 
-wire sync_button;
-
-reg [2:0] chnnl;
-reg strt_cnv;
 
 ///////////////////////////////////////////////////
 // Declare any registers or wires you need here //
 /////////////////////////////////////////////////
 wire [11:0] res;		// result of A2D conversion
+wire cnv_cmplt;
+reg [5:0] cnv_counter;
+reg conv;
+
+wire sync_button;
+
+reg [2:0] chnnl;
+reg strt_cnv;
 
 
 /////////////////////////////////////
@@ -37,7 +42,7 @@ A2D_intf iA2D(.clk(clk), .rst_n(rst_n), .strt_cnv(strt_cnv), .cnv_cmplt(cnv_cmpl
 ////////////////////////////////////////
 // Synchronize nxt_chnnl push button //
 //////////////////////////////////////
-rise_edge_detector (.next_byte(nxt_chnnl), .rst_n(rst_n), .clk(clk), .out(sync_button));
+rise_edge_detector re(.next_byte(nxt_chnnl), .rst_n(rst_n), .clk(clk), .out(sync_button));
  
 ///////////////////////////////////////////////////////////////////
 // Implement method to increment channel and start a conversion //
@@ -45,21 +50,46 @@ rise_edge_detector (.next_byte(nxt_chnnl), .rst_n(rst_n), .clk(clk), .out(sync_b
 ////////////////////////////////////////////////////////////////
 always @(posedge clk, negedge rst_n) begin
     if (!rst_n) begin
-        strt_cnv <= 0;
         chnnl <= 0;
     end
     else if (sync_button)begin
         chnnl <= chnnl + 1;
-        strt_cnv <= 1;
     end
     else begin
-        strt_cnv <= 0;
         chnnl <= chnnl;
 
     end
 
 end
 
+
+always @(posedge clk, negedge rst_n) begin
+	if(!rst_n) begin
+		strt_cnv <= 1;
+		conv <= 0;
+	end
+	
+	else if(cnv_cmplt) conv <= 1;
+	
+	else if(cnv_counter == 6'd32) begin
+		strt_cnv <= 1;
+		conv <= 0;
+	end
+	else strt_cnv <= 0;
+		
+end
+
+always @(posedge clk, negedge rst_n) begin
+	if (!rst_n) begin
+		cnv_counter <= 6'b0;
+	end
+    else if (conv)
+        cnv_counter <= cnv_counter + 1;
+    else
+        cnv_counter <= 6'b0; 
+end
+
+	
 //////////////////////////////////////////////////////////
 // Demo 1: ADC128S                                      //
 //////////////////////////////////////////////////////////
@@ -74,8 +104,8 @@ end
 // - Add SPI ports to the top module and map them to pins in .qsf file. //
 //////////////////////////////////////////////////////////////////////////
 
-	
-assign LEDs = res[11:4];
+assign
+	LEDs = res[11:4];
 
 endmodule
     
