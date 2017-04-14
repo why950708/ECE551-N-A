@@ -19,7 +19,7 @@ wire SCLK;			// Serial clock of SPI bussS
 wire [11:0] res;		// result of A2D conversion
 wire cnv_cmplt;
 reg [5:0] cnv_counter;  // 5:0
-reg conv;
+reg counting;          // The counter's enable signal, if 1 then start counting, if 0 then reset.
 
 wire sync_button;
 
@@ -50,7 +50,7 @@ rise_edge_detector re(.next_byte(nxt_chnnl), .rst_n(rst_n), .clk(clk), .out(sync
 ////////////////////////////////////////////////////////////////
 always @(posedge clk, negedge rst_n) begin
     if (!rst_n) begin
-        chnnl <= 0  ;   // !!!!!!!!!!!!!!!!!!!!!!   0
+        chnnl <= 0  ;   
     end
     else if (sync_button)begin
         chnnl <= chnnl + 1;
@@ -66,21 +66,21 @@ end
 always_ff @(posedge clk, negedge rst_n) begin
 	if(!rst_n) begin
 		strt_cnv <= 1;
-		conv <= 0;
+		counting <= 0;
         LEDs <= 0;
 	end
 	
 	else if(cnv_cmplt) begin
-        LEDs <= res[11:4];
-        conv <= 1;
+        LEDs <= res[11:4];  // Update LED every time conversion is completed
+        counting <= 1;          // Start the 32 clk (1SCLK) waiting period between next transaction
     end
 	else if(cnv_counter == 6'd32) begin
-		strt_cnv <= 1;
-		conv <= 0;
+		strt_cnv <= 1;        // Start the next transaction
+		counting <= 0;            // Stop this counter and reset the cnv_counter
 	end
 	else begin
         strt_cnv <= 0;
-        //conv <= conv;
+        //counting <= counting;
     end	
 end
 
@@ -88,7 +88,7 @@ always_ff @(posedge clk, negedge rst_n) begin
 	if (!rst_n) begin
 		cnv_counter <= 6'b0;
 	end
-    else if (conv)
+    else if (counting)
         cnv_counter <= cnv_counter + 1;
     else
         cnv_counter <= 6'b0; 
