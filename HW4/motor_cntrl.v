@@ -25,9 +25,9 @@ assign rev_lft = lft[10] ? ~PWM_left :
 				 (|lft)  ?   0      :1;  
 		
 assign fwd_rht = rht[10] ? 0 : 
-				 (|lft)  ? PWM_right : 1;
+	(|rht)  ? PWM_right : 1;
 assign rev_rht = rht[10] ? ~PWM_right : 
-				 (|lft)  ?   0       :1;
+	(|rht)  ?   0       :1;
 	
 
 endmodule
