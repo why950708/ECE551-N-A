@@ -21,12 +21,12 @@ pwm pwm_rht(.clk(clk), .rst_n(rst_n), .duty(rht[9:0]), /*magnitude*/ .PWM_sig(PW
 	
 assign fwd_lft = lft[10] ? 0 : 
 				 (|lft)  ? PWM_left : 1;
-assign rev_lft = lft[10] ? PWM_left :
+assign rev_lft = lft[10] ? ~PWM_left :
 				 (|lft)  ?   0      :1;  
 		
 assign fwd_rht = rht[10] ? 0 : 
 				 (|lft)  ? PWM_right : 1;
-assign rev_rht = rht[10] ? PWM_right : 
+assign rev_rht = rht[10] ? ~PWM_right : 
 				 (|lft)  ?   0       :1;
 	
 
