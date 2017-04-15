@@ -15,13 +15,13 @@ initial begin
 	repeat(10)@(posedge clk);
 	lft = 11'h400;
 	rht = 11'h400;
-	repeat(257)@(posedge clk);
+	repeat(1026)@(posedge clk);
 	lft = 11'h100;
 	rht = 11'h100;
-	repeat(257)@(posedge clk);
+	repeat(1026)@(posedge clk);
 	lft = 11'h0;
 	rht = 11'h0;
-	repeat(257) @(posedge clk);
+	repeat(1026) @(posedge clk);
 	$stop;
 	end
 	
