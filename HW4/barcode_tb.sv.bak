@@ -31,34 +31,23 @@ always begin
     send = 0;
   	//Wait until BC_done
 
+    //@(posedge ID_vld);
     @(posedge BC_done); // PERFECT!
- 		//$monitor(ID == station_ID);
-     
+ 		$monitor(ID == station_ID);
+  
     // display two values and stop simulation if two are different 
-  	if(ID != station_ID ) begin
+  	if(ID != station_ID) begin
       
       $display("station ID is %h, received:  %h", station_ID, ID);
       $stop;
+
     end
 
-    if (ID_vld != 1 && ( ~|station_ID[7:6])) begin
-      $display("ID_vld wrong!");
-      $stop;
-    end
-
-    if((station_ID == 0 )) begin
-        $display ("all tests passed!!");
-        $stop;
-    end
+      
+    if(station_ID == 0)
+    $finish;
  		//Test different values
-    clr_ID_vld = 1;
 		station_ID = station_ID << 1;
-    repeat (5) @(posedge clk);
-    if(ID_vld == 1) begin
-      $display ("ID_vld not deasserted!!");
-      $stop;
-    end
-    clr_ID_vld = 0;
 end
 
   // clk
