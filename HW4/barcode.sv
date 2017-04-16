@@ -51,7 +51,7 @@ state_t state, next_state;
   assign duration_counter_val = (duration_cnt_start) ? duration_cnt + 1 : duration_cnt;
   
 //count for the captured period
-  assign timing_counter_val = (reset_timing_counter)? (duration_counter_val >> 1) : timing_cnt - 1;
+  assign timing_counter_val = (reset_timing_counter) ? (duration_counter_val >> 1) : timing_cnt - 1;
   
 //Shift logic
   assign shift_reg_val =  (shift) ? {shift_reg[6:0], reg2} : shift_reg;
@@ -107,7 +107,6 @@ end
     next_state = SAMPLING;
     if(timing_counter_time_out) begin
       shift = 1;
-      reset_timing_counter = 1;
       if(bit_cnt == 8) begin
       next_state = DONE;
       end
@@ -117,7 +116,10 @@ end
     
   IDLE2: begin
     next_state = IDLE2;
-    if(falling_edge) next_state = SAMPLING;
+    if(falling_edge) begin 
+    next_state = SAMPLING;
+	reset_timing_counter = 1;
+	end
    end
   //Default State: DONE State
     default: begin
