@@ -130,21 +130,11 @@ always_comb begin
 
       SAMPLING: begin
         //next_state = SAMPLING;
-
-        // This code block should be thrown
-        if(bit_cnt == 8) begin
-              next_state = DONE;
-        end
-
-
-        else begin
             if(timing_counter_time_out) begin
                 shift = 1;
                 next_state = IDLE2;
 
             end   
-
-        end
       end
         
       IDLE2: begin  // This is the state between a sampling and the next neg edge
