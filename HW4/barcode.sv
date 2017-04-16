@@ -165,9 +165,7 @@ always_comb begin
 
     
 endmodule
-      
-//assign ID_vld = (clr_ID_vld) ? 0 :(update_ID) ?ID_vld_val: ID_vld ; 
-    // wire shide !  tong yi !
+
     
 
     
