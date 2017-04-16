@@ -1,4 +1,4 @@
-module moto_driver_tb();
+module motor_driver_tb();
 
 reg clk, rst_n;
 reg [10:0] lft, rht;
