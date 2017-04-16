@@ -99,19 +99,6 @@ always_ff @(posedge clk, negedge rst_n) begin
 end
 
 
-// FF logic for ID_
-always_ff @(posedge clk, negedge rst_n) begin 
-   if(!rst_n) begin
-      ID <= 0;
-   end
-    else if (update_ID)begin
-        ID <= shift_reg;
-    end
-    else begin
-        ID <= ID;
-    end
-end
-
 
   // FSM 
 always_comb begin
