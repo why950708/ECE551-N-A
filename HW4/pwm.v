@@ -19,7 +19,7 @@ always @(posedge clk, negedge rst_n) begin
 always @(posedge clk, negedge rst_n) begin
         if(!rst_n)
            PWM_sig <=  0;
-			else if (count <= duty)
+			else if (count < duty)
 			PWM_sig <= 1;
 			else
 			PWM_sig <= 0;
