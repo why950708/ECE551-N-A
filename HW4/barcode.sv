@@ -1,15 +1,4 @@
-// Hongyi & TZR & SHENYI IS HANDSOME, YiFei is DATING & SB
-
-
-// 老板我们先撤了
-
-// 刚刚有个小蜜给你发了邮件，说“亲爱的，我们先走了” 被我截屏了
-
-// 晚安！
-
-
-
-
+// Module for barcode reading
 module barcode(clk, rst_n, BC, ID_vld, ID, clr_ID_vld);
 input BC; 
 input clr_ID_vld;
