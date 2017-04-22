@@ -32,10 +32,9 @@ initial begin
   cmd_rdy = 0;
   OK2Move = 1;
   cmd= 8'b00111111; //cmd not ready and the dest_ID is equal to 111111
-  
+  clk = 0;
   ID = 0;
   ID_vld = 0;
-
   repeat (5) @ (negedge clk);
 	rst_n = 1;
   cmd_rdy = 1;

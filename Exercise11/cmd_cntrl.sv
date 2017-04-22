@@ -23,7 +23,7 @@ input clk, rst_n;
 
 reg [5:0] dest_ID;  // stores the destination ID
 reg update_dest_ID;  // flag to update the destination ID
-
+reg set_in_transit, clear_in_transit;
 
 output reg  clr_cmd_rdy,  in_transit, clr_ID_vld, buzz;
 output wire buzz_n, go;
@@ -77,73 +77,87 @@ always_ff @(posedge clk, negedge rst_n) begin
     end
 end
 
-
-    
+// FF logic for state    
 always_ff @(posedge clk, negedge rst_n) begin 
       if(!rst_n) begin
-      state <= STOP;
-//           bit_cnt <= 0;
-//           duration_cnt <= 0;
-//           shift_reg <= 0;
-//           timing_cnt <= 0;
+        state <= STOP;
       end
       else begin
-//           bit_cnt <= bit_counter_val;
-//           duration_cnt <= duration_counter_val;
-//           timing_cnt <= timing_counter_val;
-//           shift_reg <= shift_reg_val;
-      state <= next_state;     
+        state <= next_state;     
       end
   end
 
+// FF for in_transit
+always_ff @(posedge clk, negedge rst_n) begin 
+      if(!rst_n) begin
+          in_transit <= 0;
+      end
+      else if (set_in_transit)begin
+          in_transit <= 1;   
+      end
+      else if (clear_in_transit)begin
+          in_transit <= 0;   
+      end
+      else begin
+          in_transit <= in_transit;
+      end
+  end
   
+
+
 always_comb begin
   //defaults
-  next_state = STOP;  
+  next_state = state;  
+
   clr_cmd_rdy = 0;
-  in_transit = 0;
-  //go = 0;  should be in a separate assign
-  //buzz = 0;
-  //buzz_n = 1;
+  //in_transit = 0;
+
   clr_ID_vld = 0;
   update_dest_ID = 0;
+  set_in_transit = 0;
+  clear_in_transit = 0;
+
   case(state) 
 	STOP:begin
-        if(cmd_rdy==1 && (cmd[7:6] == 2'b01)) begin //cmd_rdy cmd == go && cmd_rdy
+        if(cmd_rdy  && (cmd[7:6] == 2'b01)) begin //cmd_rdy cmd == go && cmd_rdy
           next_state = GO;
-          //dest_ID = cmd[5:0];
           update_dest_ID = 1;
-          in_transit = 1;
+          set_in_transit = 1;
         end
 
-        else if(~cmd_rdy || (cmd_rdy& cmd[7:6] != 2'b01)) begin  //cmd != rdy ||  cmd != go)
-            next_state = STOP;
-            clr_cmd_rdy =1;
-        end
+        // What's the point of this???????
+        //else if(~cmd_rdy || (cmd_rdy& cmd[7:6] != 2'b01)) begin  //cmd != rdy ||  cmd != go)
+        //    next_state = STOP;
+        //    //clr_cmd_rdy =1;  Should not clear
+        // end
       
     end
     
     default:begin //GO state
-        next_state = GO;
-        if(cmd_rdy && (cmd[7:6] != 2'b01) && (cmd[7:6] ==2'b00) )begin 
-          next_state = STOP;
-          clr_cmd_rdy = 1;
-          in_transit = 0;
+        //next_state = GO;
+        if(cmd_rdy && (cmd[7:6] ==2'b00) ) begin   // cmd == stop
+            next_state = STOP;
+            clr_cmd_rdy = 1;
+            clear_in_transit = 1;
         end
-        else if(ID == dest_ID && ID_vld)begin
+        
+        else if(cmd_rdy && cmd[7:6] == 2'b01 ) begin  // cmd == go
+            clr_cmd_rdy = 1;
+            update_dest_ID = 1;
+            set_in_transit = 1; // theoretically we won't need this, just add in case
+        end
+
+        // Starting here, cmd is not ready or is invalid
+        else if(ID_vld && ID == dest_ID )begin
+              next_state = STOP;
               clr_ID_vld = 1;
-              in_transit = 0;
+              clear_in_transit = 1;
           end
 
         else if(ID_vld && ID !=dest_ID)begin
-          clr_ID_vld = 1;
+                clr_ID_vld = 1;
         end
-
-        else if(cmd_rdy && cmd == 2'b01 ) begin
-          clr_cmd_rdy = 1;
-          //dest_ID = cmd[5:0];
-          update_dest_ID = 1;
-        end
+        
 
     end
   endcase
