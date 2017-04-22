@@ -39,8 +39,7 @@ typedef enum reg {STOP, GO} state_t;
 state_t state, next_state;
 
     
-    
-    //12500
+//12500
 reg [13:0] counter; 
       
 // Logic for the buzz counter:
