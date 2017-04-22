@@ -27,7 +27,7 @@ module cmd_contrl_tb();
   //Instantiate barcode ? 
 
 initial begin
-	rst_n = 0;   // WARNING:::::   NO RST_N???
+	rst_n = 0;   
   //clr_cmd_rdy = 0;
   cmd_rdy = 0;
   OK2Move = 1;
@@ -37,20 +37,54 @@ initial begin
   ID_vld = 0;
   repeat (5) @ (negedge clk);
 	rst_n = 1;
+
+  // Finished the reset, should not move
+  repeat (2) @ (negedge clk);
+  
+  cmd_rdy = 1;	
+
+  // Still should not move
+  repeat (3) @ (negedge clk);
+  //@ (posedge clr_cmd_rdy);
+  cmd_rdy = 0;
+  repeat (2) @(negedge clk);
+	
+  cmd= 8'b01111111; //cmd = go  and the dest_ID is equal to 111111
+  repeat (2) @(negedge clk);
   cmd_rdy = 1;
-	cmd= 8'b01111111; //cmd = go  and the dest_ID is equal to 111111
+  // Now it should move, into go state
+
+  //repeat (2) @ (negedge clk);
+
   //Simulate UART_rcv
   //repeat (5) @ (negedge clk);
   @ (posedge clr_cmd_rdy);
+  @ (negedge clk);
+
   cmd_rdy = 0;
-  //cmd[7:6] = 2'b00; //cmd rdy to false to simulate the uart transmittion period
+
   
   repeat (5) @ (negedge clk);
-  ID_vld = 1;
+  // Test cmd= rdy and new go command;
+  cmd_rdy = 1;
+  cmd = 8'b01001111;  // Now the new destinatio is 001111
+    
+  @ (posedge clr_cmd_rdy);
+  repeat (2) @(negedge clk);
+  cmd_rdy = 0;
+
+  repeat (5) @ (negedge clk);
+
+
+  // Now test the process that ID is valid but not the destination
   ID = 8'b01100000; //False station ID so the car should not stop
-  
+  ID_vld = 1;
+
   @ (posedge clr_ID_vld);
+  @(negedge clk);
+
   ID_vld = 0;
+
   
   //repeat (5) @ (negedge clk);
   //cmd_rdy //cmd_rdy to false to stop the car to wait for the transmittion
@@ -58,56 +92,31 @@ initial begin
   
   repeat (5) @ (negedge clk);
   ID_vld = 1;
-  ID = 8'b00111111; //Correct station ID so the car should stop and in_transit shoud be false;
+  ID = 8'b00001111; //Correct station ID so the car should stop and in_transit shoud be false;
   
   // Supposed to stop
   @(negedge in_transit);
+
+  repeat (10) @ (negedge clk);
+  // Now the next run!!!  //////////////////////////////////////
     
   
-  
-  // Restart the next run;
   cmd_rdy = 1;
-	cmd= 8'b01001111; //cmd = go  and the dest_ID is equal to 111111
+	cmd= 8'b01000011; //cmd = go  and the dest_ID is equal to 000011, we test cmd = stop
 	
+  @ (posedge clr_cmd_rdy);
+  @ (negedge clk);
+  cmd_rdy = 0;
+  
   repeat (5) @ (negedge clk);
-  ID_vld = 1;
-  ID = 8'b00100000; //False station ID so the car should not stop
-  
-  @ (posedge clr_ID_vld);
-  ID_vld = 0;
-  
-  
-  
   cmd_rdy = 1;
-	cmd= 8'b01011111; //cmd = go  and the dest_ID is equal to 00011111
-  
-  ///////////////////////////Destination ID:   011,111   ///////////////////////////////////
-  repeat (5) @ (negedge clk);
-  ID_vld = 1;
-  //Although ID equals first cmd, since the cmd is updated, the car should keep going
-  ID = 8'b00001111 ; 
-  
-  @ (posedge clr_ID_vld);
-  ID_vld = 0;
-  
-  repeat (5) @ (negedge clk);
-  ID_vld = 1;
-  ID = 8'b00011111;  // ID = destination ID, car should stop
-  
-    
-  @ (posedge clr_ID_vld);
-  ID_vld = 0;
-  
+  cmd = 8'b00000000;  // cmd = stop;
   @ (negedge in_transit);
-  // car should stop
+  // the car should stop 
+  repeat (10) @ (negedge clk);
+
   
-  @ (posedge clk);
-    if (in_transit != 0) begin
-      $stop("Should already stop and exit");
-	  end
-  
-  
-    
+  $stop();
 end
 
   // clk 

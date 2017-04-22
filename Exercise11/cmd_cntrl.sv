@@ -110,7 +110,6 @@ always_comb begin
   next_state = state;  
 
   clr_cmd_rdy = 0;
-  //in_transit = 0;
 
   clr_ID_vld = 0;
   update_dest_ID = 0;
@@ -123,18 +122,12 @@ always_comb begin
           next_state = GO;
           update_dest_ID = 1;
           set_in_transit = 1;
+          clr_cmd_rdy = 1;
         end
 
-        // What's the point of this???????
-        //else if(~cmd_rdy || (cmd_rdy& cmd[7:6] != 2'b01)) begin  //cmd != rdy ||  cmd != go)
-        //    next_state = STOP;
-        //    //clr_cmd_rdy =1;  Should not clear
-        // end
-      
     end
     
     default:begin //GO state
-        //next_state = GO;
         if(cmd_rdy && (cmd[7:6] ==2'b00) ) begin   // cmd == stop
             next_state = STOP;
             clr_cmd_rdy = 1;
@@ -145,6 +138,7 @@ always_comb begin
             clr_cmd_rdy = 1;
             update_dest_ID = 1;
             set_in_transit = 1; // theoretically we won't need this, just add in case
+            
         end
 
         // Starting here, cmd is not ready or is invalid
@@ -157,7 +151,7 @@ always_comb begin
         else if(ID_vld && ID !=dest_ID)begin
                 clr_ID_vld = 1;
         end
-        
+
 
     end
   endcase
