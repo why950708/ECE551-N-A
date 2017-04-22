@@ -1,4 +1,3 @@
-
 module cmd_contrl_tb();
   reg clk;
   
@@ -11,7 +10,7 @@ module cmd_contrl_tb();
   wire buzz; //To piezo buzzer. 4KHz when obstacle detected.(See diagram in previous page)
   wire buzz_n; //Inversion of buzz. (Piezo buzzer is driven by a differential pair.)
   
-  reg [7:0] ID //Station ID
+  reg [7:0] ID; //Station ID
   reg ID_vld; 
   wire clr_ID_vld;//Clears ID_vld
   
@@ -21,13 +20,13 @@ module cmd_contrl_tb();
   // iDUT
   cmd_contrl iDUT (.cmd(cmd), .cmd_rdy(cmd_rdy), .clr_cmd_rdy(clr_cmd_rdy), .in_transit(in_transit),
                    .OK2Move(OK2Move), .go(go), .buzz(buzz), .buzz_n(buzz_n),.clr_ID_vld(clr_ID_vld), 
-                   .ID_vld(ID_vld), .ID(ID), .clk(clk))
+                   .ID_vld(ID_vld), .ID(ID), .clk(clk));
 	
   //Instantiate UART_receiver maybe use the uart_send.
   //Instantiate barcode ? 
 
 initial begin
-	rst_n = 0;
+	//rst_n = 0;   // WARNING:::::   NO RST_N???
   //clr_cmd_rdy = 0;
   cmd_rdy = 0;
   OK2Move = 1;
@@ -37,7 +36,7 @@ initial begin
   ID_vld = 0;
 
   repeat (5) @ (negedge clk);
-	rst_n = 1;
+	//rst_n = 1;
   cmd_rdy = 1;
 	cmd= 8'b01111111; //cmd = go  and the dest_ID is equal to 111111
   //Simulate UART_rcv
@@ -48,7 +47,7 @@ initial begin
   
   repeat (5) @ (negedge clk);
   ID_vld = 1;
-  ID = 8'b01100000 //False station ID so the car should not stop
+  ID = 8'b01100000; //False station ID so the car should not stop
   
   @ (posedge clr_ID_vld);
   ID_vld = 0;
@@ -59,7 +58,7 @@ initial begin
   
   repeat (5) @ (negedge clk);
   ID_vld = 1;
-  ID = 8'b001111111; //Correct station ID so the car should stop and in_transit shoud be false;
+  ID = 8'b00111111; //Correct station ID so the car should stop and in_transit shoud be false;
   
   // Supposed to stop
   @(negedge in_transit);
@@ -73,7 +72,7 @@ initial begin
 	
   repeat (5) @ (negedge clk);
   ID_vld = 1;
-  ID = 8'b0010000000 //False station ID so the car should not stop
+  ID = 8'b00100000; //False station ID so the car should not stop
   
   @ (posedge clr_ID_vld);
   ID_vld = 0;
