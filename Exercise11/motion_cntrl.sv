@@ -23,7 +23,7 @@ reg[11:0] rht_reg;
 reg[11:0] Fwd;
 reg[12:0] 4096_counter;
 reg[5:0] 32_counter;
-typedef enum reg {WAIT, IDLE,CACL,UPDATE} state_t;
+typedef enum reg {IDLE,STTL,INNER_R,MID_R,OUTER_R,SHRT_WAIT,INNER_L,MID_L,OUTER_L,INTG,ITERM,PTERM,MRT_R1,MRT_R2,MRT_L1,MRT_L2} state_t;
 state_t state, next_state;
 logic 4096_start,32_start;
 
