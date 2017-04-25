@@ -14,6 +14,7 @@ module  motion_cntrl_tb();
 );
   
   initial begin
+    clk = 0;
   	rst_n = 0;
   	
     repeat (5) @(negedge clk);
@@ -35,116 +36,24 @@ module  motion_cntrl_tb();
     cnv_cmplt = 0;
     
     
+
+    
+ 
     
     
     
-    repeat (100) @(negedge clk);
-    A2D_res = 12'd2323;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-    repeat (100000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-    
-    
-    
-    
-    repeat (100) @(negedge clk);
-    A2D_res = 12'd2323;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-    repeat (100000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-    
-    
-    
-    
-    repeat (100) @(negedge clk);
-    A2D_res = 12'd2323;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-    repeat (100000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-    
-    
-    
-    
-    repeat (100) @(negedge clk);
-    A2D_res = 12'd2323;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-    repeat (100000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-    
-    
-    
-    repeat (100) @(negedge clk);
-    A2D_res = 12'd2323;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-    repeat (100000) @(negedge clk);
-    cnv_cmplt = 1;
-    
-    repeat (1000000) @(negedge clk);
-    cnv_cmplt = 0;
-    
-  
+
   end
   
   
   
   
   
+
+
   always 
     clk = #5 ~clk;
-  
-  
-  
-  
-  
-  
-  
-  
+ 
   
   
 endmodule
