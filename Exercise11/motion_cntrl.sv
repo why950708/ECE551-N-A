@@ -13,27 +13,40 @@ module motion_cntrl (
  input clk;
 );
 
-reg[15:0] Accum;
-reg[11:0] Error;
-reg[15:0] Pcomp;
-reg[11:0] Intgrl;
-reg[11:0] Icomp;
+
+
+
 reg[11:0] lft_reg;
 reg[11:0] rht_reg;
-reg[11:0] Fwd;
+
 reg[12:0] 4096_counter;
 reg[5:0] 32_counter;
 wire[9:0] duty;
 reg[2:0] chnnl_counter;
 reg ir_counter;
+
+//alu
 reg[13:0] Pterm;
 reg[11:0] Iterm;
+reg sub,mult2,mult4,multiply,saturate;
+reg[2:0] src0sel,src1sel;
+reg dst2Accum,dst2Err,dst2Int,dst2Icmp,dst2Pcmp,dst2lft,dst2rht;
+reg[15:0] Accum;
+reg[11:0] Error;
+reg[11:0] Fwd;
+reg[11:0] Intgrl;
+reg[15:0] Pcomp;
+reg[11:0] Icomp;
+reg[15:0] dst;
+reg multiply_counter;
+
 typedef enum reg {IDLE,STTL,INNER_R,MID_R,OUTER_R,SHRT_WAIT,INNER_L,MID_L,OUTER_L,INTG,ITERM,PTERM,MRT_R1,MRT_R2,MRT_L1,MRT_L2} state_t;
 state_t state, next_state;
-logic 4096_start,32_start;
+logic 4096_start,32_start,4096_rst,32_rst,multiply_rst,multiply_start;
 wire PWM_sig;
 pwm pwm(.duty(duty),.clk(clk),.rst_n(rst_n),.PWM_sig(PWM_sig)); 
-  
+alu alu(.mult2(mult2),.mult4(mult4),.sub(sub),.src1sel(src1sel),.src0sel(src0sel),.Accum(Accum),.Iterm(Iterm),.Error(Error),.Fwd(Fwd),.A2D_res(A2D_res),.Intgrl(Intgrl)
+	,.Icomp(Icomp),.Pcomp(Pcomp),.Pterm(Pterm),.multiply(multiply),.saturate(saturate),.dst(dst));
   
   
 always_ff @(posedge clk or negedge rst_n) begin
@@ -44,12 +57,21 @@ always_ff @(posedge clk or negedge rst_n) begin
     end
 end
 
+always_ff @(posedge clk or negedge rst_n) begin :
+	if(!rst_n) begin
+		multiply_counter <= 0;
+	end else if(multiply_rst) begin
+		multiply_counter <= 0;
+	end else if(multiply_start)begin
+		multiply_counter <= multiply_counter + 1;
+	end
+end
 always_ff @(posedge clk or negedge rst_n) begin
   if(!rst_n) begin
      4096_counter <= 0;
-  end else if(4096_start) begin
+  end else if(4096_rst) begin
      4096_counter <= 0;
-  end else begin
+  end else if(4096_start)begin
      4096_counter <= 4096_counter + 1;
   end
 end
@@ -58,9 +80,9 @@ end
 always_ff @(posedge clk or negedge rst_n) begin
   if(!rst_n) begin
      32_counter <= 0;
-  end else if(32_start) begin
+  end else if(32_rst) begin
      32_counter <= 0;
-  end else begin
+  end else if(32_start)begin
      32_counter <= 32_counter + 1;
   end
 end
@@ -208,6 +230,10 @@ always_comb begin
 	end
   endcase // state
 end 
+
+assign LEds = Error[11:4];
+assign lft = lft_reg[11:1];
+assign rht = rht_reg[11:1];
 
  
 endmodule
