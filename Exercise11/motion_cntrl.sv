@@ -249,18 +249,18 @@ always_comb begin
     
    INNER_R:begin
    		//ALU  pls don't delete my code.... 
-        src1sel = 3'b000; // Accum	
-     	src0sel = 3'b111; // src0 should be 0
+      src1sel = 3'b000; // Accum2Src1： 0
+     	src0sel = 3'b000; // A2D2Src0
      	dst2Accum = 1;
      
-		inc_chnnl = 1;
+		  inc_chnnl = 1;
      	next_state = SHRT_WAIT;
 	end
     
    MID_R:begin
 		//Accum = Accum + A2D_res * 2;
-      	src1sel = 3'b000; // Accum
-      	src0sel = 3'b000; //a2d_res
+      	src1sel = 3'b000; // Accum2Src1
+      	src0sel = 3'b000; //A2D2Src0
       	mult2 = 1;
       	dst2Accum = 1; 
      
@@ -270,8 +270,8 @@ always_comb begin
     
     OUTER_R:begin
 		//Accum = Accum + A2D_res * 4;
-      	src1sel = 3'b000; // Accum
-      	src0sel = 3'b000; //a2d_res
+      	src1sel = 3'b000; // Accum2Src1
+      	src0sel = 3'b000; //A2D2Src0
       	mult4 = 1;
       	dst2Accum = 1;
       
@@ -303,8 +303,8 @@ always_comb begin
 	end
       
 	INNER_L:begin
-		src1sel = 3'b000; // Accum
-      	src0sel = 3'b000; //a2d_res
+		src1sel = 3'b000; // Accum2Src1
+      	src0sel = 3'b000; //A2D2Src0
       	sub = 1;	// Accum = Accum - Ir_in_lft
       	dst2Accum = 1;
         
@@ -314,8 +314,8 @@ always_comb begin
 	
 	MID_L:begin
 		//Accum = Accum - A2D_res * 2;
-        src1sel = 3'b000; // Accum
-      	src0sel = 3'b000; //a2d_res
+        src1sel = 3'b000; // Accum2Src1
+      	src0sel = 3'b000; //A2D2Src0
       	sub = 1;
       	mult2 = 1;
       	dst2Accum = 1;
@@ -325,8 +325,8 @@ always_comb begin
 	end
     
     OUTER_L:begin
-		src1sel = 3'b000; // Accum
-      	src0sel = 3'b000; //a2d_res
+		src1sel = 3'b000; // Accum2Src1
+      	src0sel = 3'b000; //A2D2Src0
       	sub = 1;
       	mult4 = 1; 
       	dst2Err = 1;
@@ -344,8 +344,8 @@ always_comb begin
 	end
     
 	ITERM:begin
-		src1sel  = 3'b001;
-      	src0sel  = 3'b001;
+		src1sel  = 3'b001; // Iterm2Src1
+      	src0sel  = 3'b001; //Intgrl2Src0
       	multiply = 1;
         dst2Icmp = 1;
 		next_state = ITERM_WAIT;
@@ -360,7 +360,7 @@ always_comb begin
 		src1sel = 3'b010; //Err2Src1		
       	src0sel = 3'b100; //Pterm2Src0
 		multiply = 1;		
-      
+    dst2Pcmp = 1;  
 		next_state = PTERM_WAIT;
 	end
     
@@ -372,7 +372,7 @@ always_comb begin
 	MRT_R1:begin
 		//Accum = Fwd - Pcomp;
       	src1sel = 3'b100; //Fwd2Src1
-      	src0sel = 3'b011;// Pcomp
+      	src0sel = 3'b011;// Pcomp2Src0
       	sub = 1;
       	dst2Accum = 1;
 		next_state = MRT_R2;
@@ -380,8 +380,8 @@ always_comb begin
     
 	MRT_R2:begin
 		//rht_reg = Accum - Icomp;
-      	src1sel = 3'b000;
-      	src0sel = 3'b010;
+      	src1sel = 3'b000; // Accum2Src1
+      	src0sel = 3'b010; // Icomp2Src0
       	sub = 1;
       	dst2rht = 1;
 		next_state = MRT_L1;
@@ -389,13 +389,16 @@ always_comb begin
     
 	MRT_L1:begin
 		//Accum = Fwd + Pcomp;
+    src1sel = 3'b100; // Fwd2Src1
+    src0sel = 3'b011; // Pcomp2Src0
+    dst2Accum = 1;
 		next_state = MRT_L2;
 	end
     
 	MRT_L2:begin
 		//lft_reg = Accum + Icomp;
-      	src1sel = 3'b000;
-      	src0sel = 3'b010;
+      	src1sel = 3'b000; // Accum2Src1
+      	src0sel = 3'b010; // Icomp2Src0
       	dst2lft = 1;
 		next_state = IDLE;
 	end
