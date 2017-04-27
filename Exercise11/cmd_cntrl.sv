@@ -1,5 +1,4 @@
-// Handsome? 
-module cmd_contrl(
+module cmd_cntrl(
  
   cmd,  //Command received
   cmd_rdy, //Indicates command is ready

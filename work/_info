@@ -1,0 +1,457 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/Quartus Prime Lite
+vA2D_intf
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1493308022
+!i10b 1
+!s100 ?iD200HkOMQE3K;a5L78m3
+I5AFkJkj[EbQXTebPDmWj>0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 A2D_intf_sv_unit
+S1
+Z3 dD:/Box Sync/ECE 551/group
+Z4 w1492067863
+8D:/Box Sync/ECE 551/group/Exercise10/A2D_intf.sv
+FD:/Box Sync/ECE 551/group/Exercise10/A2D_intf.sv
+L0 1
+Z5 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z6 !s108 1493308022.000000
+!s107 D:/Box Sync/ECE 551/group/Exercise10/A2D_intf.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/Exercise10/A2D_intf.sv|
+!i113 1
+Z7 o-work work -sv
+Z8 tCvgOpt 0
+n@a2@d_intf
+vADC128S
+R0
+Z9 !s110 1493308021
+!i10b 1
+!s100 =:F1ca>^DFJG6cBK:d:7Q2
+Ia9RZD[ELT=d=No;ZfVJ[n1
+R2
+!s105 ADC128S_sv_unit
+S1
+R3
+w1493268306
+8D:/Box Sync/ECE 551/ADC128S.sv
+FD:/Box Sync/ECE 551/ADC128S.sv
+L0 1
+R5
+r1
+!s85 0
+31
+Z10 !s108 1493308021.000000
+!s107 D:/Box Sync/ECE 551/ADC128S.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/ADC128S.sv|
+!i113 1
+R7
+R8
+n@a@d@c128@s
+valu
+R1
+!i10b 1
+!s100 OL<gV?_YGBL?IY4T89lQZ2
+ILLQ`U]iAVeIe^RIT==_LU3
+R2
+R3
+Z11 w1493251204
+8D:/Box Sync/ECE 551/group/FinalProject/alu.v
+FD:/Box Sync/ECE 551/group/FinalProject/alu.v
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/Box Sync/ECE 551/group/FinalProject/alu.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/Box Sync/ECE 551/group/FinalProject/alu.v|
+!i113 1
+Z12 o-work work
+R8
+vbarcode
+R0
+R1
+!i10b 1
+!s100 ?GFk8>A=Z@B1MJZVYi9O>0
+I1UC`OSWW:SY<KdT6l;7NR1
+R2
+!s105 barcode_sv_unit
+S1
+R3
+w1492370554
+8D:/Box Sync/ECE 551/group/HW4/barcode.sv
+FD:/Box Sync/ECE 551/group/HW4/barcode.sv
+L0 2
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/Box Sync/ECE 551/group/HW4/barcode.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/HW4/barcode.sv|
+!i113 1
+R7
+R8
+vbarcode_mimic
+R0
+R9
+!i10b 1
+!s100 6QZdU^13EYC2eA`YI9LFH1
+Ij>h[m[X5n28eWdY993YRO3
+R2
+!s105 barcode_mimic_sv_unit
+S1
+R3
+w1492277684
+8D:/Box Sync/ECE 551/hw4/barcode_mimic.sv
+FD:/Box Sync/ECE 551/hw4/barcode_mimic.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R10
+!s107 D:/Box Sync/ECE 551/hw4/barcode_mimic.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/hw4/barcode_mimic.sv|
+!i113 1
+R7
+R8
+vcmd_cntrl
+R0
+R1
+!i10b 1
+!s100 RXH<[9ic4o=6>[>H<Z=3_3
+I>=Z6TiCWo5jXQm2@5hH7X0
+R2
+Z13 !s105 cmd_cntrl_sv_unit
+S1
+R3
+w1493306296
+8D:/Box Sync/ECE 551/group/Exercise11/cmd_cntrl.sv
+FD:/Box Sync/ECE 551/group/Exercise11/cmd_cntrl.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/Box Sync/ECE 551/group/Exercise11/cmd_cntrl.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/Exercise11/cmd_cntrl.sv|
+!i113 1
+R7
+R8
+vcmd_contrl
+R0
+!s110 1493306540
+!i10b 1
+!s100 WYV;cNaBckhaRE?]bhYgB0
+IHPPDDBG0M40He32KV5JgG2
+R2
+R13
+S1
+R3
+Z14 w1493304680
+8D:/Box Sync/ECE 551/group/FinalProject/cmd_cntrl.sv
+FD:/Box Sync/ECE 551/group/FinalProject/cmd_cntrl.sv
+L0 2
+R5
+r1
+!s85 0
+31
+!s108 1493306540.000000
+!s107 D:/Box Sync/ECE 551/group/FinalProject/cmd_cntrl.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/FinalProject/cmd_cntrl.sv|
+!i113 1
+R7
+R8
+vdig_core
+R0
+R1
+!i10b 1
+!s100 OVCDAX@cTQb`6ko7mlO_k0
+IhDKbD<k?_?9gDM05kOdmO2
+R2
+!s105 dig_core_sv_unit
+S1
+R3
+w1493306575
+8D:/Box Sync/ECE 551/group/FinalProject/dig_core.sv
+FD:/Box Sync/ECE 551/group/FinalProject/dig_core.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/Box Sync/ECE 551/group/FinalProject/dig_core.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/FinalProject/dig_core.sv|
+!i113 1
+R7
+R8
+vFollower
+R9
+!i10b 1
+!s100 WbM[k[?j4zfT8SSLROX`z3
+I3M>Bza^nCHB_<kn``2efR2
+R2
+R3
+R11
+8D:/Box Sync/ECE 551/group/FinalProject/follower.v
+FD:/Box Sync/ECE 551/group/FinalProject/follower.v
+L0 1
+R5
+r1
+!s85 0
+31
+R10
+!s107 D:/Box Sync/ECE 551/group/FinalProject/follower.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/Box Sync/ECE 551/group/FinalProject/follower.v|
+!i113 1
+R12
+R8
+n@follower
+vmotion_cntrl
+R0
+!s110 1493308529
+!i10b 1
+!s100 =:[=PaV=5nda5W<ZVXZ?[3
+I]E[=mT_h5@75H5kaW?dVB0
+R2
+!s105 motion_cntrl_sv_unit
+S1
+R3
+w1493308521
+8D:/Box Sync/ECE 551/group/FinalProject/motion_cntrl.sv
+FD:/Box Sync/ECE 551/group/FinalProject/motion_cntrl.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1493308529.000000
+!s107 D:/Box Sync/ECE 551/group/FinalProject/motion_cntrl.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/FinalProject/motion_cntrl.sv|
+!i113 1
+R7
+R8
+vmotor_cntrl
+R0
+R1
+!i10b 1
+!s100 U=[[_Qj=jVo`XGHz_DGU;0
+I]HSlD[flG0aEnZ?W4G9_N3
+R2
+!s105 motor_cntrl_sv_unit
+S1
+R3
+w1493307821
+8D:\Box Sync\ECE 551\hw4\motor_cntrl.sv
+FD:\Box Sync\ECE 551\hw4\motor_cntrl.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:\Box Sync\ECE 551\hw4\motor_cntrl.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:\Box Sync\ECE 551\hw4\motor_cntrl.sv|
+!i113 1
+R7
+R8
+vpwm
+R1
+!i10b 1
+!s100 9J4iWeS:R6lefn8CHmRgE1
+ITPe6h0lD5WKAK>H?Pon4K3
+R2
+R3
+w1493307923
+8D:\Box Sync\ECE 551\group\FinalProject\pwm.v
+FD:\Box Sync\ECE 551\group\FinalProject\pwm.v
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:\Box Sync\ECE 551\group\FinalProject\pwm.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:\Box Sync\ECE 551\group\FinalProject\pwm.v|
+!i113 1
+R12
+R8
+vpwm_8
+R0
+R1
+!i10b 1
+!s100 UhTEVPlzC25NDiPzQJGSJ3
+IH;1IDoVDVGVj^g0Uk6img2
+R2
+!s105 pwm_8_sv_unit
+S1
+R3
+R11
+8D:/Box Sync/ECE 551/group/Exercise11/pwm_8.sv
+FD:/Box Sync/ECE 551/group/Exercise11/pwm_8.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/Box Sync/ECE 551/group/Exercise11/pwm_8.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/Exercise11/pwm_8.sv|
+!i113 1
+R7
+R8
+vreset_synch
+R1
+!i10b 1
+!s100 Ve<b<hiljag[3lKKgLOX[3
+Im8:N:jINcQ>8P^]0ESe=B3
+R2
+R3
+R4
+8D:/Box Sync/ECE 551/group/Exercise10/reset_synch.v
+FD:/Box Sync/ECE 551/group/Exercise10/reset_synch.v
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/Box Sync/ECE 551/group/Exercise10/reset_synch.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/Box Sync/ECE 551/group/Exercise10/reset_synch.v|
+!i113 1
+R12
+R8
+vrise_edge_detector
+R1
+!i10b 1
+!s100 aUNL@b0zNCcTfP_0Rz2iW0
+IJl^aT=`QNbmHB6abL>MH60
+R2
+R3
+w1492110107
+8D:/Box Sync/ECE 551/group/Exercise10/rise_edge_detector.v
+FD:/Box Sync/ECE 551/group/Exercise10/rise_edge_detector.v
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/Box Sync/ECE 551/group/Exercise10/rise_edge_detector.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/Box Sync/ECE 551/group/Exercise10/rise_edge_detector.v|
+!i113 1
+R12
+R8
+vSPI_mstr
+R0
+R9
+!i10b 1
+!s100 a0SXoNb8VH75TekZF0`F93
+IzC8BS_YU1IoUlCbejaPcK0
+R2
+!s105 SPI_mstr_sv_unit
+S1
+R3
+R14
+8D:/Box Sync/ECE 551/group/FinalProject/SPI_mstr.sv
+FD:/Box Sync/ECE 551/group/FinalProject/SPI_mstr.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R10
+!s107 D:/Box Sync/ECE 551/group/FinalProject/SPI_mstr.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/FinalProject/SPI_mstr.sv|
+!i113 1
+R7
+R8
+n@s@p@i_mstr
+vuart_rcv
+R0
+!s110 1493308370
+!i10b 1
+!s100 >jebE85k=B1?fSV_In^jX1
+IkS?KA4^[neN6Se^`mdU6F1
+R2
+Z15 !s105 UART_rcv_sv_unit
+S1
+R3
+w1493308356
+8D:\Box Sync\ECE 551\group\exercise9\UART_rcv.sv
+FD:\Box Sync\ECE 551\group\exercise9\UART_rcv.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1493308370.000000
+!s107 D:\Box Sync\ECE 551\group\exercise9\UART_rcv.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:\Box Sync\ECE 551\group\exercise9\UART_rcv.sv|
+!i113 1
+R7
+R8
+vUART_rcv
+R0
+!s110 1493305679
+!i10b 1
+!s100 1Z=<>EUPDeI[Kh5ZGmez>3
+I9UnDhAgA?nJ?KHe^m2[cD1
+R2
+R15
+S1
+R3
+Z16 w1492067864
+8D:/Box Sync/ECE 551/group/exercise9/UART_rcv.sv
+FD:/Box Sync/ECE 551/group/exercise9/UART_rcv.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1493305678.000000
+!s107 D:/Box Sync/ECE 551/group/exercise9/UART_rcv.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/exercise9/UART_rcv.sv|
+!i113 1
+R7
+R8
+n@u@a@r@t_rcv
+vUART_tx
+R0
+R9
+!i10b 1
+!s100 8U]6kX@L;CaG8K09SAn_H2
+Ii9]?mbD6=0WR8Sh8D_dl?0
+R2
+!s105 UART_tx_sv_unit
+S1
+R3
+R16
+8D:/Box Sync/ECE 551/group/exercise9/UART_tx.sv
+FD:/Box Sync/ECE 551/group/exercise9/UART_tx.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R10
+!s107 D:/Box Sync/ECE 551/group/exercise9/UART_tx.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|D:/Box Sync/ECE 551/group/exercise9/UART_tx.sv|
+!i113 1
+R7
+R8
+n@u@a@r@t_tx

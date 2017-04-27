@@ -1,0 +1,113 @@
+{D:/Box Sync/ECE 551/group/FinalProject/dig_core.sv} {1 {vlog -work work -sv -stats=none {D:/Box Sync/ECE 551/group/FinalProject/dig_core.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module dig_core
+
+Top level modules:
+	dig_core
+
+} {} {}} {D:/Box Sync/ECE 551/group/Exercise11/pwm_8.sv} {1 {vlog -work work -sv -stats=none {D:/Box Sync/ECE 551/group/Exercise11/pwm_8.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module pwm_8
+
+Top level modules:
+	pwm_8
+
+} {} {}} {D:/Box Sync/ECE 551/hw4/barcode_mimic.sv} {1 {vlog -work work -sv -stats=none {D:/Box Sync/ECE 551/hw4/barcode_mimic.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module barcode_mimic
+
+Top level modules:
+	barcode_mimic
+
+} {} {}} {D:/Box Sync/ECE 551/group/Exercise10/reset_synch.v} {1 {vlog -work work -stats=none {D:/Box Sync/ECE 551/group/Exercise10/reset_synch.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module reset_synch
+
+Top level modules:
+	reset_synch
+
+} {} {}} {D:/Box Sync/ECE 551/group/Exercise10/rise_edge_detector.v} {1 {vlog -work work -stats=none {D:/Box Sync/ECE 551/group/Exercise10/rise_edge_detector.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module rise_edge_detector
+
+Top level modules:
+	rise_edge_detector
+
+} {} {}} {D:/Box Sync/ECE 551/group/exercise9/UART_rcv.sv} {1 {vlog -work work -sv -stats=none {D:\Box Sync\ECE 551\group\exercise9\UART_rcv.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module uart_rcv
+
+Top level modules:
+	uart_rcv
+
+} {} {}} {D:/Box Sync/ECE 551/group/Exercise11/cmd_cntrl.sv} {1 {vlog -work work -sv -stats=none {D:/Box Sync/ECE 551/group/Exercise11/cmd_cntrl.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cmd_cntrl
+
+Top level modules:
+	cmd_cntrl
+
+} {} {}} {D:/Box Sync/ECE 551/group/exercise9/UART_tx.sv} {1 {vlog -work work -sv -stats=none {D:/Box Sync/ECE 551/group/exercise9/UART_tx.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module UART_tx
+
+Top level modules:
+	UART_tx
+
+} {} {}} {D:/Box Sync/ECE 551/group/FinalProject/pwm.v} {1 {vlog -work work -stats=none {D:\Box Sync\ECE 551\group\FinalProject\pwm.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module pwm
+
+Top level modules:
+	pwm
+
+} {} {}} {D:/Box Sync/ECE 551/group/FinalProject/SPI_mstr.sv} {1 {vlog -work work -sv -stats=none {D:/Box Sync/ECE 551/group/FinalProject/SPI_mstr.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module SPI_mstr
+
+Top level modules:
+	SPI_mstr
+
+} {} {}} {D:/Box Sync/ECE 551/group/HW4/barcode.sv} {1 {vlog -work work -sv -stats=none {D:/Box Sync/ECE 551/group/HW4/barcode.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module barcode
+
+Top level modules:
+	barcode
+
+} {} {}} {D:/Box Sync/ECE 551/ADC128S.sv} {1 {vlog -work work -sv -stats=none {D:/Box Sync/ECE 551/ADC128S.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ADC128S
+
+Top level modules:
+	ADC128S
+
+} {} {}} {D:/Box Sync/ECE 551/group/Exercise10/A2D_intf.sv} {1 {vlog -work work -sv -stats=none {D:/Box Sync/ECE 551/group/Exercise10/A2D_intf.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module A2D_intf
+
+Top level modules:
+	A2D_intf
+
+} {} {}} {D:/Box Sync/ECE 551/group/FinalProject/follower.v} {1 {vlog -work work -stats=none {D:/Box Sync/ECE 551/group/FinalProject/follower.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Follower
+
+Top level modules:
+	Follower
+
+} {} {}} {D:/Box Sync/ECE 551/group/FinalProject/alu.v} {1 {vlog -work work -stats=none {D:/Box Sync/ECE 551/group/FinalProject/alu.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module alu
+
+Top level modules:
+	alu
+
+} {} {}} {D:/Box Sync/ECE 551/hw4/motor_cntrl.sv} {1 {vlog -work work -sv -stats=none {D:\Box Sync\ECE 551\hw4\motor_cntrl.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module motor_cntrl
+
+Top level modules:
+	motor_cntrl
+
+} {} {}}

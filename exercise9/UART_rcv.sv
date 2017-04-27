@@ -1,6 +1,6 @@
-module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
+module uart_rcv (clr_rx_rdy, clk, rst_n, RX, rx_rdy, rx_data);
 	input RX;  // Serial data input
-	input rx_rdy_clr; // Asserted to clear rx_rdy
+	input clr_rx_rdy; // Asserted to clear rx_rdy
 
 	input clk;
 	input rst_n; 
@@ -172,7 +172,7 @@ module UART_rcv (rx_rdy_clr, clk, rst_n, RX, rx_rdy, rx_data);
 
 			CLR: begin
 				rx_rdy_val = 1;
-				if (rx_rdy_clr | !RX2 )begin
+				if (clr_rx_rdy | !RX2 )begin
 					rx_rdy_val = 0;
 					nxt_state = IDLE;
 				end
