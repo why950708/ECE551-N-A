@@ -475,7 +475,7 @@ always_comb begin
 			// Accum should be 0 now!
 			// Accum = A2D
 			src1sel = 3'b000; // Accum	
-			src0sel = 3'b111; // src0 should be 0
+			src0sel = 3'b000; // src0 should be 0
 			dst2Accum = 1;
 
 			inc_chnnl = 1;  // chnnl should be 1 in next state
@@ -557,7 +557,7 @@ always_comb begin
 
 		end
 		
-		OUTER_L:begin
+		OUTER_L: begin
 			src1sel = 3'b000; // Accum
 			src0sel = 3'b000; //a2d_res
 			sub = 1;
@@ -570,35 +570,38 @@ always_comb begin
 		end
 		
 		
-		INTG:begin
+		INTG: begin
 			src1sel = 3'b011; //ErrDiv22Src1
 			src0sel = 3'b001; //Intgrl2Src0
-			dst2Int = 1;      
+			
+			dst2Int = 1;
 			next_state = ITERM;
+
 		end
 		
-		ITERM:begin
-			src1sel  = 3'b001;
-			src0sel  = 3'b001;
+		ITERM: begin
+			src1sel  = 3'b001;  // Iterm
+			src0sel  = 3'b001;  // Intgrl
 			multiply = 1;
 			dst2Icmp = 1;
 			next_state = ITERM_WAIT;
 		end
 		
-		ITERM_WAIT:begin
+		ITERM_WAIT: begin
 			dst2Icmp = 1;
 			next_state = PTERM;
 		end  
 		
-		PTERM:begin
+		PTERM: begin
 			src1sel = 3'b010; //Err2Src1		
 			src0sel = 3'b100; //Pterm2Src0
 			multiply = 1;		
-		
+
+			dst2Pcmp = 1;
 			next_state = PTERM_WAIT;
 		end
 		
-		PTERM_WAIT:begin
+		PTERM_WAIT: begin
 			dst2Pcmp = 1;
 			next_state = MRT_R1;
 		end
@@ -623,6 +626,9 @@ always_comb begin
 		
 		MRT_L1:begin
 			//Accum = Fwd + Pcomp;
+			src1sel = 3'b100; //Fwd2Src1
+			src0sel = 3'b011;// Pcomp
+			dst2Accum = 1;
 			next_state = MRT_L2;
 		end
 		
@@ -633,16 +639,14 @@ always_comb begin
 			dst2lft = 1;
 			next_state = IDLE;
 		end
->>>>>>> 7cdcefca799a47d5294228c939b383bfd995f33a
 		
-		default:begin //IDLE state
-			//Accum = 0
-			
+		default: begin //IDLE state
+
 			if (chnnl_counter == 0) begin
 				next_state = STTL;
 				dst2Accum = 1;
 				rst_4096 = 1;
-				rst_chnnl = 1;
+				//rst_chnnl = 1;
 			end
 		end
 	endcase 
