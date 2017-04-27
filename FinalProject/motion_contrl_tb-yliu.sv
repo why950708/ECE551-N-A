@@ -13,7 +13,7 @@
 
 
 
-module motion_cntrl_tb();
+module motion_cntrl_tb_2();
 reg clk, rst_n;
 reg go; // tell the robot to move
 reg cnv_cmplt; // indicate A2D conversion is completed

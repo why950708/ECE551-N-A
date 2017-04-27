@@ -1,3 +1,11 @@
+//////////////////////////////////////////////
+//  Spring 2017 ECE551
+//  The design module for Motion Control, 
+//  which is part of digital core.
+//
+//////////////////////////////////////////////
+
+
 module motion_cntrl (
 	go,                     // read page 35 and 36 in specification
 	cnv_cmplt,
@@ -54,7 +62,7 @@ wire [15:0] dst;
 reg inc_4096, inc_32, rst_4096, rst_32;
 
   
-reg multiply_counter;  //ff
+//reg multiply_counter;  //ff
 
 
 typedef enum reg [4:0] {IDLE,STTL,INNER_R,MID_R,OUTER_R,SHRT_WAIT,INNER_L,MID_L,OUTER_L,INTG,ITERM,ITERM_WAIT,PTERM,PTERM_WAIT,MRT_R1,MRT_R2,MRT_L1,MRT_L2} state_t;
@@ -207,7 +215,7 @@ always_comb begin
 	rst_chnnl = 0;
 	next_state = state;
 	start_conv = 0;
-	
+
 	case(state)
 		
 		STTL:begin
