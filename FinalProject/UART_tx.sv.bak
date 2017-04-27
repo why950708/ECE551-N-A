@@ -1,7 +1,7 @@
-module uart_tx (clk, rst_n, strt_tx,  tx, tx_data, tx_done);
+module uartS_tx (clk, rst_n, trmt,  TX, tx_data, tx_done);
 output reg tx_done;
-output wire tx;
-input clk, rst_n, strt_tx;
+output wire TX;
+input clk, rst_n, trmt;
 input [7:0] tx_data;
 
 reg [11:0] baud_cnt;
@@ -27,7 +27,7 @@ always @(posedge clk or negedge rst_n) // it’s sequential because it’s a shi
   if (!rst_n) // start with reset case, not normal case 
     shift_reg <= 10'h3FF; // fill in with bit 1’s because the LSB should should be the stop bit in IDLE state 
   else if (load) 
-    shift_reg <= {1'b1,tx_data,1'b0}; // start bit and stop bit are loaded as well as data to tx 
+    shift_reg <= {1'b1,tx_data,1'b0}; // start bit and stop bit are loaded as well as data to TX 
   else if (shift) 
     shift_reg <= {1'b1,shift_reg[9:1]}; // LSB shifted out and idle state shifted in 
 
@@ -63,7 +63,7 @@ always @(posedge clk or negedge rst_n)
 
 
 assign shift = (baud_cnt == 12'hA2B); // assert shift when baud_cnt reaches 2603 (small cloud in the middle of the diagram)
-assign tx = shift_reg[0];
+assign TX = shift_reg[0];
 
 always_comb begin
     load = 0;
@@ -73,7 +73,7 @@ always_comb begin
     clr_done = 0;
     case (state)
         IDLE: begin
-            if (strt_tx) begin
+            if (trmt) begin
                 load = 1;
                 next_state = TRANSMIT;
                 clr_done = 1;
