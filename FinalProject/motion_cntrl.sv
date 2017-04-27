@@ -452,40 +452,38 @@ always_comb begin
 			// **************  Enable PWM is not implemented  **********************
 					
 			if(counter_4096 == 12'd4095) begin// Wait 4096 clk until conv
-				start_conv = 1; //start A2D conversion 
+				start_conv = 1; //start A2D conversion, high for 1 clk 
 			end
 		
 			if(cnv_cmplt) begin
 				//based on chnnl counter, move to different state
 			
-				if ( chnnl_counter == 0 )begin
-				//inner_R
+				if ( chnnl_counter == 3'd0 ) 
 					next_state = INNER_R;
-				end
-				else if(chnnl_counter == 2)begin
+				else if(chnnl_counter == 3'd2) 
 					next_state = MID_R;
-				end
-				else if(chnnl_counter == 4)begin
+				else if(chnnl_counter == 3'd4) 
 					next_state =  OUTER_R;
-				end
-				else begin
-				$stop ("Should have not happened");
-				end
+				else 
+					$stop ("Should have not happened");
+
 			end
 		end
 		
 		
-	INNER_R:begin
-			//ALU  pls don't delete my code.... 
+		INNER_R: begin
+			// Accum should be 0 now!
+			// Accum = A2D
 			src1sel = 3'b000; // Accum	
 			src0sel = 3'b111; // src0 should be 0
 			dst2Accum = 1;
-		
-			inc_chnnl = 1;
+
+			inc_chnnl = 1;  // chnnl should be 1 in next state
 			next_state = SHRT_WAIT;
+			rst_32 = 1;
 		end
 		
-	MID_R:begin
+		MID_R: begin
 			//Accum = Accum + A2D_res * 2;
 			src1sel = 3'b000; // Accum
 			src0sel = 3'b000; //a2d_res
@@ -494,8 +492,10 @@ always_comb begin
 		
 			next_state = SHRT_WAIT;
 			inc_chnnl = 1;
+			rst_32 = 1;
+
 		end
-		
+	
 		OUTER_R:begin
 			//Accum = Accum + A2D_res * 4;
 			src1sel = 3'b000; // Accum
@@ -505,12 +505,14 @@ always_comb begin
 		
 			next_state = SHRT_WAIT;
 			inc_chnnl = 1;
+			rst_32 = 1;
+
 		end
-		
-		SHRT_WAIT:begin
+	
+		SHRT_WAIT: begin
 			inc_32 = 1;
 		
-			if(counter_32 == 5'd32)begin
+			if(counter_32 == 5'd31)begin  // at 32th state start conv
 				start_conv = 1;
 			end
 		
@@ -530,7 +532,7 @@ always_comb begin
 			end	
 		end
 		
-		INNER_L:begin
+		INNER_L: begin
 			src1sel = 3'b000; // Accum
 			src0sel = 3'b000; //a2d_res
 			sub = 1;	// Accum = Accum - Ir_in_lft
@@ -538,6 +540,7 @@ always_comb begin
 			
 			next_state = STTL;
 			inc_chnnl = 1;
+			rst_4096 = 1;  // !!!
 		end
 		
 		MID_L:begin
@@ -550,6 +553,8 @@ always_comb begin
 			
 			next_state = STTL;
 			inc_chnnl = 1;
+			rst_4096 = 1;  // !!!
+
 		end
 		
 		OUTER_L:begin
@@ -560,7 +565,8 @@ always_comb begin
 			dst2Err = 1;
 		
 			next_state = INTG;
-			inc_chnnl = 1;
+			inc_chnnl = 1;  // chnnl should equal to 6
+
 		end
 		
 		
@@ -636,6 +642,7 @@ always_comb begin
 				next_state = STTL;
 				dst2Accum = 1;
 				rst_4096 = 1;
+				rst_chnnl = 1;
 			end
 		end
 	endcase 
