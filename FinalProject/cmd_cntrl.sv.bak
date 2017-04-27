@@ -28,7 +28,6 @@ reg set_in_transit, clear_in_transit;
 output reg  clr_cmd_rdy,  in_transit, clr_ID_vld, buzz;
 output wire buzz_n, go;
 
-wire en;
 
 assign go = in_transit && OK2Move; 
 assign en = ~OK2Move && in_transit;

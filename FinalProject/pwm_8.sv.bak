@@ -13,7 +13,7 @@ always @(posedge clk, negedge rst_n) begin
 	if(!rst_n) 
 	    count <= 0;
 	else 
-	    count <= count + 1'd1;
+	    count <= count + 1;
     end
 
 //PWM flip flop
