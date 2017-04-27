@@ -643,6 +643,7 @@ always_comb begin
 		default: begin //IDLE state
 
 			if (chnnl_counter == 0) begin
+				// Should clear accum
 				next_state = STTL;
 				dst2Accum = 1;
 				rst_4096 = 1;
@@ -661,29 +662,29 @@ assign rht = rht_reg[11:1];
 assign duty = 8'h8C;
 
 //Chnnl assign
-    assign chnnl = (chnnl_counter == 0) ? 1 :
-      (chnnl_counter == 1) ? 0 : 
-      (chnnl_counter == 2)? 4  :
-      (chnnl_counter == 3)? 2 : 
-      (chnnl_counter == 4) ? 3 :
-      (chnnl_counter == 5) ? 7 :
-      chnnl; 
+assign chnnl =  (chnnl_counter == 0) ? 1 :
+				(chnnl_counter == 1) ? 0 : 
+				(chnnl_counter == 2) ? 4 :
+				(chnnl_counter == 3) ? 2 : 
+				(chnnl_counter == 4) ? 3 :
+				(chnnl_counter == 5) ? 7 :
+				 1;  // This can't be chnnl, or it will be a ff!!!! 
   
-  //IR enables
-  assign IR_out_en =  (chnnl == 1 || chnnl == 0 ) ? 0 : 
-    (chnnl == 4 || chnnl == 2 ) ? 0 : 
-    (chnnl == 3 || chnnl == 7 ) ? PWM_sig : 
-    IR_out_en;
-  
-  assign IR_mid_en =  (chnnl == 1 || chnnl == 0 ) ? 0 : 
-    (chnnl == 4 || chnnl == 2 ) ? PWM_sig :
-    (chnnl == 3 || chnnl == 7 ) ? 0 : 
-    IR_mid_en;
-  
-  assign IR_in_en  =  (chnnl == 1 || chnnl == 0 ) ? PWM_sig :
-    (chnnl == 4 || chnnl == 2 ) ? 0 : 
-    (chnnl == 3 || chnnl == 7 ) ? 0 : 
-    IR_in_en; 
-    
+//IR enables
+assign IR_out_en =  (chnnl == 1 || chnnl == 0 ) ? 0 : 
+					(chnnl == 4 || chnnl == 2 ) ? 0 : 
+					(chnnl == 3 || chnnl == 7 ) ? PWM_sig : 
+					IR_out_en;
+
+assign IR_mid_en =  (chnnl == 1 || chnnl == 0 ) ? 0 : 
+					(chnnl == 4 || chnnl == 2 ) ? PWM_sig :
+					(chnnl == 3 || chnnl == 7 ) ? 0 : 
+					 0;
+
+assign IR_in_en  =  (chnnl == 1 || chnnl == 0 ) ? PWM_sig :
+					(chnnl == 4 || chnnl == 2 ) ? 0 : 
+					(chnnl == 3 || chnnl == 7 ) ? 0 : 
+					 0; 
+
 
 endmodule
