@@ -11,8 +11,8 @@ output SCLK;
 
 
 ///////////////////////////////////////////////
-// Registers needed in design declared next //
-/////////////////////////////////////////////
+// Registers needed in design declared next ///
+///////////////////////////////////////////////
 reg[2:0] state, next_state;
 
 reg [15:0] shift_reg;	// SPI shift register for transmitted data
@@ -21,8 +21,8 @@ reg [4:0] SCLK_counter; // The counter for SCLK
 reg [4:0] shift_counter;  // The counter for shift state, 5 bit
 
 /////////////////////////////////////////////
-// SM outputs declared as type logic next //
-///////////////////////////////////////////
+// SM outputs declared as type logic next ///
+/////////////////////////////////////////////
 
 localparam IDLE = 2'b00;
 localparam SHIFT = 2'b01;
@@ -116,14 +116,14 @@ always_comb begin
 	  	  inc_count = 1;  // start incrementing the count for 32
 	  	  SS_n = 0;
 
-			if (bit_counter == 5'd16) begin // used to be 16 see how it goes
-				next_state = DONE;
-				update_rd_data = 1;
-			//bit_counter = 5'd0; // Reset for new round
-			//done = 1;
+        if (bit_counter == 5'd16) begin // used to be 16 see how it goes
+          next_state = DONE;
+          update_rd_data = 1;
+        //bit_counter = 5'd0; // Reset for new round
+        //done = 1;
 		   end
 
-			if (shift_counter == 5'h1F) begin
+			if (shift_counter == 5'h1F) begin  // Count 32 CLK for 1 SCLK 
 				
 				// we always shift
 				shift = 1;  // bit counter will also increment

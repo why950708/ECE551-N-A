@@ -1,3 +1,11 @@
+//////////////////////////////////////////////
+//  Spring 2017 ECE551
+//  The design module for Motion Control, 
+//  which is part of digital core.
+//
+//////////////////////////////////////////////
+
+
 module motion_cntrl (
 	go,                     // read page 35 and 36 in specification
 	cnv_cmplt,
@@ -30,14 +38,12 @@ reg[11:0] lft_reg, rht_reg;
   
 reg[12:0] counter_4096;
 reg[5:0] counter_32;
-reg start_4096, start_32; 
-
+  
 reg rst_chnnl,  inc_chnnl;
 
 wire[7:0] duty;
 reg[2:0] chnnl_counter;
-reg reset_chnnl;
-reg ir_counter;
+//reg ir_counter;
 
 //alu related regs
 reg[13:0] Pterm;  // 14h3680
@@ -53,10 +59,10 @@ reg[15:0] Pcomp;    //ff
 reg[11:0] Icomp;    //ff
 wire [15:0] dst;      
 
-reg inc_4096, inc_32, rst_4096, rst_32, rst_mult, start_mult;
+reg inc_4096, inc_32, rst_4096, rst_32;
 
   
-reg multiply_counter;  //ff
+//reg multiply_counter;  //ff
 
 
 typedef enum reg [4:0] {IDLE,STTL,INNER_R,MID_R,OUTER_R,SHRT_WAIT,INNER_L,MID_L,OUTER_L,INTG,ITERM,ITERM_WAIT,PTERM,PTERM_WAIT,MRT_R1,MRT_R2,MRT_L1,MRT_L2} state_t;
@@ -75,11 +81,11 @@ alu iALU(.mult2(mult2),.mult4(mult4),.sub(sub),.src1sel(src1sel),.src0sel(src0se
 // chnnl counter ff
 always_ff @(posedge clk, negedge rst_n) begin 
 	if (!rst_n)
-		chnnl_counter <= 0;
+		chnnl_counter <= 3'd0;
 	else if (rst_chnnl) 
-		chnnl_counter <= 0; 
+		chnnl_counter <= 3'd0; 
 	else if (inc_chnnl) 
-		chnnl_counter <= chnnl_counter + 1;
+		chnnl_counter <= chnnl_counter + 3'd1;
 end 
 
   
@@ -148,16 +154,7 @@ always_ff @(posedge clk or negedge rst_n) begin
 	
   end  
 
-always_ff @(posedge clk or negedge rst_n) begin
-	if(!rst_n) begin
-		multiply_counter <= 0;
-    end else if(rst_mult) begin
-		multiply_counter <= 0;
-    end else if(start_mult)begin
-		multiply_counter <= multiply_counter + 1;
-	end
-end
-  
+
   
 //Counter 4096
 always_ff @(posedge clk or negedge rst_n) begin
@@ -166,7 +163,7 @@ always_ff @(posedge clk or negedge rst_n) begin
   end else if(rst_4096) begin
      counter_4096 <= 0;
   end else if(inc_4096)begin
-     counter_4096 <= counter_4096 + 1;
+     counter_4096 <= counter_4096 + 1'd1;
   end
 end
 
@@ -177,242 +174,254 @@ always_ff @(posedge clk or negedge rst_n) begin
   end else if(rst_32) begin
      counter_32 <= 0;
   end else if(inc_32)begin
-     counter_32 <= counter_32 + 1;
+     counter_32 <= counter_32 + 1'd1;
   end
 end
 
   
 always_comb begin
-  //defalut cases
-  ir_counter = 0;
-  
-  reset_chnnl = 0;
-  inc_chnnl = 0;
-  
-  Iterm = 12'h500;
-  Pterm = 14'h3680;
-  
-  start_4096 = 0;
-  start_32 = 0;
-  
-  rst_4096 = 0;
-  rst_32 = 0;
-  
-  
-  //default registers for alu input
-  mult2 = 0;
-  mult4 = 0;
-  sub = 0;
-  src1sel = 3'b111; // default value is 0
-  src0sel = 3'b111;
-  multiply = 0;
-  saturate = 0;
-  // flags for reg
-  dst2Accum = 0;
-  dst2Icmp = 0;
-  dst2Err = 0;
-  dst2Int = 0;
-  dst2Pcmp = 0;
-  dst2lft = 0;
-  dst2rht = 0;
-  inc_chnnl = 0;
-  next_state = state;
-  
-  case(state)
-    //default values 
-    STTL:begin
-    	start_4096 = 1; // is it in this state or previous state?  enable timer?
-		
-      	// **************  Enable PWM is not implemented  **********************
-      	      	 
-        if(counter_4096 == 12'd4096) begin// timer == 4096
-            //A2D conversion
-            strt_cnv = 1; //start conversion
-        end
-      
-        if(cnv_cmplt)begin
-              //based on chnnl counter, move to different state
-         
-        	if(chnnl_counter == 0)begin
-              //inner_R
-        		next_state = INNER_R;
-        	end
-        	else if(chnnl_counter == 2)begin
-            	next_state = MID_R;
-        	end
-        	else if(chnnl_counter == 4)begin
-            	next_state =  OUTER_R;
-        	end
-          	else begin
-              $stop ("Should have not happened");
-            end
-        end
-   	end
-    
-    
-   INNER_R:begin
-   		//ALU  pls don't delete my code.... 
-      src1sel = 3'b000; // Accum2Src1： 0
-     	src0sel = 3'b000; // A2D2Src0
-     	dst2Accum = 1;
-     
-		  inc_chnnl = 1;
-     	next_state = SHRT_WAIT;
-	end
-    
-   MID_R:begin
-		//Accum = Accum + A2D_res * 2;
-      	src1sel = 3'b000; // Accum2Src1
-      	src0sel = 3'b000; //A2D2Src0
-      	mult2 = 1;
-      	dst2Accum = 1; 
-     
-		next_state = SHRT_WAIT;
-		inc_chnnl = 1;
-	end
-    
-    OUTER_R:begin
-		//Accum = Accum + A2D_res * 4;
-      	src1sel = 3'b000; // Accum2Src1
-      	src0sel = 3'b000; //A2D2Src0
-      	mult4 = 1;
-      	dst2Accum = 1;
-      
-		next_state = SHRT_WAIT;
-		inc_chnnl = 1;
-	end
-    
-	SHRT_WAIT:begin
-		start_32 = 1;
-      
-      	if(counter_32 == 5'd32)begin
-             strt_cnv = 1;
-        end
-      
-        if(cnv_cmplt) begin
-              if(chnnl_counter == 1)begin
-                  next_state = INNER_L;
-              end	
-              else if(chnnl_counter == 3)begin
-                  next_state = MID_L;
-              end
-              else if(chnnl_counter == 5)begin
-                  next_state = OUTER_L;
-              end
-              else begin
-              	  $stop ("Should have not happened");
-              end
-        end	
-	end
-      
-	INNER_L:begin
-		src1sel = 3'b000; // Accum2Src1
-      	src0sel = 3'b000; //A2D2Src0
-      	sub = 1;	// Accum = Accum - Ir_in_lft
-      	dst2Accum = 1;
-        
-    	next_state = STTL;
-		inc_chnnl = 1;
-	end
+	//defalut cases
+	//ir_counter = 0;
 	
-	MID_L:begin
-		//Accum = Accum - A2D_res * 2;
-        src1sel = 3'b000; // Accum2Src1
-      	src0sel = 3'b000; //A2D2Src0
-      	sub = 1;
-      	mult2 = 1;
-      	dst2Accum = 1;
+	rst_chnnl = 0;
+	inc_chnnl = 0;
+	
+	Iterm = 12'h500;
+	Pterm = 14'h3680;
+	
+	inc_4096 = 0;
+	inc_32 = 0;
+	rst_4096 = 0;
+	rst_32 = 0;
+	
+	
+	//default registers for alu input
+	mult2 = 0;
+	mult4 = 0;
+	sub = 0;
+	src1sel = 3'b111; // default value is 0
+	src0sel = 3'b111;
+	multiply = 0;
+	saturate = 0;
+	// flags for reg
+	dst2Accum = 0;
+	dst2Icmp = 0;
+	dst2Err = 0;
+	dst2Int = 0;
+	dst2Pcmp = 0;
+	dst2lft = 0;
+	dst2rht = 0;
+	inc_chnnl = 0;
+	rst_chnnl = 0;
+	next_state = state;
+	strt_cnv = 0;
+
+	case(state)
 		
-      	next_state = STTL;
-		inc_chnnl = 1;
-	end
-    
-    OUTER_L:begin
-		src1sel = 3'b000; // Accum2Src1
-      	src0sel = 3'b000; //A2D2Src0
-      	sub = 1;
-      	mult4 = 1; 
-      	dst2Err = 1;
-    
-		next_state = INTG;
-		inc_chnnl = 1;
-	end
-    
-    
-	INTG:begin
-		src1sel = 3'b011; //ErrDiv22Src1
-        src0sel = 3'b001; //Intgrl2Src0
-		dst2Int = 1;      
-		next_state = ITERM;
-	end
-    
-	ITERM:begin
-		src1sel  = 3'b001; // Iterm2Src1
-      	src0sel  = 3'b001; //Intgrl2Src0
-      	multiply = 1;
-        dst2Icmp = 1;
-		next_state = ITERM_WAIT;
-	end
-    
-    ITERM_WAIT:begin
-      	dst2Icmp = 1;
-      	next_state = PTERM;
-    end  
-    
-	PTERM:begin
-		src1sel = 3'b010; //Err2Src1		
-      	src0sel = 3'b100; //Pterm2Src0
-		multiply = 1;		
-    dst2Pcmp = 1;  
-		next_state = PTERM_WAIT;
-	end
-    
-    PTERM_WAIT:begin
-      	dst2Pcmp = 1;
-      	next_state = MRT_R1;
-    end
-    
-	MRT_R1:begin
-		//Accum = Fwd - Pcomp;
-      	src1sel = 3'b100; //Fwd2Src1
-      	src0sel = 3'b011;// Pcomp2Src0
-      	sub = 1;
-      	dst2Accum = 1;
-		next_state = MRT_R2;
-	end
-    
-	MRT_R2:begin
-		//rht_reg = Accum - Icomp;
-      	src1sel = 3'b000; // Accum2Src1
-      	src0sel = 3'b010; // Icomp2Src0
-      	sub = 1;
-      	dst2rht = 1;
-		next_state = MRT_L1;
-	end
-    
-	MRT_L1:begin
-		//Accum = Fwd + Pcomp;
-    src1sel = 3'b100; // Fwd2Src1
-    src0sel = 3'b011; // Pcomp2Src0
-    dst2Accum = 1;
-		next_state = MRT_L2;
-	end
-    
-	MRT_L2:begin
-		//lft_reg = Accum + Icomp;
-      	src1sel = 3'b000; // Accum2Src1
-      	src0sel = 3'b010; // Icomp2Src0
-      	dst2lft = 1;
-		next_state = IDLE;
-	end
-		
-		default:begin //IDLE state
-			//Accum = 0
+		STTL:begin
+			inc_4096 = 1; // is it in this state or previous state?  enable timer?
 			
+			// **************  Enable PWM is not implemented  **********************
+					
+			if(counter_4096 == 12'd4095) begin// Wait 4096 clk until conv
+				strt_cnv = 1; //start A2D conversion, high for 1 clk 
+			end
+		
+			if(cnv_cmplt) begin
+				//based on chnnl counter, move to different state
+			
+				if ( chnnl_counter == 3'd0 ) 
+					next_state = INNER_R;
+				else if(chnnl_counter == 3'd2) 
+					next_state = MID_R;
+				else if(chnnl_counter == 3'd4) 
+					next_state =  OUTER_R;
+				else 
+					$stop ("Should have not happened");
+
+			end
+		end
+		
+		
+		INNER_R: begin
+			// Accum should be 0 now!
+			// Accum = A2D
+			src1sel = 3'b000; // Accum	
+			src0sel = 3'b000; // src0 should be A2D
+			dst2Accum = 1;
+
+			inc_chnnl = 1;  // chnnl should be 1 in next state
+			next_state = SHRT_WAIT;
+			rst_32 = 1;
+		end
+		
+		MID_R: begin
+			//Accum = Accum + A2D_res * 2;
+			src1sel = 3'b000; // Accum
+			src0sel = 3'b000; //a2d_res
+			mult2 = 1;
+			dst2Accum = 1; 
+		
+			next_state = SHRT_WAIT;
+			inc_chnnl = 1;
+			rst_32 = 1;
+
+		end
+	
+		OUTER_R:begin
+			//Accum = Accum + A2D_res * 4;
+			src1sel = 3'b000; // Accum
+			src0sel = 3'b000; //a2d_res
+			mult4 = 1;
+			dst2Accum = 1;
+		
+			next_state = SHRT_WAIT;
+			inc_chnnl = 1;
+			rst_32 = 1;
+
+		end
+	
+		SHRT_WAIT: begin
+			inc_32 = 1;
+		
+			if(counter_32 == 5'd31)begin  // at 32th state start conv
+				strt_cnv = 1;
+			end
+		
+			if(cnv_cmplt) begin
+				if(chnnl_counter == 1)begin
+					next_state = INNER_L;
+				end	
+				else if(chnnl_counter == 3)begin
+					next_state = MID_L;
+				end
+				else if(chnnl_counter == 5)begin
+					next_state = OUTER_L;
+				end
+				else begin
+					$stop ("Should have not happened");
+				end
+			end	
+		end
+		
+		INNER_L: begin
+			src1sel = 3'b000; // Accum
+			src0sel = 3'b000; //a2d_res
+			sub = 1;	// Accum = Accum - Ir_in_lft
+			dst2Accum = 1;
+			
+			next_state = STTL;
+			inc_chnnl = 1;
+			rst_4096 = 1;  // !!!
+		end
+		
+		MID_L:begin
+			//Accum = Accum - A2D_res * 2;
+			src1sel = 3'b000; // Accum
+			src0sel = 3'b000; //a2d_res
+			sub = 1;
+			mult2 = 1;
+			dst2Accum = 1;
+			
+			next_state = STTL;
+			inc_chnnl = 1;
+			rst_4096 = 1;  // !!!
+
+		end
+		
+		OUTER_L: begin
+			src1sel = 3'b000; // Accum
+			src0sel = 3'b000; //a2d_res
+			sub = 1;
+			mult4 = 1; 
+			dst2Err = 1;
+			saturate = 1;
+			next_state = INTG;
+			inc_chnnl = 1;  // chnnl should equal to 6
+
+		end
+		
+		
+		INTG: begin
+			src1sel = 3'b011; //ErrDiv22Src1
+			src0sel = 3'b001; //Intgrl2Src0
+			saturate = 1;
+			dst2Int = 1;
+			next_state = ITERM;
+
+		end
+		
+		ITERM: begin
+			src1sel  = 3'b001;  // Iterm
+			src0sel  = 3'b001;  // Intgrl
+			multiply = 1;
+			dst2Icmp = 1;
+			next_state = ITERM_WAIT;
+		end
+		
+		ITERM_WAIT: begin
+			dst2Icmp = 1;
+			next_state = PTERM;
+		end  
+		
+		PTERM: begin
+			src1sel = 3'b010; //Err2Src1		
+			src0sel = 3'b100; //Pterm2Src0
+			multiply = 1;		
+
+			dst2Pcmp = 1;
+			next_state = PTERM_WAIT;
+		end
+		
+		PTERM_WAIT: begin
+			dst2Pcmp = 1;
+			next_state = MRT_R1;
+		end
+		
+		MRT_R1:begin
+			//Accum = Fwd - Pcomp;
+			src1sel = 3'b100; //Fwd2Src1
+			src0sel = 3'b011;// Pcomp
+			sub = 1;
+			dst2Accum = 1;
+			next_state = MRT_R2;
+		end
+		
+		MRT_R2:begin
+			//rht_reg = Accum - Icomp;
+			src1sel = 3'b000;
+			src0sel = 3'b010;
+			sub = 1;
+			dst2rht = 1;
+			saturate = 1;
+			next_state = MRT_L1;
+		end
+		
+		MRT_L1:begin
+			//Accum = Fwd + Pcomp;
+			src1sel = 3'b100; //Fwd2Src1
+			src0sel = 3'b011;// Pcomp
+			dst2Accum = 1;
+			next_state = MRT_L2;
+		end
+		
+		MRT_L2:begin
+			//lft_reg = Accum + Icomp;
+			src1sel = 3'b000;
+			src0sel = 3'b010;
+			dst2lft = 1;
+			saturate = 1;
+			next_state = IDLE;
+		end
+		
+		default: begin //IDLE state
+
 			if (chnnl_counter == 0) begin
+				// Should clear accum
 				next_state = STTL;
 				dst2Accum = 1;
 				rst_4096 = 1;
+				//rst_chnnl = 1;
 			end
 		end
 	endcase 
@@ -427,29 +436,29 @@ assign rht = rht_reg[11:1];
 assign duty = 8'h8C;
 
 //Chnnl assign
-    assign chnnl = (chnnl_counter == 0) ? 1 :
-      (chnnl_counter == 1) ? 0 : 
-      (chnnl_counter == 2)? 4  :
-      (chnnl_counter == 3)? 2 : 
-      (chnnl_counter == 4) ? 3 :
-      (chnnl_counter == 5) ? 7 :
-      chnnl; 
+assign chnnl =  (chnnl_counter == 0) ? 3'd1 :
+				(chnnl_counter == 1) ? 3'd0 : 
+				(chnnl_counter == 2) ? 3'd4 :
+				(chnnl_counter == 3) ? 3'd2 : 
+				(chnnl_counter == 4) ? 3'd3 :
+				(chnnl_counter == 5) ? 3'd7 :
+				 3'd1;  // This can't be chnnl, or it will be a ff!!!! 
   
-  //IR enables
-  assign IR_out_en =  (chnnl == 1 || chnnl == 0 ) ? 0 : 
-    (chnnl == 4 || chnnl == 2 ) ? 0 : 
-    (chnnl == 3 || chnnl == 7 ) ? PWM_sig : 
-    IR_out_en;
-  
-  assign IR_mid_en =  (chnnl == 1 || chnnl == 0 ) ? 0 : 
-    (chnnl == 4 || chnnl == 2 ) ? PWM_sig :
-    (chnnl == 3 || chnnl == 7 ) ? 0 : 
-    IR_mid_en;
-  
-  assign IR_in_en  =  (chnnl == 1 || chnnl == 0 ) ? PWM_sig :
-    (chnnl == 4 || chnnl == 2 ) ? 0 : 
-    (chnnl == 3 || chnnl == 7 ) ? 0 : 
-    IR_in_en; 
-    
+//IR enables
+assign IR_out_en =  (chnnl == 1 || chnnl == 0 ) ? 1'b0 : 
+					(chnnl == 4 || chnnl == 2 ) ? 1'b0 : 
+					(chnnl == 3 || chnnl == 7 ) ? PWM_sig : 
+					1'b0;
+
+assign IR_mid_en =  (chnnl == 1 || chnnl == 0 ) ? 1'b0 : 
+					(chnnl == 4 || chnnl == 2 ) ? PWM_sig :
+					(chnnl == 3 || chnnl == 7 ) ? 1'b0 : 
+					 1'b0;
+
+assign IR_in_en  =  (chnnl == 1 || chnnl == 0 ) ? PWM_sig :
+					(chnnl == 4 || chnnl == 2 ) ? 1'b0 : 
+					(chnnl == 3 || chnnl == 7 ) ? 1'b0 : 
+					 1'b0; 
+
 
 endmodule
