@@ -59,6 +59,11 @@ reg[15:0] Pcomp;    //ff
 reg[11:0] Icomp;    //ff
 wire [15:0] dst;      
 
+
+reg[1:0] int_dec; // FF for integral 
+reg rst_int_dec;
+reg inc_int_dec; 
+
 reg inc_4096, inc_32, rst_4096, rst_32;
 
   
@@ -120,6 +125,8 @@ end
 always_ff @(posedge clk or negedge rst_n) begin
     if(!rst_n) 
 		state <= IDLE;
+	else if (~go)
+		state <= IDLE;    /////////////////////////////////////////STUPID!!!!!!!
     else
 		state <= next_state;
 end
@@ -156,6 +163,22 @@ always_ff @(posedge clk or negedge rst_n) begin
 
 
   
+//Counter for int_dec
+always_ff @(posedge clk or negedge rst_n) begin
+  if(!rst_n) begin
+     int_dec <= 2'b00;
+  end else if(rst_int_dec) begin
+     int_dec <= 0;
+  end else if(inc_int_dec)begin
+     int_dec <= int_dec + 2'b01;
+  end
+end
+
+
+
+
+
+
 //Counter 4096
 always_ff @(posedge clk or negedge rst_n) begin
   if(!rst_n) begin
@@ -215,6 +238,9 @@ always_comb begin
 	rst_chnnl = 0;
 	next_state = state;
 	strt_cnv = 0;
+
+	rst_int_dec = 0;
+    inc_int_dec = 0; 
 
 	case(state)
 		
@@ -346,7 +372,10 @@ always_comb begin
 			src1sel = 3'b011; //ErrDiv22Src1
 			src0sel = 3'b001; //Intgrl2Src0
 			saturate = 1;
-			dst2Int = 1;
+
+			inc_int_dec = 1;
+			dst2Int = &int_dec;
+			
 			next_state = ITERM;
 
 		end
@@ -415,6 +444,8 @@ always_comb begin
 		end
 		
 		default: begin //IDLE state
+			// Reset channel counter:
+			rst_chnnl = 1;
 
 			if (chnnl_counter == 0) begin
 				// Should clear accum

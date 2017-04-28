@@ -31,7 +31,7 @@ localparam DONE =  2'b10;
 
 
 logic load, inc_count, shift, update_rd_data;
-logic [4:0] bit_counter;
+logic [5:0] bit_counter;
 
 
 assign MOSI = shift_reg[15];
@@ -116,25 +116,25 @@ always_comb begin
 	  	  inc_count = 1;  // start incrementing the count for 32
 	  	  SS_n = 0;
 
-        if (bit_counter == 5'd16) begin // used to be 16 see how it goes
-          next_state = DONE;
-          update_rd_data = 1;
-        //bit_counter = 5'd0; // Reset for new round
-        //done = 1;
+        if (bit_counter == 6'd32) begin // used to be 16 see how it goes
+            next_state = DONE;
+            update_rd_data = 1;
+            //bit_counter = 5'd0; // Reset for new round
+            //done = 1;
 		   end
 
 			if (shift_counter == 5'h1F) begin  // Count 32 CLK for 1 SCLK 
 				
-				// we always shift
-				shift = 1;  // bit counter will also increment
+          // we always shift
+          shift = 1;  // bit counter will also increment
 			end
 	  end
 
 	  DONE: begin
-	  	  	SS_n = 1;
-			//rd_data = shift_reg;
+        SS_n = 1;
+			  //rd_data = shift_reg;
 		  	done = 1;
-			next_state = IDLE;
+			  next_state = IDLE;
 	  end
 	  endcase
 end
