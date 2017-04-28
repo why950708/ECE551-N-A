@@ -3,30 +3,93 @@ module  motion_cntrl_tb();
 
   logic clk, rst_n; 
   
-  logic go, cnv_cmplt, start_conv, IR_in_en, IR_mid_en, IR_out_en;
+  logic go, cnv_cmplt, strt_cnv, IR_in_en, IR_mid_en, IR_out_en;
   
   logic [10:0] lft, rht;
   logic [11:0]   A2D_res;  
   logic [2:0] chnnl;
   logic [7:0] LEDs;
     
-    motion_cntrl iDut(.go(go), .cnv_cmplt(cnv_cmplt), .A2D_res(A2D_res), .start_conv(start_conv), .chnnl(chnnl), .IR_in_en(IR_in_en), 
+    motion_cntrl iDUT(.go(go), .cnv_cmplt(cnv_cmplt), .A2D_res(A2D_res), .strt_cnv(strt_cnv), .chnnl(chnnl), .IR_in_en(IR_in_en), 
                     .IR_mid_en(IR_mid_en), .IR_out_en(IR_out_en), .LEDs(LEDs), .lft(lft), .rht(rht), .clk(clk), .rst_n(rst_n)
 );
-  
+
+
+
 initial begin
 		clk = 0;
 		rst_n = 1'b0;
 
 		go = 1'b0;
 		cnv_cmplt = 1'b0;
-		A2D_res = 12'b0;
+		A2D_res = 12'b010101010110;
 		@(posedge clk) rst_n = 1'b1;      // make rst_n low for a clk cycle
 
 		///////////////read IR_in(chnnl 1, then chnnl 0)////////////////////
 		go = 1'b1;
 
+		@(posedge strt_cnv);
+		repeat (3) @(posedge clk);
+		cnv_cmplt = 1;
+		repeat (2) @(posedge clk);
+		cnv_cmplt = 0;
 
+
+
+		@(posedge strt_cnv);
+		repeat (3) @(posedge clk);
+		cnv_cmplt = 1;
+		A2D_res = 12'b01010000110;
+		repeat (2) @(posedge clk);
+		cnv_cmplt = 0;
+
+
+
+		@(posedge strt_cnv);
+		repeat (3) @(posedge clk);
+		cnv_cmplt = 1;
+		repeat (2) @(posedge clk);
+		cnv_cmplt = 0;
+
+
+
+		@(posedge strt_cnv);
+		repeat (3) @(posedge clk);
+		cnv_cmplt = 1;
+		repeat (2) @(posedge clk);
+		cnv_cmplt = 0;
+	
+	
+		@(posedge strt_cnv);
+		repeat (3) @(posedge clk);
+		cnv_cmplt = 1;
+		A2D_res = 12'b01010000110;
+		repeat (2) @(posedge clk);
+		cnv_cmplt = 0;
+
+
+		@(posedge strt_cnv);
+		repeat (3) @(posedge clk);
+		cnv_cmplt = 1;
+		A2D_res = 12'b01010000110;
+		repeat (2) @(posedge clk);
+		cnv_cmplt = 0;
+
+		repeat (50) @(posedge clk);
+		$stop;
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
 		// #4 go = 1'b0;                      // assert go for a clk cycle
 		@(posedge clk);
 
@@ -210,7 +273,7 @@ initial begin
 		$stop;
  
     
-    
+    */
     
 
   end

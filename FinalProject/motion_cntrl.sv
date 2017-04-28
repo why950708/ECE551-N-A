@@ -168,7 +168,7 @@ always_ff @(posedge clk or negedge rst_n) begin
   if(!rst_n) begin
      int_dec <= 2'b00;
   end else if(rst_int_dec) begin
-     int_dec <= 0;
+     int_dec <= 2'b00;
   end else if(inc_int_dec)begin
      int_dec <= int_dec + 2'b01;
   end
@@ -389,6 +389,9 @@ always_comb begin
 		end
 		
 		ITERM_WAIT: begin
+			src1sel  = 3'b001;  // Iterm
+			src0sel  = 3'b001;  // Intgrl
+			multiply = 1;
 			dst2Icmp = 1;
 			next_state = PTERM;
 		end  
@@ -398,11 +401,14 @@ always_comb begin
 			src0sel = 3'b100; //Pterm2Src0
 			multiply = 1;		
 
-			dst2Pcmp = 1;
+			//dst2Pcmp = 1;
 			next_state = PTERM_WAIT;
 		end
 		
 		PTERM_WAIT: begin
+			src1sel = 3'b010; //Err2Src1		
+			src0sel = 3'b100; //Pterm2Src0
+			multiply = 1;	
 			dst2Pcmp = 1;
 			next_state = MRT_R1;
 		end
