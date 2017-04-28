@@ -41,28 +41,25 @@ state_t state, next_state;
 
     
 //12500
-reg [13:0] counter; 
+reg [12:0] counter; 
       
 // Logic for the buzz counter:
   always_ff @(posedge clk, negedge rst_n) begin
-    if(~rst_n) begin 
-    	counter <= 13'd12500;
-      	buzz <= 0;
-    end 
-    else begin
-      buzz <= 0;
-      if (en) begin
-          counter <= counter - 1;
-      end
-      else if (counter == 0) begin // reset the counter 
-      		counter <= 13'd12500;  
-        	buzz <= 1; // 
-       
-      end
-      else begin
-          counter <= counter; //  
-      end
-    end
+        if(~rst_n) begin 
+            counter <= 13'd6250;
+            buzz <= 0;
+        end 
+        else begin
+        //buzz <= 0;
+            if (en) begin
+                counter <= counter - 1;
+            end
+            
+            if (counter == 0) begin // reset the counter 
+                    counter <= 13'd6250;  
+                    buzz <= ~buzz; // 
+            end
+        end
   end
     
 // Logic for dest_ID flip flop
