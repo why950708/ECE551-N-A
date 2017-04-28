@@ -52,7 +52,7 @@ reg [12:0] counter;
         else begin
         //buzz <= 0;
             if (en) begin
-                counter <= counter - 1;
+                counter <= counter - 1'd1;
             end
             
             if (counter == 0) begin // reset the counter 

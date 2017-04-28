@@ -26,7 +26,6 @@ output logic ID_vld;
 
   reg rst_bit_cnt;
 
-	wire falling_edge, timing_counter_time_out;  // Created to eliminate implicit wire
 // State assignment
   typedef enum reg[2:0]{IDLE, TIMING, SAMPLING, IDLE2, DONE} state_t;
 state_t state, next_state;
@@ -51,17 +50,17 @@ state_t state, next_state;
   
   
 //Bit count counter
-  assign bit_counter_val = (rst_bit_cnt) ? 1'b0:
-                            (shift)? bit_cnt + 1'b1 : 
+  assign bit_counter_val = (rst_bit_cnt) ? 0:
+                            (shift)? bit_cnt + 1 : 
                             bit_cnt;
 
 //Capture the duration for each period
-  assign duration_counter_val =   (rst_duration_cnt) ? 1'b0 :
-                                  (duration_cnt_start) ? duration_cnt + 1'b1 : 
+  assign duration_counter_val =   (rst_duration_cnt) ? 0 :
+                                  (duration_cnt_start) ? duration_cnt + 1 : 
                                   duration_cnt;
   
 //count for the captured period
-  assign timing_counter_val = (reset_timing_counter) ? (duration_cnt >> 1) : timing_cnt - 1'b1;
+  assign timing_counter_val = (reset_timing_counter) ? (duration_cnt >> 1) : timing_cnt - 1;
   
 //Shift logic
   assign shift_reg_val =  (shift) ? {shift_reg[6:0], reg2} : shift_reg;

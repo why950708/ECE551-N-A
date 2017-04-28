@@ -262,8 +262,8 @@ always_comb begin
 					next_state = MID_R;
 				else if(chnnl_counter == 3'd4) 
 					next_state =  OUTER_R;
-				else 
-					$stop ("Should have not happened");
+				//else 
+				//	$stop ("Should have not happened");
 
 			end
 		end
@@ -324,9 +324,9 @@ always_comb begin
 				else if(chnnl_counter == 5)begin
 					next_state = OUTER_L;
 				end
-				else begin
-					$stop ("Should have not happened");
-				end
+				//else begin
+				//	$stop ("Should have not happened");
+				//end
 			end	
 		end
 		

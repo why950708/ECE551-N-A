@@ -2,3 +2,4 @@
 *.rpt
 FinalProject/Follower.map.smsg
 *.summary
+/FinalProject/incremental_db/*
