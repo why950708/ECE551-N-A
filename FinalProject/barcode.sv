@@ -22,6 +22,7 @@ output logic ID_vld;
   wire [7:0] shift_reg_val;
   reg  [7:0] shift_reg;
   
+  reg rst_duration_cnt;
 // State assignment
   typedef enum reg[2:0]{IDLE, TIMING, SAMPLING, IDLE2, DONE} state_t;
 state_t state, next_state;
@@ -49,7 +50,9 @@ state_t state, next_state;
   assign bit_counter_val = (shift)? bit_cnt + 1: bit_cnt;
 
 //Capture the duration for each period
-  assign duration_counter_val = (duration_cnt_start) ? duration_cnt + 1 : duration_cnt;
+  assign duration_counter_val =   (rst_duration_cnt) ? 0 :
+                                  (duration_cnt_start) ? duration_cnt + 1 : 
+                                  duration_cnt;
   
 //count for the captured period
   assign timing_counter_val = (reset_timing_counter) ? (duration_cnt >> 1) : timing_cnt - 1;
@@ -108,10 +111,13 @@ always_comb begin
   duration_cnt_start = 0;
   shift = 0;
   reset_timing_counter = 0;
+  rst_duration_cnt = 0;
   case(state)
       IDLE: begin
-          if(falling_edge) 
+          if(falling_edge) begin
             next_state = TIMING;
+            rst_duration_cnt = 1;
+          end
         end
         
       TIMING: begin
