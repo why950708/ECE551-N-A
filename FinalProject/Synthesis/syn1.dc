@@ -14,26 +14,26 @@
 
 read_file –format verilog { \
 ############ Top Module ############
-follower.v \
+../follower.v \
 
 ############ First Layer ############
-digcore.sv UART_rcv.sv motor_cntrl.sv barcode.sv A2D_intf \
+../digcore.sv ../UART_rcv.sv ../motor_cntrl.sv ../barcode.sv ../A2D_intf \
 
 ############ digcore ############
-cmd_cntrl.sv motion_cntrl.sv \
+../cmd_cntrl.sv ../motion_cntrl.sv \
 
 ############ motor_cntrl ############
-pwm.sv \
+../pwm.sv \
 
 ############ A2D_intf ############
-SPI_mstr16.sv \
+../SPI_mstr16.sv \
 
 ############ motion_cntrl ############
-pwm_8.sv alu.sv \
+../pwm_8.sv ../alu.sv \
 
 
 ############ Maybe needed for test ############
-buzz_cntr.v rise_edge_detector.v \
+../buzz_cntr.v ../rise_edge_detector.v \
 
 }
 
@@ -94,7 +94,7 @@ set_wire_load_model –name TSMC32K_Lowk_Conservative \
 
 set_max_transisiton 0.1 [current_design]
 
-
+set_clock_uncertainty 0.15 clk
 
 
 ###########
