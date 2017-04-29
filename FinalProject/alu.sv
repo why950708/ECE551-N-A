@@ -52,7 +52,7 @@ assign src1 = (src1sel == Accum2Src1)?   Accum:
               (src1sel == Iterm2Src1)?   {4'b0000, Iterm}:
               (src1sel == Err2Src1)?     {{4{Error[11]}}, Error}:
               (src1sel == ErrDiv22Src1)? {{8{Error[11]}},Error[11:4]}:
-              (src1sel == Fwd2Src1)?     {4'b0000,Fwd}: 
+              (src1sel == Fwd2Src1)?     {4'b0000,Fwd}:
               {1'b0};
 
 
@@ -61,12 +61,12 @@ assign src0 = (src0sel == A2D2Src0)?     {4'b0000,A2D_res}:
               (src0sel == Intgrl2Src0)?  {{4{Intgrl[11]}},Intgrl}:
               (src0sel == Icomp2Src0)?   {{4{Icomp[11]}},Icomp}:
               (src0sel == Pcomp2Src0)?   Pcomp:
-              (src0sel == Pterm2Src0)?   {2'b00,Pterm}: 
+              (src0sel == Pterm2Src0)?   {2'b00,Pterm}:
               {1'b0};
 
 
 // Temporary scaled, but haven't deal with sub
-assign scaled_temp = mult2? {src0[14:0], 1'b0} : 
+assign scaled_temp = mult2? {src0[14:0], 1'b0} :
                      mult4? {src0[13:0], 1'b0, 1'b0} :
                      src0;
 
@@ -80,8 +80,8 @@ assign adder = src1 + scaled_src0 + sub;
 
 
 // Saturate module for adder
-assign saturated = (~saturate)? adder:  
-                    (adder[15])? 
+assign saturated = (~saturate)? adder:
+                    (adder[15])?
                         ( (adder < 16'hF800)? 16'hF800: adder ) :
 
                         ( (adder > 16'h07FF)? 16'h07FF: adder);
@@ -90,11 +90,11 @@ assign saturated = (~saturate)? adder:
 assign signed_scaled_src0 = scaled_src0[14:0];
 assign signed_src1 = src1[14:0];
 
-assign signedMultiplyResult = signed_scaled_src0 * signed_src1; 
+assign signedMultiplyResult = signed_scaled_src0 * signed_src1;
 
 // Saturate module for multiply module
-            
-assign multiplySaturated = (signedMultiplyResult[29] )? 
+
+assign multiplySaturated = (signedMultiplyResult[29] )?
                         // This is negative
                         ( (~&signedMultiplyResult[28:26] )? 16'hC000: signedMultiplyResult[27:12] ) :
                         // It's positive, or all the bits to check if its all 0
