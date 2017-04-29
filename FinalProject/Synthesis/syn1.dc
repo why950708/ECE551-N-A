@@ -28,16 +28,23 @@ read_file -format sverilog {\
 set current_design Follower
 
 
-############################################################
-# write out our resulting gate level netlist as a .vg file #
-############################################################
-write -format verilog Follower -output follower.vg
-
 
 ################################
 # constraining the 50mhz clock #
 ################################
 create_clock -name “clk” -period 20 -waveform {0 1} {clk}
+
+
+######### Stop the Synopsys to buffer up the timer #########
+set_dont_touch_network [find port clk]
+
+compile -map_effort medium
+
+
+############################################################
+# write out our resulting gate level netlist as a .vg file #
+############################################################
+write -format verilog Follower -output follower.vg
 
 
 ################################
@@ -49,15 +56,13 @@ set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
 
 set_input_delay -clock clk 0.5 $prim_inputs
 
-######### Stop the Synopsys to buffer up the timer #########
-set_dont_touch_network [find port clk]
 
 
 ################################
 # Set the input drive strength #
 ################################
 set_driving_cell -lib_cell ND2D2BWP -from_pin A1 -library\
-tcbn40lpbwptc $prim_inputs
+ tcbn40lpbwptc $prim_inputs
 
 ############### Seperately deal with rst_n ###############
 set_drive 0.1 rst_n
