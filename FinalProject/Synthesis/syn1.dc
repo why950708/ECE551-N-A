@@ -6,36 +6,20 @@
 
 
 
-
+cd  ../
 ###################################
 # Read in the verilog files first #
 ###################################
 
+read_file -format sverilog {\
+ follower.v\
+ dig_core.sv UART_rcv.sv motor_cntrl.sv barcode.sv A2D_intf.sv\
+ cmd_cntrl.sv motion_cntrl.sv\
+ pwm.sv\
+ SPI_mstr16.sv\
+ pwm8.sv alu.sv\
+ rise_edge_detector.v}
 
-read_file –format verilog { \
-############ Top Module ############
-../follower.v \
-
-############ First Layer ############
-../digcore.sv ../UART_rcv.sv ../motor_cntrl.sv ../barcode.sv ../A2D_intf \
-
-############ digcore ############
-../cmd_cntrl.sv ../motion_cntrl.sv \
-
-############ motor_cntrl ############
-../pwm.sv \
-
-############ A2D_intf ############
-../SPI_mstr16.sv \
-
-############ motion_cntrl ############
-../pwm_8.sv ../alu.sv \
-
-
-############ Maybe needed for test ############
-../buzz_cntr.v ../rise_edge_detector.v \
-
-}
 
 
 #################################################
@@ -47,32 +31,32 @@ set current_design Follower
 ############################################################
 # write out our resulting gate level netlist as a .vg file #
 ############################################################
-write –format verilog commMod –output follower.vg
+write -format verilog Follower -output follower.vg
 
 
 ################################
 # constraining the 50mhz clock #
 ################################
-create_clock –name “clk” –period 20 –waveform {0 1} {clk}
+create_clock -name “clk” -period 20 -waveform {0 1} {clk}
 
-######### Stop the Synopsys to buffer up the timer #########
-set_dont_touch_network [find port clk]
 
 ################################
 # Set the input delay          #
 ################################
 ############### Do not mess with the CLK ###############
-set prim_inputs [remove_from_collection [all_inputs]\
-[find port clk]]
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
 
-set_input_delay –clock clk 0.5 $prim_inputs
 
+set_input_delay -clock clk 0.5 $prim_inputs
+
+######### Stop the Synopsys to buffer up the timer #########
+set_dont_touch_network [find port clk]
 
 
 ################################
 # Set the input drive strength #
 ################################
-set_driving_cell –lib_cell AO33D0BWP –from_pin A1 –library\
+set_driving_cell -lib_cell ND2D2BWP -from_pin A1 -library\
 tcbn40lpbwptc $prim_inputs
 
 ############### Seperately deal with rst_n ###############
@@ -81,7 +65,7 @@ set_drive 0.1 rst_n
 #####################################
 # Set the output delay and strength #
 #####################################
-set_output_delay –clock clk 0.5 [all_outputs]
+set_output_delay -clock clk 0.5 [all_outputs]
 set_load 0.1 [all_outputs]
 
 
@@ -89,8 +73,8 @@ set_load 0.1 [all_outputs]
 ######################
 # Set the wire and transitiondelay #
 ######################
-set_wire_load_model –name TSMC32K_Lowk_Conservative \
-–library tcbn40lpbwptc
+set_wire_load_model -name TSMC32K_Lowk_Conservative \
+-library tcbn40lpbwptc
 
 set_max_transisiton 0.1 [current_design]
 
@@ -100,6 +84,6 @@ set_clock_uncertainty 0.15 clk
 ###########
 # Results #
 ###########
-report_timing –delay min
-report_timing –delay max
+report_timing -delay min
+report_timing -delay max
 report_area
