@@ -1,0 +1,162 @@
+/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/dig_core.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/dig_core.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module dig_core
+
+Top level modules:
+	dig_core
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/UART_rcv.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/UART_rcv.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module uart_rcv
+
+Top level modules:
+	uart_rcv
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/barcode_mimic.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/barcode_mimic.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module barcode_mimic
+
+Top level modules:
+	barcode_mimic
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/cmd_cntrl.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/cmd_cntrl.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module cmd_cntrl
+
+Top level modules:
+	cmd_cntrl
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/Synthesis/follower.vg {1 {vlog -work final -vopt -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/Synthesis/follower.vg
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module Follower
+
+Top level modules:
+	Follower
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/UART_tx.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/UART_tx.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module uart_tx
+
+Top level modules:
+	uart_tx
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/A2D_intf.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/A2D_intf.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module A2D_intf
+
+Top level modules:
+	A2D_intf
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas.v {1 {vlog -work final -vopt -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module duty_meas
+
+Top level modules:
+	duty_meas
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_cntrl.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_cntrl.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module motion_cntrl
+
+Top level modules:
+	motion_cntrl
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/reset_synch.v {1 {vlog -work final -vopt -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/reset_synch.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module reset_synch
+
+Top level modules:
+	reset_synch
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/pwm8.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/pwm8.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module pwm_8
+
+Top level modules:
+	pwm_8
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/pwm.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/pwm.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module pwm
+
+Top level modules:
+	pwm
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_contrl_tb-yliu.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_contrl_tb-yliu.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module motion_cntrl_tb_2
+
+Top level modules:
+	motion_cntrl_tb_2
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/rise_edge_detector.v {1 {vlog -work final -vopt -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/rise_edge_detector.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module rise_edge_detector
+
+Top level modules:
+	rise_edge_detector
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_cntrl_tb.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_cntrl_tb.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module motion_cntrl_tb
+
+Top level modules:
+	motion_cntrl_tb
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/buzz_cntr.v {1 {vlog -work final -vopt -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/buzz_cntr.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module buzz_counter
+
+Top level modules:
+	buzz_counter
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/Tests/Test2/follower_tb.v {1 {vlog -work final -vopt -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/Tests/Test2/follower_tb.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module Follower_tb
+
+Top level modules:
+	Follower_tb
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/SPI_mstr16.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/SPI_mstr16.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module SPI_mstr
+
+Top level modules:
+	SPI_mstr
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/barcode.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/barcode.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module barcode
+
+Top level modules:
+	barcode
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas8.v {1 {vlog -work final -vopt -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas8.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module duty_meas8
+
+Top level modules:
+	duty_meas8
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/ADC128S_opt2.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/ADC128S_opt2.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module ADC128S
+
+Top level modules:
+	ADC128S
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/alu.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/alu.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module alu
+
+Top level modules:
+	alu
+
+} {} {}} /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motor_cntrl.sv {1 {vlog -work final -vopt -sv -stats=none /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motor_cntrl.sv
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  2 2014
+-- Compiling module motor_cntrl
+
+Top level modules:
+	motor_cntrl
+
+} {} {}}

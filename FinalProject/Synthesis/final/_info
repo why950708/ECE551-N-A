@@ -1,0 +1,519 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/userspace/h/hongyi/ece551
+vA2D_intf
+Z0 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+Z1 !s110 1493504667
+!i10b 1
+!s100 ?iD200HkOMQE3K;a5L78m3
+IJjhmh2[5zCe66[lM>8U@71
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 A2D_intf_sv_unit
+S1
+Z3 d/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/Synthesis
+Z4 w1493391682
+8../A2D_intf.sv
+F../A2D_intf.sv
+L0 1
+Z5 OL;L;10.4c_3;61
+r1
+!s85 0
+31
+Z6 !s108 1493504667.000000
+Z7 !s107 follower_tb.v}|../rise_edge_detector.v|../alu.svd|../pwm8.sv|../SPI_mstr16.sv|../pwm.sv|../motion_cntrl.sv|../cmd_cntrl.sv|../A2D_intf.sv|../barcode.sv|../motor_cntrl.sv|../UART_rcv.sv|../dig_core.sv|../follower.v|
+Z8 !s90 -work|final|../follower.v|../dig_core.sv|../UART_rcv.sv|../motor_cntrl.sv|../barcode.sv|../A2D_intf.sv|../cmd_cntrl.sv|../motion_cntrl.sv|../pwm.sv|../SPI_mstr16.sv|../pwm8.sv|../alu.svd|../rise_edge_detector.v|follower_tb.v}|
+!i113 1
+Z9 o-work final -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+n@a2@d_intf
+vADC128S
+R0
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 A0Uhj_lB_Vl]HM<2?[FYo2
+I`B=Gil3YeTZa;QQidA>`T0
+!s105 ADC128S_opt2_sv_unit
+S1
+R3
+R4
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/ADC128S_opt2.sv
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/ADC128S_opt2.sv
+L0 1
+Z10 OL;L;10.4;61
+!s108 1493504378.541231
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/ADC128S_opt2.sv|
+!s90 -reportprogress|300|-work|final|-vopt|-sv|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/ADC128S_opt2.sv|
+!i113 0
+Z11 o-work final -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+n@a@d@c128@s
+valu
+R0
+!s110 1493504378
+!i10b 1
+!s100 2l:A[NmO=8BzAmeQ?z_1i3
+IkGSoad;njZnio@R@^<I<81
+R2
+!s105 alu_sv_unit
+S1
+R3
+Z12 w1493426949
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/alu.sv
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/alu.sv
+L0 1
+R10
+r1
+!s85 0
+31
+!s108 1493504378.858083
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/alu.sv|
+!s90 -reportprogress|300|-work|final|-vopt|-sv|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/alu.sv|
+!i113 0
+R11
+vbarcode
+R0
+R1
+!i10b 1
+!s100 ?5BAc:1L:F[Z30cK>gHc70
+I:2b<Ni`a3F2d0jcaXdAfW3
+R2
+!s105 barcode_sv_unit
+S1
+R3
+R12
+8../barcode.sv
+F../barcode.sv
+L0 2
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+vbarcode_mimic
+R0
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 6QZdU^13EYC2eA`YI9LFH1
+IFCzSjSbHA^HWdGeS=[RSY1
+!s105 barcode_mimic_sv_unit
+S1
+R3
+Z13 w1493391683
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/barcode_mimic.sv
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/barcode_mimic.sv
+L0 1
+R10
+!s108 1493504379.466570
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/barcode_mimic.sv|
+!s90 -reportprogress|300|-work|final|-vopt|-sv|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/barcode_mimic.sv|
+!i113 0
+R11
+vbuzz_counter
+!s110 1493504379
+!i10b 1
+!s100 ]`Sgj?z:769LiYji_ODmc2
+IC`a^h1bPOd>P3NE:nQWhB3
+R2
+R3
+R13
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/buzz_cntr.v
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/buzz_cntr.v
+L0 1
+R10
+r1
+!s85 0
+31
+!s108 1493504379.791106
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/buzz_cntr.v|
+!s90 -reportprogress|300|-work|final|-vopt|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/buzz_cntr.v|
+!i113 0
+R9
+vcmd_cntrl
+R0
+R1
+!i10b 1
+!s100 YVe`d5P?QK8`Ql;0[Tih>2
+I7oFFSZ]cJ053>MfAJ7<=F2
+R2
+!s105 cmd_cntrl_sv_unit
+S1
+R3
+R12
+8../cmd_cntrl.sv
+F../cmd_cntrl.sv
+L0 2
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+vdig_core
+R0
+R1
+!i10b 1
+!s100 OVCDAX@cTQb`6ko7mlO_k0
+IIFjcFh@bU@73WLB6<SNM>3
+R2
+!s105 dig_core_sv_unit
+S1
+R3
+R13
+8../dig_core.sv
+F../dig_core.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+vduty_meas
+!s110 1493504380
+!i10b 1
+!s100 OIVAW7b8^ThbcSU1`g@]?0
+IzY]]LUQ]:[16^BC^PFE_22
+R2
+R3
+R13
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas.v
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas.v
+L0 1
+R10
+r1
+!s85 0
+31
+!s108 1493504380.718318
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas.v|
+!s90 -reportprogress|300|-work|final|-vopt|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas.v|
+!i113 0
+R9
+vduty_meas8
+Z14 !s110 1493504381
+!i10b 1
+!s100 Y<V<FDLQPaQBzc27cNzBB2
+IiT0^LXR7j33DUg^L7Z=Z<1
+R2
+R3
+R13
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas8.v
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas8.v
+L0 1
+R10
+r1
+!s85 0
+31
+!s108 1493504380.990387
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas8.v|
+!s90 -reportprogress|300|-work|final|-vopt|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/duty_meas8.v|
+!i113 0
+R9
+vFollower
+R1
+!i10b 1
+!s100 <e3MdMjXQ6jobn7<EKW5Q0
+IiKdo_z2gm^^LHCgTSN4l[0
+R2
+R3
+R12
+8../follower.v
+F../follower.v
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+n@follower
+vFollower_tb
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 7JCJA?CE89NHk>oB<9PRZ3
+InUNl6EfbCK^kRELVM_l5R2
+R3
+R4
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/Tests/Test2/follower_tb.v
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/Tests/Test2/follower_tb.v
+L0 1
+R10
+!s108 1493504385.825303
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/Tests/Test2/follower_tb.v|
+!s90 -reportprogress|300|-work|final|-vopt|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/Tests/Test2/follower_tb.v|
+!i113 0
+R9
+n@follower_tb
+vmotion_cntrl
+R0
+R1
+!i10b 1
+!s100 L1IZJ7]]XCi8>oCL0c][g2
+IX9lJ`_LSUBKgZId:l05Z@2
+R2
+!s105 motion_cntrl_sv_unit
+S1
+R3
+R12
+8../motion_cntrl.sv
+F../motion_cntrl.sv
+L0 9
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+vmotion_cntrl_tb
+R0
+R14
+!i10b 1
+!s100 ?`V@=cFGJ];FmY9oa[li^1
+Igd:8K@551^VNc2Sma93^^1
+R2
+!s105 motion_cntrl_tb_sv_unit
+S1
+R3
+R13
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_cntrl_tb.sv
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_cntrl_tb.sv
+L0 1
+R10
+r1
+!s85 0
+31
+!s108 1493504381.689192
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_cntrl_tb.sv|
+!s90 -reportprogress|300|-work|final|-vopt|-sv|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_cntrl_tb.sv|
+!i113 0
+R11
+vmotion_cntrl_tb_2
+R0
+!s110 1493504382
+!i10b 1
+!s100 9D^<bW__k<_0kfB=TcX6f0
+IXeKUALOlY_]a;Oc5ETmli3
+R2
+!s105 motion_contrl_tb2dyliu_sv_unit
+S1
+R3
+R13
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_contrl_tb-yliu.sv
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_contrl_tb-yliu.sv
+L0 16
+R10
+r1
+!s85 0
+31
+!s108 1493504382.043259
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_contrl_tb-yliu.sv|
+!s90 -reportprogress|300|-work|final|-vopt|-sv|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/motion_contrl_tb-yliu.sv|
+!i113 0
+R11
+vmotor_cntrl
+R0
+R1
+!i10b 1
+!s100 UXbXeT<<`B6Rn?T_2:C3L1
+I_UDdOhRlDm6]RzOSz:;cM1
+R2
+!s105 motor_cntrl_sv_unit
+S1
+R3
+R12
+8../motor_cntrl.sv
+F../motor_cntrl.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+vpwm
+R0
+R1
+!i10b 1
+!s100 :F1MC]TA>55Ka29f3>2ia1
+ICMB5NPWWb=aNc`o<@:VHd3
+R2
+!s105 pwm_sv_unit
+S1
+R3
+R12
+8../pwm.sv
+F../pwm.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+vpwm_8
+R0
+R1
+!i10b 1
+!s100 V9WJ48?8a[YK9>46A?X@e3
+Iaaa:O7Zj=jg>5WX:dWAnM3
+R2
+!s105 pwm8_sv_unit
+S1
+R3
+R12
+8../pwm8.sv
+F../pwm8.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+vreset_synch
+Z15 !s110 1493504383
+!i10b 1
+!s100 Ve<b<hiljag[3lKKgLOX[3
+IBJ<8O1BbM2c;TgD8GQmH23
+R2
+R3
+R13
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/reset_synch.v
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/reset_synch.v
+L0 1
+R10
+r1
+!s85 0
+31
+!s108 1493504383.404091
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/reset_synch.v|
+!s90 -reportprogress|300|-work|final|-vopt|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/reset_synch.v|
+!i113 0
+R9
+vrise_edge_detector
+R15
+!i10b 1
+!s100 JnS1<2d?HVGX]:;Gj9An41
+IDPdiQoM>2ShQc=oFd?z0z3
+R2
+R3
+R13
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/rise_edge_detector.v
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/rise_edge_detector.v
+L0 1
+R10
+r1
+!s85 0
+31
+!s108 1493504383.684597
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/rise_edge_detector.v|
+!s90 -reportprogress|300|-work|final|-vopt|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/rise_edge_detector.v|
+!i113 0
+R9
+vSPI_mstr
+R0
+R1
+!i10b 1
+!s100 aAPVGiZgzm;l[R7Eg92Q61
+IW>3_zOeiTcm=0Cl;P08`m3
+R2
+!s105 SPI_mstr16_sv_unit
+S1
+R3
+R12
+8../SPI_mstr16.sv
+F../SPI_mstr16.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+n@s@p@i_mstr
+vuart_rcv
+R0
+R1
+!i10b 1
+!s100 HP=nML6`@LQPIVFBFef3T1
+I@ccP9SoR1kOj[7zWBWmKY1
+R2
+!s105 UART_rcv_sv_unit
+S1
+R3
+R12
+8../UART_rcv.sv
+F../UART_rcv.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+vuart_tx
+R0
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 BHBXMj@>7`XaDPZ_O0l_80
+IFQ3eJD0d84efk66SO;=jF1
+!s105 UART_tx_sv_unit
+S1
+R3
+R4
+8/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/UART_tx.sv
+F/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/UART_tx.sv
+L0 1
+R10
+!s108 1493504384.783848
+!s107 /userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/UART_tx.sv|
+!s90 -reportprogress|300|-work|final|-vopt|-sv|-stats=none|/userspace/h/hongyi/ece551/final/ECE551-N-A/FinalProject/UART_tx.sv|
+!i113 0
+R11
