@@ -1,0 +1,7 @@
+
+State Machine - |follower|uart_rcv:iCMD|state
+Name state.CLR state.RECEVING state.LOAD state.IDLE 
+state.IDLE 0 0 0 0 
+state.LOAD 0 0 1 1 
+state.RECEVING 0 1 0 1 
+state.CLR 1 0 0 1 

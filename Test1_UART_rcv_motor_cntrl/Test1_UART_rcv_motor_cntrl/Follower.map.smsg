@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at follower.v(6): object "RST_n" differs only in case from object "rst_n" in the same scope File: D:/Dropbox/ECE551/ECE551-N-A/Test1_UART_rcv_motor_cntrl/Test1_UART_rcv_motor_cntrl/follower.v Line: 6
+Info (10281): Verilog HDL Declaration information at uart_tx.v(6): object "tx" differs only in case from object "TX" in the same scope File: D:/Dropbox/ECE551/ECE551-N-A/Test1_UART_rcv_motor_cntrl/Test1_UART_rcv_motor_cntrl/uart_tx.v Line: 6
