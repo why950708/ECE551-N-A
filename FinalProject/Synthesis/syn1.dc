@@ -32,12 +32,13 @@ set current_design Follower
 ################################
 # constraining the 50mhz clock #
 ################################
-create_clock -name “clk” -period 2.5 -waveform {0 1} {clk}
+create_clock -name clk -period 2.5 -waveform {0 1} {clk}
 
 
 ######### Stop the Synopsys to buffer up the timer #########
 set_dont_touch_network [find port clk]
 
+set_flatten true
 compile_ultra 
 
 
@@ -47,7 +48,6 @@ compile_ultra
 ################################
 ############### Do not mess with the CLK ###############
 set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
-
 
 set_input_delay -clock clk 0.5 $prim_inputs
 
@@ -60,7 +60,7 @@ set_driving_cell -lib_cell ND2D2BWP -from_pin A1 -library\
  tcbn40lpbwptc $prim_inputs
 
 ############### Seperately deal with rst_n ###############
-set_drive 0.1 rst_n
+set_drive 0.1 RST_n
 
 #####################################
 # Set the output delay and strength #
@@ -80,6 +80,8 @@ set_max_transition 0.15 [current_design]
 
 set_clock_uncertainty 0.1 clk
 
+set_fix_hold clk
+compile_ultra
 
 
 
