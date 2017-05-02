@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : Follower
 Version: L-2016.03
-Date   : Sun Apr 30 23:34:24 2017
+Date   : Mon May  1 23:10:28 2017
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn40lpbwptc
@@ -55,15 +55,15 @@ Report : timing
         -max_paths 1
 Design : Follower
 Version: L-2016.03
-Date   : Sun Apr 30 23:34:36 2017
+Date   : Mon May  1 23:10:44 2017
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn40lpbwptc
 Wire Load Model Mode: segmented
 
-  Startpoint: iCORE/iMTN/state_reg[2]
+  Startpoint: iCORE/iMTN/state_reg[4]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: iCORE/iMTN/Accum_reg[9]
+  Endpoint: iCORE/iMTN/Pcomp_reg[11]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -77,56 +77,57 @@ Wire Load Model Mode: segmented
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  iCORE/iMTN/state_reg[2]/CP (DFCNQD4BWP)                 0.00       0.00 r
-  iCORE/iMTN/state_reg[2]/Q (DFCNQD4BWP)                  0.13       0.13 f
-  U6189/ZN (NR2XD2BWP)                                    0.04       0.17 r
-  U6181/ZN (CKND4BWP)                                     0.02       0.19 f
-  U6151/Z (OR2D4BWP)                                      0.06       0.25 f
-  U6192/ZN (NR2D8BWP)                                     0.04       0.29 r
-  U6087/ZN (ND2D8BWP)                                     0.03       0.32 f
-  U6325/ZN (ND3D4BWP)                                     0.03       0.34 r
-  U6314/ZN (ND2D4BWP)                                     0.03       0.37 f
-  U7249/Z (AN2D4BWP)                                      0.05       0.42 f
-  U6303/ZN (NR2D8BWP)                                     0.04       0.46 r
-  U6302/ZN (CKND2D8BWP)                                   0.05       0.51 f
-  U7588/ZN (OAI221D4BWP)                                  0.13       0.64 r
-  U7405/ZN (CKND0BWP)                                     0.04       0.68 f
-  U6120/ZN (NR2D0BWP)                                     0.07       0.75 r
-  U7257/ZN (XNR2D0BWP)                                    0.08       0.83 r
-  U6078/ZN (ND2D2BWP)                                     0.04       0.87 f
-  U6001/ZN (NR2D1BWP)                                     0.08       0.94 r
-  U6227/ZN (CKND0BWP)                                     0.06       1.01 f
-  U6452/Z (CKAN2D0BWP)                                    0.09       1.10 f
-  U7275/ZN (XNR3D4BWP)                                    0.16       1.26 f
-  U6450/ZN (NR2XD1BWP)                                    0.04       1.30 r
-  U5683/ZN (CKND2BWP)                                     0.02       1.32 f
-  U6210/ZN (AOI22D2BWP)                                   0.07       1.40 r
-  U6011/ZN (NR2D2BWP)                                     0.04       1.44 f
-  U6042/ZN (NR3D3BWP)                                     0.05       1.48 r
-  U6328/ZN (OAI32XD4BWP)                                  0.05       1.53 f
-  U4769/Z (AN2D4BWP)                                      0.04       1.57 f
-  U7749/Z (OA22D4BWP)                                     0.08       1.65 f
-  U7737/Z (AN2D4BWP)                                      0.04       1.69 f
-  U7736/ZN (OAI22D4BWP)                                   0.05       1.74 r
-  U6089/ZN (CKND4BWP)                                     0.02       1.77 f
-  U6300/ZN (AOI22D4BWP)                                   0.03       1.80 r
-  U6277/CON (FCICOND1BWP)                                 0.05       1.86 f
-  U5920/ZN (CKND2BWP)                                     0.04       1.89 r
-  U5932/CON (FCICOND1BWP)                                 0.05       1.94 f
-  U4731/ZN (IND2D2BWP)                                    0.07       2.01 f
-  U7261/ZN (IND2D4BWP)                                    0.03       2.04 r
-  U7423/ZN (IND2D1BWP)                                    0.03       2.07 f
-  U6186/Z (XOR2D1BWP)                                     0.08       2.15 r
-  U6085/ZN (NR2D1BWP)                                     0.02       2.17 f
-  U6339/Z (OA221D2BWP)                                    0.10       2.27 f
-  U6170/ZN (OAI22D0BWP)                                   0.08       2.36 r
-  iCORE/iMTN/Accum_reg[9]/D (DFCNQD1BWP)                  0.00       2.36 r
+  iCORE/iMTN/state_reg[4]/CP (DFCND4BWP)                  0.00       0.00 r
+  iCORE/iMTN/state_reg[4]/Q (DFCND4BWP)                   0.15       0.15 r
+  U7724/ZN (INVD4BWP)                                     0.04       0.19 f
+  U7697/ZN (NR3D2BWP)                                     0.06       0.25 r
+  U7691/ZN (AOI211XD2BWP)                                 0.05       0.29 f
+  U7932/ZN (OAI22D4BWP)                                   0.06       0.36 r
+  U7924/ZN (NR2XD2BWP)                                    0.04       0.39 f
+  U8087/Z (CKBD12BWP)                                     0.05       0.44 f
+  U7662/ZN (INVD16BWP)                                    0.03       0.48 r
+  U7630/ZN (OAI221XD4BWP)                                 0.07       0.55 f
+  U7563/ZN (CKND6BWP)                                     0.04       0.58 r
+  U7923/ZN (NR2D4BWP)                                     0.02       0.60 f
+  U7590/ZN (OAI32XD4BWP)                                  0.05       0.65 r
+  U8302/ZN (NR3D2BWP)                                     0.04       0.69 f
+  U7654/CON (FCICOND1BWP)                                 0.07       0.77 r
+  U7746/ZN (INVD1BWP)                                     0.04       0.80 f
+  U7767/ZN (NR2D2BWP)                                     0.05       0.85 r
+  U7906/ZN (NR3D3BWP)                                     0.04       0.89 f
+  U7917/CON (FCICOND1BWP)                                 0.07       0.96 r
+  U7910/ZN (CKND2BWP)                                     0.04       1.00 f
+  U7638/ZN (NR2D4BWP)                                     0.03       1.03 r
+  U7637/ZN (NR2XD2BWP)                                    0.02       1.05 f
+  U7649/ZN (AOI32XD4BWP)                                  0.04       1.09 r
+  U7648/ZN (CKND1BWP)                                     0.04       1.13 f
+  U7578/Z (OA221D4BWP)                                    0.09       1.22 f
+  U7998/CON (FCICOND1BWP)                                 0.07       1.28 r
+  U8914/ZN (AOI22D1BWP)                                   0.04       1.32 f
+  U7655/CON (FCICOND1BWP)                                 0.08       1.41 r
+  U7594/ZN (CKND2BWP)                                     0.05       1.45 f
+  U7817/ZN (AOI22D4BWP)                                   0.06       1.51 r
+  U7642/ZN (CKND4BWP)                                     0.03       1.54 f
+  U9333/ZN (CKND2D4BWP)                                   0.02       1.56 r
+  U7643/ZN (AOI22D2BWP)                                   0.04       1.59 f
+  U7756/CON (FCICOND1BWP)                                 0.08       1.67 r
+  U7755/ZN (CKND2BWP)                                     0.04       1.72 f
+  U8111/ZN (MAOI222D1BWP)                                 0.07       1.78 r
+  U8110/Z (AN2D2BWP)                                      0.07       1.86 r
+  U9351/ZN (OAI22D4BWP)                                   0.04       1.89 f
+  U8907/ZN (MOAI22D2BWP)                                  0.08       1.98 r
+  U7926/Z (XOR3D4BWP)                                     0.10       2.07 f
+  U9352/ZN (OAI31D4BWP)                                   0.07       2.15 r
+  U7743/Z (BUFFD4BWP)                                     0.06       2.21 r
+  U6361/ZN (OAI221XD4BWP)                                 0.07       2.28 f
+  U8682/ZN (OAI22D0BWP)                                   0.08       2.36 r
+  iCORE/iMTN/Pcomp_reg[11]/D (DFCNQD1BWP)                 0.00       2.36 r
   data arrival time                                                  2.36
 
   clock clk (rise edge)                                   2.50       2.50
   clock network delay (ideal)                             0.00       2.50
   clock uncertainty                                      -0.10       2.40
-  iCORE/iMTN/Accum_reg[9]/CP (DFCNQD1BWP)                 0.00       2.40 r
+  iCORE/iMTN/Pcomp_reg[11]/CP (DFCNQD1BWP)                0.00       2.40 r
   library setup time                                     -0.04       2.36
   data required time                                                 2.36
   --------------------------------------------------------------------------
@@ -142,7 +143,7 @@ Wire Load Model Mode: segmented
 Report : area
 Design : Follower
 Version: L-2016.03
-Date   : Sun Apr 30 23:34:49 2017
+Date   : Mon May  1 23:11:00 2017
 ****************************************
 
 Library(s) Used:
@@ -150,20 +151,20 @@ Library(s) Used:
     tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
 
 Number of ports:                           27
-Number of nets:                          2234
-Number of cells:                         2222
-Number of combinational cells:           1883
+Number of nets:                          2159
+Number of cells:                         2149
+Number of combinational cells:           1810
 Number of sequential cells:               339
 Number of macros/black boxes:               0
-Number of buf/inv:                        571
-Number of references:                     217
+Number of buf/inv:                        534
+Number of references:                     200
 
-Combinational area:               2402.215234
-Buf/Inv area:                      444.175211
-Noncombinational area:            1403.438390
+Combinational area:               2296.904432
+Buf/Inv area:                      420.714009
+Noncombinational area:            1398.322790
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                  3805.653623
+Total cell area:                  3695.227222
 Total area:                 undefined
 1
