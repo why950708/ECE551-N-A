@@ -46,6 +46,7 @@ compile_ultra
 ################################
 # Set the input delay          #
 ################################
+
 ############### Do not mess with the CLK ###############
 set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
 
@@ -70,18 +71,23 @@ set_load 0.1 [all_outputs]
 
 
 
-######################
+####################################
 # Set the wire and transitiondelay #
-######################
+####################################
 set_wire_load_model -name TSMC32K_Lowk_Conservative \
 -library tcbn40lpbwptc
 
 set_max_transition 0.15 [current_design]
 
+################ Uncertainty and hold time fix ####################
 set_clock_uncertainty 0.1 clk
 
 set_fix_hold clk
+################# second and third compiles ##################
+#The third compile because somehow the compile_ultra cannot get the min delay time to work###
 compile_ultra
+compile
+compile
 
 
 
@@ -91,6 +97,8 @@ compile_ultra
 report_timing -delay min
 report_timing -delay max
 report_area
+#####################all cells had area####################
+#report_cell
 
 ############################################################
 # write out our resulting gate level netlist as a .vg file #
